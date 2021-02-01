@@ -1,1 +1,10 @@
 site/*
+__pycache__/
+*.py[cod]
+.idea/*
+.venv/
+build
+*egg-info
+dist/*
+.DS_Store
+!.gitkeep
