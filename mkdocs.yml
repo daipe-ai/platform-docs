@@ -1,4 +1,5 @@
 site_name: My Docs
+site_url: https://datasentics.github.io/ai-platform-docs/
 theme:
   name: material
   features:
