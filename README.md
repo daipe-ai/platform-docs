@@ -1,3 +1,3 @@
 # AI Platform Documentation
 
-Published version: https://github.com/DataSentics/ai-platform-docs
+Published version: https://datasentics.github.io/ai-platform-docs/
