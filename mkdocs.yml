@@ -3,3 +3,13 @@ theme:
   name: material
   features:
     - navigation.tabs
+
+# Page tree
+nav:
+  - home/index.md
+  -
+    - getting-started/index.md
+    - getting-started/azure-setup.md
+    - getting-started/resources-setup.md
+    - getting-started/first-datalake-project.md
+    - getting-started/first-ml-project.md
