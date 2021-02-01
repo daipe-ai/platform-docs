@@ -8,7 +8,7 @@ theme:
 
 # Page tree
 nav:
-  - Home: home/index.md
+  - Home: index.md
   - Getting started:
     - getting-started/index.md
     - getting-started/azure-setup.md
