@@ -1,4 +1,5 @@
 site_name: AI Platform
+repo_url: https://github.com/DataSentics/ai-platform-docs/
 site_url: https://datasentics.github.io/ai-platform-docs/
 theme:
   name: material
