@@ -1,27 +1,27 @@
 # Creating first Machine Learning project 
 
-##  How to reuse the ML project creator for you project/organization?
+The page explains how to configure and utilize an ML project creator defined by an Azure DevOps pipeline. 
 
-### Configuration
+## Prerequisites 
 
-To reuse the pipeline for a different project/organization
+* The ML-project creator pipeline assumes existence of infrastructure and the infrastructure repo created with ADI toolkit (see ["Spinning up resources"](resources-setup.md) page)
+* The repo assumes existence of [ml-project-template](https://dev.azure.com/dataengineerics/datasentics-labs/_git/ml-project-template) repo within the same Azure DevOps organization and project as infrastructure
 
-1. Import the [ml-project-creator-pipeline](https://dev.azure.com/dataengineerics/datasentics-labs/_git/ml-project-creator-pipeline) git repo into your Azure DevOps space
-1. Create a DevOps pipeline based on the [create-ml-repo.yaml](create-ml-repo.yaml) 
+## Step 1: Configure DevOps pipeline
+
+### Steps
+
+To create an ML repo we first need to configure a DevOps pipeline. To do so, 
+
+1. Create a DevOps pipeline based on [.cicd/pipelines/create-ml-repo.yaml](create-ml-repo.yaml) located in infrastructure repo
 1. Add Azure DevOps Personal Access Token (PAT) and user name as pipeline variables under the *Edit* tab of the pipeline as it is shown on the picture below. The PAT will be used to access Azure DevOps services such as git and DevOps pipelines.
     * `GIT_ACCESS_TOKEN` - PAT with permissions enough to create and read git repos and DevOps pipelines within the DevOps organization
     * `GIT_USERNAME` - name of a user for which the token was generated
 
 ![](../images/mlproject_pipeline_vars.png)
 
-### Dependencies
 
-* The pipeline assumes existence of infrastructure and the infrastructure repo created with ADI toolkit (see [azure-setup.md](azure-setup.md))
-* The `ml-project-creator-pipeline` repo should be located under the same Azure DevOps organization and project as the infrastructure repo
-* The repo assumes existence of [ml-project-template](https://dev.azure.com/dataengineerics/datasentics-labs/_git/ml-project-template) repo within the same Azure DevOps organization or being publicly accessible 
-
-
-## How to create a new ML training application?
+## Step 2: Create a new ML training application
 
 ### Steps
 
@@ -31,7 +31,6 @@ To create a new ML training application
 1. In the DevOps space corresponding to your project, under *Pipelines* tab, find `ml-project-creator-pipeline`
 1. Run the pipeline providing the following arguments:
     * Git repo name `<repo_name>` - the name of the git repo for your ML training application, which will be created by the pipeline. Note that the model developed within will be named the same way.
-    * Infrastructure repo name - the name of the git repo containing definition of infrastructure for your environments
     * Development environment name `<env_name>` - name of the environment you plan to develop your project in (should correspond to an existing environment)
     * Run with demo project - if "Yes", you will have an example of training application within the created project
 
