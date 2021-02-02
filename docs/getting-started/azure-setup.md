@@ -139,11 +139,6 @@ Giving service principal permissions on subscription level might be risky. The O
 
 !![](../images/devops_step5.png)
 
-- Uncheck Grant access permission to all pipelines
-- Click on Verify and save
-
-!![](../images/devops_step6.png)
-
 - You can find Subscription ID in Azure portal under Subscriptions
 
 !![](../images/devops_step7.png)
@@ -151,3 +146,10 @@ Giving service principal permissions on subscription level might be risky. The O
 - You can find Tenant ID in Azure portal in Active Directory Overview
 
 !![](../images/devops_step8.png)
+
+- Uncheck Grant access permission to all pipelines
+- Click on Verify and save
+
+!![](../images/devops_step6.png)
+
+
