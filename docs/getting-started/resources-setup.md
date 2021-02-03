@@ -29,12 +29,18 @@ The file `.cicd/variables/variables.yml` holds variables that you can use to cus
 Replace the placeholders.
 
 - TENANT_ID - from previous steps
-- PROJECT_NAME - to your liking
+- PROJECT_NAME - should be simple lowercase name (about 5 characters)
 - SERVICE_CONNECTION_NAME_DEV - devops-service-connection-to-{devsubscription}
 - SERVICE_CONNECTION_NAME_TEST - devops-service-connection-to-{testsubscription}
 - SERVICE_CONNECTION_NAME_PROD - devops-service-connection-to-{prodsubscription}
 - GIT_ACCOUNT_NAME - name of your devops organization
 - GIT_PROJECT_NAME - name of your devops project
+
+In the files `.cicd/variables/variables-{dev/test/prod}.yml` change ADMIN_OBJECT_ID to object id of user you want to have access to keyvault.
+
+You can find user object id in Active Directory.
+
+!![](../images/user_object_id.png)
 
 ## 3. Create DevOps pipeline for infrastructure build & deployment
 

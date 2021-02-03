@@ -7,16 +7,16 @@
 
 ## Best practises
 
-### Subscription per environment
+**Subscription per environment**  
 We consider as a best practice to have separate subscriptions for dev/test/prod environments.
 
-### Naming of service principals
+**Naming of service principals**  
 Our recommendation for naming is that the service principal name should reflect purpose and it's permission scope, eg.
 
 `devops-service-connection-to-{subscription-name}`  
 `devops-service-connection-to-{subscription}-{resource-group-name}`
 
-### Naming of service connections in DevOps
+**Naming of service connections in DevOps**  
 We like to keep name for DevOps service connection same as the name of service principal we are authenticating through.
 
 ## Security Architecture
@@ -46,7 +46,7 @@ In this case the service principal's purpose is to authorize from DevOps to Azur
 
 !![](../images/service_principal_step3.png)
 
-### Notice
+**Notice**  
 Assigning permission scope for service principal will be done in next steps so don't worry if it doesn't make sense yet.
 
 ## 2. Grant service principal permissions to Azure Active Directory API
@@ -70,7 +70,7 @@ Assigning permission scope for service principal will be done in next steps so d
 
 - These changes must be approved by some AAD Administrator.
 
-### Security considerations
+**Security considerations**  
 These permissions only allow to read and manage applications created by service principal. So there is no risk that this service principal can be miused to read or modify any other AAD information.
 
 ## 3. Generate Application secret
@@ -108,7 +108,7 @@ These permissions only allow to read and manage applications created by service 
 !![](../images/service_principal_step11.png)
 !![](../images/service_principal_step12.png)
 
-### Security considerations
+**Security considerations**  
 Giving service principal permissions on subscription level might be risky. The Owner/Contributor role allow any creation or deletion of resources in that subscription so if you have another projects/resources in that subscription the service principal might be misused to delete them. Assign permissions at subscription level only if the subscription is empty.
 
 ## 5. Create service connection in Azure DevOps
@@ -147,9 +147,12 @@ Giving service principal permissions on subscription level might be risky. The O
 
 !![](../images/devops_step8.png)
 
+- Sevice connection name should be same as service principal name
 - Uncheck Grant access permission to all pipelines
 - Click on Verify and save
 
 !![](../images/devops_step6.png)
 
+## 6. Make sure that your subscriptions have appropriate resource providers registered
 
+!![](../images/subscription_resource_providers.png)
