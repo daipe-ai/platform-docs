@@ -153,6 +153,19 @@ Giving service principal permissions on subscription level might be risky. The O
 
 !![](../images/devops_step6.png)
 
-## 6. Make sure that your subscriptions have appropriate resource providers registered
+## 6. Create environments
+
+- Create dev/test/prod environments
+
+!![](../images/environments1.png)
+
+- Set approvals on prod environment
+
+!![](../images/environments2.png)
+!![](../images/environments3.png)
+!![](../images/environments4.png)
+!![](../images/environments5.png)
+
+## 7. Make sure that your subscriptions have appropriate resource providers registered
 
 !![](../images/subscription_resource_providers.png)

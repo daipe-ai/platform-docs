@@ -71,3 +71,12 @@ You can find user object id in Active Directory.
 - Click on Run pipeline
 
 !![](../images/resources_step10.png)
+
+- You can select which stages you want to run
+
+!![](../images/resources_step11.png)
+!![](../images/resources_step12.png)
+
+- Click Run
+
+!![](../images/resources_step13.png)
