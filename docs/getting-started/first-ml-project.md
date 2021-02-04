@@ -7,7 +7,7 @@ The page explains how to configure and utilize an ML project creator defined by 
 * The ML-project creator pipeline assumes existence of infrastructure and the infrastructure repo created with ADI toolkit (see ["Spinning up resources"](resources-setup.md) page)
 * The repo assumes existence of [ml-project-template](https://dev.azure.com/dataengineerics/datasentics-labs/_git/ml-project-template) repo within the same Azure DevOps organization and project as infrastructure
 
-## Step 1: Configure DevOps pipeline
+## 1. Configure DevOps pipeline
 
 ### Steps
 
@@ -21,7 +21,7 @@ To create an ML repo we first need to configure a DevOps pipeline. To do so,
 ![](../images/mlproject_pipeline_vars.png)
 
 
-## Step 2: Create a new ML training application
+## 2. Create a new ML training application
 
 ### Steps
 

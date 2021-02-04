@@ -82,3 +82,7 @@ You can find user object id in Active Directory.
 - Click Run
 
 !![](../images/resources_step13.png)
+
+
+TODO: add section with outcome of run for an env
+add description of two rg which were created (what does it contain, what it is for...) 
