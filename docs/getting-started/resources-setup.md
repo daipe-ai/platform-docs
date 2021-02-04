@@ -16,6 +16,8 @@
 
 - Click on Import
 - In Clone URL fill `https://github.com/DataSentics/adap-infra-template.git`
+- In Username fill your Datasentics email
+- In Password fill your Github password
 - Click on Import
 
 !![](../images/resources_step3.png)
