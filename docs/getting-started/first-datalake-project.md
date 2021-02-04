@@ -2,7 +2,7 @@
 
 ## Introduction and Prerequisites
 
-[`bricksflow-project-creator.yml`](https://github.com/bricksflow/bricksflow) is Azure DevOps pipeline that initiates a new [Bricksflow](https://github.com/bricksflow/bricksflow) project from the up-to-date Bricksflow template.
+[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new [Bricksflow](https://github.com/bricksflow/bricksflow) project from the up-to-date Bricksflow template.
 
 The pipeline also contains the script for automatic protection of the master branch in newly created project.
 
