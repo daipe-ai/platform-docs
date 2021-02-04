@@ -28,3 +28,5 @@ nav:
     - getting-started/first-ml-project.md
   - Developers workflow:
     - developers-workflow/datalake-project-workflow.md
+    - developers-workflow/setup-local-project.md
+    - developers-workflow/feature-branch.md
