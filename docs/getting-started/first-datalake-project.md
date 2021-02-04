@@ -2,31 +2,29 @@
 
 ## Introduction and Prerequisites
 
-###**Introduction**
-`bricksflow-project-creator.yml` is Azure DevOps pipeline that initiates a new [Bricksflow](https://github.com/bricksflow/bricksflow) project from the up-to-date Bricksflow template.
+[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new [Bricksflow](https://github.com/bricksflow/bricksflow) project from the up-to-date Bricksflow template.
 
 The pipeline also contains the script for automatic protection of the master branch in newly created project.
 
-####DevOps Bricksflow project consists of the following components: 
+**Bricksflow project consists of the following components:**
 
-A git repo with DataFactory pipelines, Bricksflow project structure and sample notebooks to give you sense about the usage and workflow.
+- A git repo with DataFactory pipelines, Bricksflow project structure and sample notebooks to give you sense about the usage and workflow.
 
-CI/CD pipelines:
+- CI/CD pipelines:
+  
+    - for testing/deployment of your Databricks notebooks / pipelines to the Databricks workspace based on the environment
+    - for testing/deployment of DataFactory linked to your project
 
-- for testing/deployment of your Databricks notebooks / pipelines to the Databricks workspace based on the environment
-- for testing/deployment of DataFactory linked to your project
+**Prerequisites**:
 
-### **Prerequisites**
 For initial setup of Bricksflow based project / repository:
 
 - Successfully deployed **Infrastructure** from [Spinning up resources](resources-setup.md) page
 - Permission to create Personal Access token in your DevOps organization project
-- The pipeline assumes existence of bricksflow-template repo within the same Azure DevOps organization and project as infrastructure reopsitory
 
 ## How to set up Bricksflow based project?
 
-### To create a new Bricksflow project you need to:
-####1. Create Personal access token for the first run of the pipeline
+###1. Create Personal access token for the first run of the pipeline
 - The Personal Access token is needed just for the first run of the pipeline to create a new Bricksflow based project DevOps repository and initial set up of the CICD pipeline
 - **It can be deleted** after the successful run of the `bricksflow-project-creator.yml` 
 
@@ -38,8 +36,8 @@ Then create the new Personal Token with these permissions.
 
 !![](../images/pat_step2.png)
 
-####2. Register the Bricksflow project creator pipeline and run it
-**Create** a new DevOps pipeline based on `.cicd/pipelines/create-ml-repo.yaml` located in infrastructure repo
+###2. Register the Bricksflow project creator pipeline and run it
+**Create** a new DevOps pipeline based on `.cicd/pipelines/bricksflow-project-creator` located in infrastructure repo
 
 !![](../images/resources_step5.png)
 !![](../images/resources_step6.png)
@@ -97,13 +95,14 @@ After an initial run of the pipelines, you will have **codes** available in the 
 
 !![Databricks](../images/bricks_dbx_ws.png)
 
-You can find the links to the corresponding Databricks workspace directly in the CICD pipeline in the Deploy .
+You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow section.
 
 !![](../images/bricks_dbx_link.png)
 
 Also the **DataFactory** in the specific environment **will be linked** to the codes in the Databricks workspace.
 
-You can find the links to the corresponding Databricks workspace directly in the CICD pipeline. 
+You can find the links to the corresponding DataFactory instance directly in the CICD pipeline - Deploy Data Factory section. 
 
 !![](../images/bricks_adf_link.png)
 
+For workflow details see [Developers workflow](../developers-workflow/datalake-project-workflow.md) page.

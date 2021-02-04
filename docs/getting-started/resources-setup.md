@@ -31,7 +31,7 @@ The file `.cicd/variables/variables.yml` holds variables that you can use to cus
 Replace the placeholders.
 
 - TENANT_ID - from previous steps
-- PROJECT_NAME - should be simple lowercase name (about 5 characters)
+- PROJECT_NAME - should be simple lowercase name (max 5 characters!)
 - SERVICE_CONNECTION_NAME_DEV - devops-service-connection-to-{devsubscription}
 - SERVICE_CONNECTION_NAME_TEST - devops-service-connection-to-{testsubscription}
 - SERVICE_CONNECTION_NAME_PROD - devops-service-connection-to-{prodsubscription}
