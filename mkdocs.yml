@@ -26,7 +26,9 @@ nav:
     - getting-started/resources-setup.md
     - getting-started/first-datalake-project.md
     - getting-started/first-ml-project.md
-  - Developers workflow:
-    - developers-workflow/datalake-project-workflow.md
-    - developers-workflow/setup-local-project.md
-    - developers-workflow/feature-branch.md
+  - Developing data pipelines:
+    - data-pipelines-workflow/index.md
+    - data-pipelines-workflow/setup-local-project.md
+    - data-pipelines-workflow/feature-branch.md
+  - Developing ML models:
+    - ml-workflow/index.md

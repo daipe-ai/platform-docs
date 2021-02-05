@@ -105,4 +105,4 @@ You can find the links to the corresponding DataFactory instance directly in the
 
 !![](../images/bricks_adf_link.png)
 
-For workflow details see [Developers workflow](../developers-workflow/datalake-project-workflow.md) page.
+For workflow details see [Developers workflow](../data-pipelines-workflow/index.md) page.
