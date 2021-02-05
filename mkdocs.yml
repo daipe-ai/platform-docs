@@ -21,14 +21,14 @@ extra_javascript:
 nav:
   - Home: index.md
   - Getting started:
-    - getting-started/index.md
-    - getting-started/azure-setup.md
-    - getting-started/resources-setup.md
-    - getting-started/first-datalake-project.md
-    - getting-started/first-ml-project.md
-  - Developing data pipelines:
-    - data-pipelines-workflow/index.md
-    - data-pipelines-workflow/setup-local-project.md
-    - data-pipelines-workflow/feature-branch.md
+      Getting started: getting-started/index.md
+      Azure environment: getting-started/azure-setup.md
+      Data Lake resources: getting-started/datalake-resources-setup.md
+      Data Pipelines project: getting-started/data-pipelines-project-setup.md
+      Machine Learning project: getting-started/ml-project-setup.md
+  - Developing Data Pipelines:
+      Workflow overview: data-pipelines-workflow/index.md
+      Feature branch: data-pipelines-workflow/feature-branch.md
+      Local project setup: data-pipelines-workflow/setup-local-project.md
   - Developing ML models:
-    - ml-workflow/index.md
+    - Workflow overview: ml-workflow/index.md

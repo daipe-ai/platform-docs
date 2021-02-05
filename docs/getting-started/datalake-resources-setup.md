@@ -1,4 +1,4 @@
-# Spinning up resources
+# Spinning up Data Lake resources
 
 ## 1. Create repository for infrastructure and import it's code
 

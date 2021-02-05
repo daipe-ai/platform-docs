@@ -1,4 +1,4 @@
-# Setting up Azure
+# Setting up Azure environment
 
 ## Prerequisites
 - Subscription with **Owner** permissions
@@ -24,7 +24,7 @@ This diagram helps to visualize what is going to be done. It only shows it for d
 
 !![](../images/security_architecture.png)
 
-## Notice
+**Notice**
 This tutorial describes how to setup **dev** environment. Setup for **test** and **prod** is identical.
 
 ## 1. Create service principal in Azure Active Directory

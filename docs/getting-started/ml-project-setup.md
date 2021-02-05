@@ -4,7 +4,7 @@ The page explains how to configure and utilize an ML project creator defined by 
 
 ## Prerequisites 
 
-* The ML-project creator pipeline assumes existence of infrastructure and the infrastructure repo created with ADI toolkit (see ["Spinning up resources"](resources-setup.md) page)
+* The ML-project creator pipeline assumes existence of infrastructure and the infrastructure repo created with ADI toolkit (see ["Spinning up resources"](datalake-resources-setup.md) page)
 * The repo assumes existence of [ml-project-template](https://dev.azure.com/dataengineerics/datasentics-labs/_git/ml-project-template) repo within the same Azure DevOps organization and project as infrastructure
 
 ## 1. Configure DevOps pipeline
