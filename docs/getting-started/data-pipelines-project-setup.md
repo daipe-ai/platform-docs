@@ -34,33 +34,33 @@ For initial setup of Bricksflow based project / repository:
 
 Then create the new Personal Token with these permissions.
 
-!![](../images/pat_step2.png)
+![](../images/pat_step2.png)
 
 ###2. Register the Bricksflow project creator pipeline and run it
 **Create** a new DevOps pipeline based on `.cicd/pipelines/bricksflow-project-creator` located in infrastructure repo
 
-!![](../images/resources_step5.png)
-!![](../images/resources_step6.png)
-!![](../images/resources_step7.png)
+![](../images/resources_step5.png)
+![](../images/resources_step6.png)
+![](../images/resources_step7.png)
 
-!![](../images/bricks_create1.png)
+![](../images/bricks_create1.png)
 
 Set a **PA_TOKEN** variable under the Variables by providing Personal Access Token and **save** the pipeline. 
 
-!![](../images/bricks_create2.png)
-!![](../images/bricks_create3.png)
+![](../images/bricks_create2.png)
+![](../images/bricks_create3.png)
 
 You can now rename the pipeline, if you'd like to.
 
 **Run** the newly created pipeline and provide the **name of the project** you want to create.
 
-!![](../images/bricks_run.png)
+![](../images/bricks_run.png)
 
 Pipeline will need the permission to access the service principal for getting the Databricks workspace variables.
 
 Open the run of the pipeline and under the **View** permit the usage of service principal. 
 
-!![](../images/bricks_permissions.png)
+![](../images/bricks_permissions.png)
 
 ## Created resources 
 
@@ -82,12 +82,12 @@ After successful execution, you will find the following **resources**:
 
 * **Main CI/CD pipeline** created for the repo. The pipeline is called `master-$yourprojectname-deployment`. 
   
-  !![](../images/bricks_created_pipeline.png)
+  ![](../images/bricks_created_pipeline.png)
 
 
 **Note**: the pipeline will be executed automatically after creation of the Bricksflow project repository for deploying sample notebooks to Databricks and will ask for permission to the service connection, as it is shown on the picture below.
 
-!![](../images/bricks_permission_cp.png)
+![](../images/bricks_permission_cp.png)
 
 ## Next steps 
 
@@ -97,12 +97,12 @@ After an initial run of the pipelines, you will have **codes** available in the 
 
 You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow section.
 
-!![](../images/bricks_dbx_link.png)
+![](../images/bricks_dbx_link.png)
 
 Also the **DataFactory** in the specific environment **will be linked** to the codes in the Databricks workspace.
 
 You can find the links to the corresponding DataFactory instance directly in the CICD pipeline - Deploy Data Factory section. 
 
-!![](../images/bricks_adf_link.png)
+![](../images/bricks_adf_link.png)
 
 For workflow details see [Developers workflow](../data-pipelines-workflow/index.md) page.
