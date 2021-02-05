@@ -30,7 +30,7 @@ For initial setup of Bricksflow based project / repository:
 
 **Go to**:
 
-![PAT](../images/pat_step1.png)
+![](../images/pat_step1.png){: style="width: 300px; padding-left: 5%"}
 
 Then create the new Personal Token with these permissions.
 
@@ -68,7 +68,7 @@ After successful execution, you will find the following **resources**:
 
 - A new **git repo**
   
-  ![Repository](../images/bricks_repo.png)
+  ![](../images/bricks_repo.png){: style="width: 300px; padding-left: 5%"}
 
   
 - **Protected master branch** 
@@ -93,7 +93,7 @@ After successful execution, you will find the following **resources**:
 
 After an initial run of the pipelines, you will have **codes** available in the **Databricks workspace** corresponding to the Databricks environment.
 
-![Databricks](../images/bricks_dbx_ws.png)
+![](../images/bricks_dbx_ws.png){: style="width: 350px; padding-left: 5%"}
 
 You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow section.
 

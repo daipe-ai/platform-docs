@@ -7,6 +7,9 @@ theme:
     - navigation.tabs
     - toc.integrate
 
+markdown_extensions:
+  - attr_list
+
 extra_css:
   - stylesheets/extra.css
 

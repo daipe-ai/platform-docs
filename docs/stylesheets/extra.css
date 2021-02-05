@@ -1,7 +1,3 @@
-img[alt=PAT] { width: 200px; }
-img[alt=Repository] { width: 200px; }
-img[alt=Databricks] { width: 350px; }
-
 a.md-nav__link--active {
     color: darkgray !important;
     cursor: default;
