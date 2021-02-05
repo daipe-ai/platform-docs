@@ -11,7 +11,7 @@ The page explains how to configure and utilize an ML project creator defined by 
 
 To create an ML repo we first need to configure a DevOps pipeline. To do so, 
 
-1. Create a DevOps pipeline based on [.cicd/pipelines/create-ml-repo.yaml](create-ml-repo.yaml) located in infrastructure repo
+1. Create a DevOps pipeline based on `create-ml-repo.yaml` located in infrastructure repo
 1. Add Azure DevOps Personal Access Token (PAT) and user name as pipeline variables under the *Edit* tab of the pipeline as it is shown on the picture below. The PAT will be used to access Azure DevOps services such as git and DevOps pipelines.
     * `GIT_ACCESS_TOKEN` - PAT with permissions enough to create and read git repos and DevOps pipelines within the DevOps organization
     * `GIT_USERNAME` - name of a user for which the token was generated
