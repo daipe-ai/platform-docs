@@ -1,4 +1,4 @@
-# AI Platform Documentation
+# AI Suite Documentation
 
 Published version: https://datasentics.github.io/ai-platform-docs/
 
