@@ -7,9 +7,6 @@ theme:
     - navigation.tabs
     - toc.integrate
 
-markdown_extensions:
-  - fancyboxmd
-
 extra_css:
   - stylesheets/extra.css
 
