@@ -4,3 +4,9 @@ label.md-nav__title {
 img[alt=PAT] { width: 200px; }
 img[alt=Repository] { width: 200px; }
 img[alt=Databricks] { width: 350px; }
+
+a.md-nav__link--active {
+    color: black !important;
+    font-weight: bold;
+    cursor: default;
+}
