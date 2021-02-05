@@ -9,8 +9,6 @@ The page explains how to configure and utilize an ML project creator defined by 
 
 ## 1. Configure DevOps pipeline
 
-### Steps
-
 To create an ML repo we first need to configure a DevOps pipeline. To do so, 
 
 1. Create a DevOps pipeline based on [.cicd/pipelines/create-ml-repo.yaml](create-ml-repo.yaml) located in infrastructure repo
@@ -22,8 +20,6 @@ To create an ML repo we first need to configure a DevOps pipeline. To do so,
 
 
 ## 2. Create a new ML training application
-
-### Steps
 
 To create a new ML training application
 
