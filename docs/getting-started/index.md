@@ -1,4 +1,4 @@
-# Getting started
+# Architecture Overview
 
 The schema bellow describes the full process of AI Platform setup:
 

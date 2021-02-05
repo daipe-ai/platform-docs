@@ -21,7 +21,7 @@ extra_javascript:
 nav:
   - Home: index.md
   - Getting started:
-      Getting started: getting-started/index.md
+      Architecture Overview: getting-started/index.md
       Azure environment: getting-started/azure-setup.md
       Data Lake resources: getting-started/datalake-resources-setup.md
       Data Pipelines project: getting-started/data-pipelines-project-setup.md
