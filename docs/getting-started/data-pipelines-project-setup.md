@@ -1,4 +1,4 @@
-# Creating first data pipelines project
+# Creating first Data Pipelines project
 
 ## Introduction and Prerequisites
 
