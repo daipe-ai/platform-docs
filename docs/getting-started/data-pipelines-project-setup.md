@@ -19,7 +19,7 @@ The pipeline also contains the script for automatic protection of the master bra
 
 For initial setup of Bricksflow based project / repository:
 
-- Successfully deployed **Infrastructure** from [Spinning up resources](datalake-resources-setup.md) page
+- Successfully deployed **Infrastructure** from [Datalake resources](datalake-resources-setup.md) page
 - Permission to create Personal Access token in your DevOps organization project
 
 ## How to set up Bricksflow based project?
