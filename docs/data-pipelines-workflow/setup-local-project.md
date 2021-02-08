@@ -17,7 +17,7 @@ We recommend using the following IDEs:
 Firstly you need to clone the git repository that holds the Bricksflow based project. 
 ![](../images/bricks_clone.png)
 
-Then open the folder in terminal and run ./env-init.sh.
+Then open the folder in terminal and run `./env-init.sh`.
 
 ![](../images/bricks_env.png)
 
@@ -52,3 +52,33 @@ or use a shortcut
 ```bash
 $ ca
 ```
+
+## Syncing local project with Databricks 
+
+Create a feature branch and then with activated conda environment use the console command:
+
+```bash
+$ console dbx:deploy --env=dev
+```
+
+Your feature branch will be deployed to the DEV DataBricks workspace.
+
+![](../images/bricks_feature_branch.png)
+
+You can now code some awesome new features!
+
+When you're happy with what you've done, open the project folder in terminal and use the console command:
+
+```bash
+$ console dbx:workspace:export --env=dev
+```
+Then you just need to commit the changes and push the feature branch to the DevOps project. 
+
+**Same with existing feature branch folder in Databricks.**
+
+If you are Data Engineer and Data Scientist provided the Databricks folder for you:
+
+- Create a feature branch on local with the same name as the folder in databricks. 
+- Use dbx:workspace:export to sync the notebooks to the local
+- commit the changes and push them to the DevOps
+

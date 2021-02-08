@@ -1,28 +1,33 @@
-# Feature branch 
+# Create a new feature 
 
-## Syncing local project with Databricks 
+## Creating new feature in Databricks
 
-Create a feature branch and then with activated conda environment use the console command:
+**Cloning the master branch/folder**
 
-```bash
-$ console dbx:deploy --env=dev
-```
+- Open the Dev Databricks Workspace associated with your project.
+- Under the Workspace, find the folder that has the name of your project.
+- When you open it, you can see the branches active under your project.
+- Clone the master folder and make your branch folder out of it.
 
-Your feature branch will be deployed to the DEV DataBricks workspace.
+By cloning the master you will have the most updated version of the code on your branch folder.
 
-![](../images/bricks_feature_branch.png)
+![](../images/bricks_clone_master.png){: style="width: 600px; padding-left: 5%"}
 
-You can now code some awesome new features!
+**Name it** `feature-<your-branch-name>`.
 
-When you're happy with what you've done, open the project folder in terminal and use the console command:
+![](../images/bricks_new_feature.png){: style="width: 600px; padding-left: 5%"}
 
-```bash
-$ console dbx:workspace:export --env=dev
-```
+Then you can start working on the awesome new feature in your separate branch.
 
-Then you just need to commit the changes and push the feature branch to the DevOps project. 
+![](../images/bricks_created_branch.png){: style="width: 600px; padding-left: 5%"}
+
+When you're done with coding, you can contact Data Engineer to commit the changes for you.
+
+Or if you are more advanced, you can go to [(Advanced) Local project setup](setup-local-project.md) and commit the changes by yourself.
+
 
 ## Developing DataFactory pipelines 
+
 
 
 ## Creating Pull Request
