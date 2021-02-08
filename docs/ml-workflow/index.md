@@ -12,6 +12,7 @@ There are four main components in the architecture:
     * ML Project creator pipelines, defined by a `.yaml` contained within the infrastructure repo
     * Code and model CI/CD pipelines, defined by `.yaml` files contained within the ML training app repo
 * Resources
+    * Development environment, e.g., Databricks (DBX)
     * MLflow server (a required component), which can but don't have to be Databricks managed
     * Optionally, other services such as Azure Container Instances (ACI) or Kubernetes (K8S), which are used to host model in case of online serving
 * Consuming applications
