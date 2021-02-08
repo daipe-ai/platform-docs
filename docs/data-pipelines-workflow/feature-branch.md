@@ -41,7 +41,7 @@ In Data Factory go to the Author section.
 
 **Create or Select existing branch:**
 
-- If you are creating pipeline on the existing notebooks in the master branch select **Create new** and name it
+- If you are creating pipeline for the notebooks in the master branch select **Create new** and name it
 - If you want to create pipeline based on the notebooks from the commited feature branch select **Use existing** and select the branch
 
 ![](../images/df_create_new.png){: style="width: 600px; padding-left: 5%"}
