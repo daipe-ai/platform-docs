@@ -1,4 +1,9 @@
+label.md-nav__title {
+    display: none !important
+}
+
 a.md-nav__link--active {
-    color: darkgray !important;
+    color: black !important;
+    font-weight: bold;
     cursor: default;
 }
