@@ -67,7 +67,7 @@ The new commit in DevOps repository under your branch used in Data Factory will 
 
 ## Creating Pull Request
 
-When you're done with all the changes create a Pull Request.
+When you're done with all the changes create a Pull Request from your branch to the master branch.
 
 ![](../images/bricks_pr_set.png)
 
