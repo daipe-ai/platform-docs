@@ -96,6 +96,7 @@ After an initial run of the pipelines, you will have **codes** available in the 
 ![](../images/bricks_dbx_ws.png){: style="width: 350px; padding-left: 5%"}
 
 You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow section.
+Note that if you enter the workspace for the first time, you have to launch it from the corresponding Azure resource page using Azure portal. 
 
 ![](../images/bricks_dbx_link.png)
 
