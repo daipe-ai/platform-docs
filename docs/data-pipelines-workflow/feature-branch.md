@@ -83,11 +83,11 @@ There will be newly created DataFactory instance based on the name of the featur
 
 - Open the TEST Data Factory
 - Go to Author Section
-- Select the pipeline you are merging and hit Debug
+- Select the pipeline you updated (or any other pipeline you want to testify is functional) and hit Debug 
 
 ![](../images/bricks_pr_tests.png)
 
-After the successful run of the tests add the Reviewer to the Pull Request and provide him with the test results.
+After the successful run of the tests add the Reviewer to the Pull Request and provide him with the test results (for instance, by adding a comment to the PR).
 
 
-When it's approved it could be merged by Squash commit to the master and the new awesome feature is automatically deployed to the DEV and with approval to the PROD environments.
+When it's approved the PR could be merged by Squash commit to the master and the new awesome feature is automatically deployed to the DEV and with approval to the PROD environments.
