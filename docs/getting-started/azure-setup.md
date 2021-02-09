@@ -29,7 +29,7 @@ This tutorial describes how to setup **dev** environment. Setup for **test** and
 
 ## 1. Create service principal in Azure Active Directory
 
-- Go to Azure poral (https://portal.azure.com)
+- Go to [Azure portal](https://portal.azure.com)
 - Click on Azure Active Directory
 - Click on App registrations
 - Click on New registration
@@ -86,7 +86,7 @@ These permissions only allow to read and manage applications created by service 
 
 ![](../images/service_principal_step8.png)
 
-## 4. Grant newly created service principal Owner permissions to dev subscription
+## 4. Grant newly created service principal Owner permissions to your subscription
 
 - In Azure portal click on Subscriptions
 

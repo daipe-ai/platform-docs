@@ -1,6 +1,6 @@
 # Create a new feature 
 
-## Creating new feature in Databricks
+## 1. Creating new feature in Databricks
 
 **Cloning the master branch/folder**
 
@@ -26,7 +26,7 @@ When you're done with coding, you can contact Data Engineer to commit the change
 Or if you are more advanced, you can go to [(Advanced) Local project setup](setup-local-project.md) and commit the changes by yourself.
 
 
-## Developing Data Factory pipelines 
+## 2. Developing Data Factory pipelines 
 
 Go to the Data Factory associated with your project.
 
@@ -65,7 +65,7 @@ The new commit in DevOps repository under your branch used in Data Factory will 
 
 ![](../images/bricks_pull_request.png)
 
-## Creating Pull Request
+## 3. Creating Pull Request
 
 When you're done with all the changes create a Pull Request from your branch to the master branch.
 
