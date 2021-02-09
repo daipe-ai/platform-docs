@@ -70,6 +70,8 @@ Assigning permission scope for service principal will be done in next steps so d
 
 - These changes must be approved by some AAD Administrator.
 
+![](../images/service_principal_step7.png)
+
 **Security considerations**  
 These permissions only allow to read and manage applications created by service principal. So there is no risk that this service principal can be miused to read or modify any other AAD information.
 
@@ -80,22 +82,22 @@ These permissions only allow to read and manage applications created by service 
 - Select expiration - Never
 - Click Add
 
-![](../images/service_principal_step7.png)
+![](../images/service_principal_step8.png)
 
 - Copy the secret value and store it for later use
 
-![](../images/service_principal_step8.png)
+![](../images/service_principal_step9.png)
 
 ## 4. Grant newly created service principal Owner permissions to your subscription
 
 - In Azure portal click on Subscriptions
 
-![](../images/service_principal_step9.png)
+![](../images/service_principal_step10.png)
 
 - You might need to uncheck global subscription filter
 - Click on your dev subscription
 
-![](../images/service_principal_step10.png)
+![](../images/service_principal_step11.png)
 
 - Click on Access control (IAM)
 - Click on Add
@@ -105,8 +107,8 @@ These permissions only allow to read and manage applications created by service 
 - Click on that service principal
 - Click Save
 
-![](../images/service_principal_step11.png)
 ![](../images/service_principal_step12.png)
+![](../images/service_principal_step13.png)
 
 **Security considerations**  
 Giving service principal permissions on subscription level might be risky. The Owner/Contributor role allow any creation or deletion of resources in that subscription so if you have another projects/resources in that subscription the service principal might be misused to delete them. Assign permissions at subscription level only if the subscription is empty.

@@ -87,6 +87,8 @@ You can find user object id in Active Directory.
 
 When the pipeline is finished you need to create secret scope for Databricks.
 
+<span style="color: red">!! This needs to be done for all environments dev/test/prod !!</span>
+
 - Go to Databricks workspace
 
 ![](../images/resources_step14.png)
