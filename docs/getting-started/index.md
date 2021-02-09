@@ -1,6 +1,10 @@
 # Architecture Overview
 
-The schema bellow describes the full process of AI Platform setup:
+Base AI Suite Architecture: 
+
+![](../images/architecture_overview.png)
+
+The schema bellow describes the full process of AI Suite setup:
 
 1. [Setting up Azure environment](./azure-setup.md) 
 1. [Spinning up Data Lake resources](datalake-resources-setup.md)
