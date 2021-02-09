@@ -113,7 +113,7 @@ Giving service principal permissions on subscription level might be risky. The O
 
 ## 5. Create service connection in Azure DevOps
 
-- Go to Azure DevOps project (https://dev.azure.com)
+- Go to [any Azure DevOps project](https://dev.azure.com)
 
 ![](../images/devops_step1.png)
 
