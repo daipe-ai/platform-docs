@@ -74,7 +74,7 @@ You can find user object id in Active Directory.
 
 ![](../images/resources_step10.png)
 
-- You can select which stages you want to run
+- Make sure that you run all stages
 
 ![](../images/resources_step11.png)
 ![](../images/resources_step12.png)
@@ -83,6 +83,27 @@ You can find user object id in Active Directory.
 
 ![](../images/resources_step13.png)
 
+## 4. Create Key Vault Secret Scope in Databricks
+
+When the pipeline is finished you need to create secret scope for Databricks.
+
+- Go to Databricks workspace
+
+![](../images/resources_step14.png)
+
+- Look in the URL
+- There should be something like `https://adb-3076017168624144.4.azuredatabricks.net/?o=3076017168624144`
+- Add `#secrets/createScope` at the end of URL
+- URL now should look like `https://adb-3076017168624144.4.azuredatabricks.net/?o=3076017168624144#secrets/createScope`
+- Hit enter and you should be redirected to the page below
+
+![](../images/resources_step15.png)
+
+- Fill in information
+- Scope Name - `unit-kv`
+- DNS Name and Resource ID can be found in key vault properties
+
+![](../images/resources_step16.png)
 
 TODO: add section with outcome of run for an env
 add description of two rg which were created (what does it contain, what it is for...) 
