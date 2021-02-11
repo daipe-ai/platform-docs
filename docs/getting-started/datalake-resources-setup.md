@@ -32,9 +32,9 @@ Replace the placeholders.
 
 - TENANT_ID - from [Azure setup](azure-setup.md) section 5
 - PROJECT_NAME - <span style="color: red">!! should be simple lowercase name (max 5 characters) !!</span>
-- SERVICE_CONNECTION_NAME_DEV - devops-service-connection-to-{devsubscription}
-- SERVICE_CONNECTION_NAME_TEST - devops-service-connection-to-{testsubscription}
-- SERVICE_CONNECTION_NAME_PROD - devops-service-connection-to-{prodsubscription}
+- SERVICE_CONNECTION_NAME_DEV - devops-service-connection-to-devsubscription
+- SERVICE_CONNECTION_NAME_TEST - devops-service-connection-to-testsubscription
+- SERVICE_CONNECTION_NAME_PROD - devops-service-connection-to-prodsubscription
 - GIT_ACCOUNT_NAME - name of your devops organization
 - GIT_PROJECT_NAME - name of your devops project
 
