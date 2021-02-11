@@ -22,6 +22,7 @@ nav:
       Data Lake resources: getting-started/datalake-resources-setup.md
       Data Pipelines project: getting-started/data-pipelines-project-setup.md
       Machine Learning project: getting-started/ml-project-setup.md
+      Self-hosted agents (optional): getting-started/devops-agents-setup.md
   - Developing Data Pipelines:
       Workflow overview: data-pipelines-workflow/index.md
       Create new feature: data-pipelines-workflow/feature-branch.md
