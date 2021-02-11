@@ -107,5 +107,18 @@ When the pipeline is finished you need to create secret scope for Databricks.
 
 ![](../images/resources_step16.png)
 
-TODO: add section with outcome of run for an env
-add description of two rg which were created (what does it contain, what it is for...) 
+## 5. Resources overview
+
+After the infrastructure is deployed you can check the resources under resource group `adap-cz-PROJECT_NAME-rg-dev`
+
+![](../images/resources_rg_overview.png)
+
+**Main components**
+
+- Databricks workspace - this is place where you develop your spark notebooks
+- Storage accoount - this is place where your data lives
+- Key vault - this is place where secrets are stored
+- Data factory - main orchestration engine for your Databricks notebooks
+- Virtual network - Key vault and Databricks clusters are deployed in this virtual network for better isolation
+
+![](../images/resources_overview.png)
