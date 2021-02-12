@@ -1,12 +1,14 @@
 # Creating first Data Pipelines project
 
+![](../images/dia_bricks_creator.png){: style="width: 700px; padding-left: 5%"}
+
 ## Introduction and Prerequisites
 
-[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new [Bricksflow](https://github.com/bricksflow/bricksflow) project from the up-to-date Bricksflow template.
+[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new Data Pipelines project from the up-to-date [Bricksflow template](https://github.com/bricksflow/bricksflow).
 
 The pipeline also contains the script for automatic protection of the master branch in newly created project.
 
-**Bricksflow project consists of the following components:**
+**Data Pipelines project consists of the following components:**
 
 - A git repo with DataFactory pipelines, Bricksflow project structure and sample notebooks to give you sense about the usage and workflow.
 
@@ -17,12 +19,12 @@ The pipeline also contains the script for automatic protection of the master bra
 
 **Prerequisites**:
 
-For initial setup of Bricksflow based project / repository:
+For initial setup of Data Pipelines project / repository:
 
 - Successfully deployed **Infrastructure** from [Datalake resources](datalake-resources-setup.md) page
 - Permission to create Personal Access token in your DevOps organization project
 
-## How to set up Bricksflow based project?
+## How to set up Data Pipelines project?
 
 ###1. Create Personal access token for the first run of the pipeline
 - The Personal Access token is needed just for the first run of the pipeline to create a new Bricksflow based project DevOps repository and initial set up of the CICD pipeline
@@ -85,7 +87,7 @@ After successful execution, you will find the following **resources**:
   ![](../images/bricks_created_pipeline.png)
 
 
-**Note**: the pipeline will be executed automatically after creation of the Bricksflow project repository for deploying sample notebooks to Databricks and will ask for permission to the service connection, as it is shown on the picture below.
+**Note**: the pipeline will be executed automatically after creation of the Data Pipelines project repository for deploying sample notebooks to Databricks and will ask for permission to the service connection, as it is shown on the picture below.
 
 ![](../images/bricks_permission_cp.png)
 

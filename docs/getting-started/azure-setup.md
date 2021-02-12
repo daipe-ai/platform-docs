@@ -1,5 +1,7 @@
 # Setting up Azure environment
 
+![](../images/dia_azure.png){: style="width: 700px; padding-left: 5%"}
+
 ## Prerequisites
 - Subscription with **Owner** permissions
 - Sufficient permissions to AAD (Azure Active Directory) - to create app registrations / service principals
@@ -171,3 +173,30 @@ Giving service principal permissions on subscription level might be risky. The O
 ## 7. Make sure that your subscriptions have appropriate resource providers registered
 
 ![](../images/subscription_resource_providers.png)
+
+**Explicit list**, you can use it to filter the Resources:
+
+- Microsoft.Notebooks
+- Microsoft.ManagedIdentity
+- Microsoft.ContainerRegistry
+- Microsoft.ContainerInstance
+- Microsoft.MachineLearningServices
+- microsoft.insights
+- Microsoft.PolicyInsights
+- Microsoft.Storage
+- Microsoft.Network
+- Microsoft.DataFactory
+- Microsoft.OperationalInsights
+- Microsoft.Databricks
+- Microsoft.KeyVault
+- Microsoft.Security
+- Microsoft.Compute
+- Microsoft.ChangeAnalysis
+- Microsoft.Advisor
+- Microsoft.Commerce
+- Microsoft.ClassicStorage
+- Microsoft.MachineLearning
+- Microsoft.ADHybridHealthService
+- Microsoft.ResourceGraph
+- Microsoft.Resources
+- Microsoft.SerialConsole
