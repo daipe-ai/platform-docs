@@ -60,28 +60,9 @@ You can find user object id in Active Directory.
 ![](../images/resources_step7.png)
 
 - It will automaticaly locate file `azure-pipelines.yml`
-- Click Save
+- Click on Run
 
 ![](../images/resources_step8.png)
-
-- Go back to Azure pipelines
-- Click on All
-- Click on infra
-
-![](../images/resources_step9.png)
-
-- Click on Run pipeline
-
-![](../images/resources_step10.png)
-
-- Make sure that you run all stages
-
-![](../images/resources_step11.png)
-![](../images/resources_step12.png)
-
-- Click Run
-
-![](../images/resources_step13.png)
 
 ## 4. Create Key Vault Secret Scope in Databricks
 
