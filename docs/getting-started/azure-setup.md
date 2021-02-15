@@ -112,6 +112,9 @@ These permissions only allow to read and manage applications created by service 
 ![](../images/service_principal_step12.png)
 ![](../images/service_principal_step13.png)
 
+**Why Owner role?**  
+The pipeline for deploying Resources uses [post deploy script](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/scripts/azure-post-deploy.sh) to set up secure integration between Databricks, Key Vault, Storage and this can be done only when Service principal has Owner role set.
+
 **Security considerations**  
 Giving service principal permissions on subscription level might be risky. The Owner/Contributor role allow any creation or deletion of resources in that subscription so if you have another projects/resources in that subscription the service principal might be misused to delete them. Assign permissions at subscription level only if the subscription is empty.
 
