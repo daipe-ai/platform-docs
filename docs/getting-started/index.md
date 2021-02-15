@@ -1,13 +1,11 @@
-# Architecture Overview
+# Process Overview
 
-Base AI Suite Architecture: 
+![](../images/process_overview.png)
 
-![](../images/architecture_overview.png)
+The schema above describes the full process of AI Suite setup:
 
-The schema bellow describes the full process of AI Suite setup:
+1. [Setting up Azure Environment](azure-setup.md) 
+2. [Spinning up Resources](datalake-resources-setup.md)
+3. [Creating Data Pipelines project](data-pipelines-project-setup.md)
+4. [Creating Machine Learning project](ml-project-setup.md)
 
-1. [Setting up Azure environment](./azure-setup.md) 
-1. [Spinning up Data Lake resources](datalake-resources-setup.md)
-1. & 4 [Creating first Data Pipelines project](data-pipelines-project-setup.md)
-
-![](../images/index_infra_ov.png)

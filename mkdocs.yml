@@ -17,7 +17,7 @@ extra_css:
 nav:
   - Home: index.md
   - Getting started:
-      Architecture Overview: getting-started/index.md
+      Process Overview: getting-started/index.md
       Azure environment: getting-started/azure-setup.md
       Data Lake resources: getting-started/datalake-resources-setup.md
       Data Pipelines project: getting-started/data-pipelines-project-setup.md

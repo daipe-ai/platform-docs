@@ -1,4 +1,4 @@
-# Setting up Azure environment
+# Setting up Azure Environment
 
 ![](../images/dia_azure.png){: style="width: 700px; padding-left: 5%"}
 
