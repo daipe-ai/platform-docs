@@ -1,6 +1,6 @@
 # Process Overview
 
-![](../images/process_overview.png)
+![](../images/process_overview.png){: style="width: 750px; padding-left: 5%"}
 
 The schema above describes the full process of AI Suite setup:
 
