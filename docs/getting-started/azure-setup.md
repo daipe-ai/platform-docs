@@ -1,4 +1,5 @@
 # Setting up Azure Environment
+[Go to setup steps ↓](azure-setup.md#1-create-service-principal-in-azure-active-directory)
 
 ![](../images/dia_azure.png){: style="width: 700px; padding-left: 5%"}
 

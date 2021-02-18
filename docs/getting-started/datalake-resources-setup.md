@@ -1,5 +1,7 @@
 # Spinning up Data Lake resources
 
+[Go to setup steps ↓](datalake-resources-setup.md#1-create-repository-for-infrastructure-and-import-its-code)
+
 ![](../images/dia_infra.png){: style="width: 700px; padding-left: 5%"}
 
 ## 1. Create repository for infrastructure and import it's code

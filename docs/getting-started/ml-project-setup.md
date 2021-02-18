@@ -1,5 +1,7 @@
 # Creating first Machine Learning project 
 
+[Go to setup steps ↓](ml-project-setup.md#1-configure-devops-pipeline)
+
 The page explains how to configure and utilize an ML project creator defined by an Azure DevOps pipeline. 
 
 ## Prerequisites 
