@@ -4,6 +4,19 @@
 
 ![](../images/dia_infra.png){: style="width: 700px; padding-left: 5%"}
 
+
+**Overview of branches / workflow:**
+
+| Environment 	| Branch  	| Databricks Workspace 	| Databricks Code branch                     	| DataFactory Resource                         	| DataFactory Pipelines Code branch          	| APP_ENV                                       	|
+|-------------	|---------	|----------------------	|--------------------------------------------	|----------------------------------------------	|--------------------------------------------	|-----------------------------------------------	|
+| tmp         	| tmp     	| DBX tmp              	| -                                          	| -                                            	| -                                          	| -                                             	|
+| sandbox     	| sandbox 	| DBX sandbox          	| [feature branch] (optional)                	| -                                            	| -                                          	| dev (if Bricskflow coding standards are used) 	|
+| dev         	| dev     	| DBX dev              	| [feature branch] (required)                	| ADF dev                                      	| [feature branch]                           	| dev                                           	|
+| test        	| test    	| DBX test             	| [feature branch] (auto-deployment with PR) 	| ADF [feature-branch] (auto-creation with PR) 	| [feature branch] (auto-deployment with PR) 	| dev                                           	|
+| prod        	| prod    	| DBX prod             	| prod (auto-deployment after merge to prod) 	| ADF prod                                     	| prod                                       	| prod                                          	|
+
+
+
 ## 1. Create repository for infrastructure and import it's code
 
 - In Azure DevOps click on repositories
