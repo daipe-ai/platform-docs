@@ -23,7 +23,7 @@ Then you can start working on the awesome new feature in your separate branch.
 
 When you're done with coding, you can contact Data Engineer to commit the changes for you.
 
-Or if you are more advanced, you can go to [(Advanced) Local project setup](setup-local-project.md) and commit the changes by yourself.
+Or if you are more advanced, you can go to [(Advanced) Local project setup](local-project-setup.md) and commit the changes by yourself.
 
 
 ## 2. Developing Data Factory pipelines 

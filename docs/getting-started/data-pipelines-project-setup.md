@@ -1,5 +1,7 @@
 # Creating first Data Pipelines project
 
+[Go to setup steps ↓](data-pipelines-project-setup.md#how-to-set-up-data-pipelines-project)
+
 ![](../images/dia_bricks_creator.png){: style="width: 700px; padding-left: 5%"}
 
 ## Introduction and Prerequisites

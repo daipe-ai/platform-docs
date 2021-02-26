@@ -1,6 +1,21 @@
 # Spinning up Data Lake resources
 
+[Go to setup steps ↓](datalake-resources-setup.md#1-create-repository-for-infrastructure-and-import-its-code)
+
 ![](../images/dia_infra.png){: style="width: 700px; padding-left: 5%"}
+
+
+**Overview of branches / workflow:**
+
+| Environment 	| Branch  	| Databricks Workspace 	| Databricks Code branch                     	| DataFactory Resource                         	| DataFactory Pipelines Code branch          	| APP_ENV                                       	|
+|-------------	|---------	|----------------------	|--------------------------------------------	|----------------------------------------------	|--------------------------------------------	|-----------------------------------------------	|
+| tmp         	| tmp     	| DBX tmp              	| -                                          	| -                                            	| -                                          	| -                                             	|
+| sandbox     	| sandbox 	| DBX sandbox          	| [feature branch] (optional)                	| -                                            	| -                                          	| dev (if Bricskflow coding standards are used) 	|
+| dev         	| dev     	| DBX dev              	| [feature branch] (required)                	| ADF dev                                      	| [feature branch]                           	| dev                                           	|
+| test        	| test    	| DBX test             	| [feature branch] (auto-deployment with PR) 	| ADF [feature-branch] (auto-creation with PR) 	| [feature branch] (auto-deployment with PR) 	| dev                                           	|
+| prod        	| prod    	| DBX prod             	| prod (auto-deployment after merge to prod) 	| ADF prod                                     	| prod                                       	| prod                                          	|
+
+
 
 ## 1. Create repository for infrastructure and import it's code
 
@@ -18,8 +33,9 @@
 
 - Click on Import
 - In Clone URL fill `https://github.com/DataSentics/adap-infra-template.git`
-- In Username fill your Datasentics email
-- In Password fill your Github password
+- In Username fill **aisuite@datasentics.com**
+- In Password fill the password we have provided you with   
+  (In case you don't have the password send a message to **marek.chlubna@datasentics.com**)
 - Click on Import
 
 ![](../images/resources_step3.png)

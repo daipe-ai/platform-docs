@@ -17,7 +17,7 @@ extra_css:
 nav:
   - Home: index.md
   - Getting started:
-      Architecture Overview: getting-started/index.md
+      Process Overview: getting-started/index.md
       Azure environment: getting-started/azure-setup.md
       Data Lake resources: getting-started/datalake-resources-setup.md
       Data Pipelines project: getting-started/data-pipelines-project-setup.md
@@ -26,6 +26,6 @@ nav:
   - Developing Data Pipelines:
       Workflow overview: data-pipelines-workflow/index.md
       Create new feature: data-pipelines-workflow/feature-branch.md
-      (Advanced) Local project setup: data-pipelines-workflow/setup-local-project.md
+      (Advanced) Local project setup: data-pipelines-workflow/local-project-setup.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
