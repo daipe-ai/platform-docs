@@ -1,4 +1,4 @@
-# Setting up the local project
+# Setting up local development environment
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Firstly you need to clone the git repository that holds the Bricksflow based pro
 
 Then open the folder in terminal and run `./env-init.sh`.
 
-![](../images/bricks_env.png)
+![](../images/bricks_env.png){: style="width: 500px;"} 
 
 The whole virtual environment with project dependencies will be created and ready to use.
 

@@ -1,7 +1,5 @@
 # Data Pipelines Workflow Overview
 
-## Introduction 
-
 Our Workflow contains three environments: DEV, TEST, PROD.
 
 Environments correspond to the separate resource groups.

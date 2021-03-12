@@ -9,6 +9,8 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
 
 extra_css:
   - stylesheets/extra.css
@@ -25,7 +27,10 @@ nav:
       Self-hosted agents (optional): getting-started/devops-agents-setup.md
   - Developing Data Pipelines:
       Workflow overview: data-pipelines-workflow/index.md
-      Create new feature: data-pipelines-workflow/feature-branch.md
-      (Advanced) Local project setup: data-pipelines-workflow/local-project-setup.md
+      Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
+      Function-based notebooks: data-pipelines-workflow/coding-basics.md
+      Managing datalake: data-pipelines-workflow/managing-datalake.md
+      Local development env: data-pipelines-workflow/local-env-setup.md
+      Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
