@@ -90,7 +90,7 @@ When setting `defaults`, you can utilize the following placeholders:
 * `{identifier}` - `customer.my_table`
 * `{dbIdentifier}` - `customer`
 * `{tableIdentifier}` - `my_table`
-* [parsed custom fields](parsing-fields.md)
+* [parsed custom fields](#8-parsing-fields-from-table-identifier)
 
 To modify storage path of any specific table, add the `targetPath` attribute to given table's configuration:
 
@@ -221,7 +221,7 @@ def customers_table(df: DataFrame, logger: Logger, tableManager: TableManager):
 **All TableManager's methods**:
 
 * `getName('my_crm.customers')` - returns final table name
-* `getConfig('my_crm.customers')` - returns [TableConfig instance](../src/datalakebundle/table/config/TableConfig.py)
+* `getConfig('my_crm.customers')` - returns [TableConfig instance](https://github.com/bricksflow/datalake-bundle/blob/master/src/datalakebundle/table/config/TableConfig.py)
 * `create('my_crm.customers')` - creates table
 * `createIfNotExists('my_crm.customers')` - creates table only if not exist yet
 * `recreate('my_crm.customers')` - recreates (deletes Hive table, **deletes data**, create new empty table)
