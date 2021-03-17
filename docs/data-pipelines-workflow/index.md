@@ -7,9 +7,7 @@ Environments correspond to the separate resource groups.
 In the current setup, the DEV and TEST environments are located under one Subscription and the PROD environment is placed in another one.
 
 
-![](../images/dev_workflow_diagram.png){: style="width: 500px; padding-left: 5%"}
-
-As you can see on the diagram above, the workflow contains protected master branch, which is auto-deployed to the DEV and (with approval) to PROD environment after every merge.
+![](../images/dev_workflow_diagram.png){: style="width: 850px; padding-left: 5%"}
 
 The feature branches can be merged to the master branch once Pull Request is approved:
 
