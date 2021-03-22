@@ -61,7 +61,7 @@ Create a feature branch and then with activated conda environment use the consol
 $ console dbx:deploy --env=dev
 ```
 
-Your feature branch will be deployed to the DEV DataBricks workspace.
+Your feature branch will be deployed to the DEV Databricks workspace.
 
 ![](../images/bricks_feature_branch.png)
 

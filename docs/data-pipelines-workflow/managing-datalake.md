@@ -71,7 +71,7 @@ parameters:
     tables:
       customer.my_table:
       product.another_table:
-        partitionBy: ['date'] # optional table partitioning customization
+        partition_by: ['date'] # optional table partitioning customization
 ```
 
 ### (required) Setting datalake storage path
@@ -82,24 +82,24 @@ Add the following configuration to `config.yaml` to set the default storage path
 parameters:
   datalakebundle:
     defaults:
-      targetPath: '/mybase/data/{dbIdentifier}/{tableIdentifier}.delta'
+      target_path: '/mybase/data/{db_identifier}/{table_identifier}.delta'
 ```
 
 When setting `defaults`, you can utilize the following placeholders:
 
 * `{identifier}` - `customer.my_table`
-* `{dbIdentifier}` - `customer`
-* `{tableIdentifier}` - `my_table`
+* `{db_identifier}` - `customer`
+* `{table_identifier}` - `my_table`
 * [parsed custom fields](#8-parsing-fields-from-table-identifier)
 
-To modify storage path of any specific table, add the `targetPath` attribute to given table's configuration:
+To modify storage path of any specific table, add the `target_path` attribute to given table's configuration:
 
 ```yaml
 parameters:
   datalakebundle:
     tables:
       customer.my_table:
-        targetPath: '/some_custom_base/{dbIdentifier}/{tableIdentifier}.delta'
+        target_path: '/some_custom_base/{db_identifier}/{table_identifier}.delta'
 ```
 
 ### Customizing table names
@@ -112,18 +112,18 @@ By default, all tables are prefixed with the environment name (dev/test/prod/...
 parameters:
   datalakebundle:
     table:
-      nameTemplate: '%kernel.environment%_{identifier}'
+      name_template: '%kernel.environment%_{identifier}'
 ```
 
 The `{identifier}` is resolved to the table identifier defined in the `datalakebundle.tables` configuration (see above).
 
-By changing the `nameTemplate` option, you may add some prefix or suffix to both the database, or the table names:
+By changing the `name_template` option, you may add some prefix or suffix to both the database, or the table names:
 
 ```yaml
 parameters:
   datalakebundle:
     table:
-      nameTemplate: '%kernel.environment%_{dbIdentifier}.tableprefix_{tableIdentifier}_tablesufix'
+      name_template: '%kernel.environment%_{db_identifier}.tableprefix_{table_identifier}_tablesufix'
 ```
 
 ## 4. Writing function-based notebooks
@@ -141,13 +141,13 @@ Just write the function, annotate it with `@[decorator]` (details bellow) and ru
 
 ### Datalake-related decorators
 
-Besides the standard `@notebookFunction` decorator, the [datalake-bundle](https://github.com/daipe-ai/datalake-bundle) provides you with **3 new types of decorators**:
+Besides the standard `@notebook_function` decorator, the [datalake-bundle](https://github.com/daipe-ai/datalake-bundle) provides you with **3 new types of decorators**:
  
-`@dataFrameLoader` - loads some Spark dataframe (from Hive table, csv, ...) and returns it
+`@data_frame_loader` - loads some Spark dataframe (from Hive table, csv, ...) and returns it
 
 * Support for displaying results by setting the `display=True` decorator argument.
 
-![alt text](../images/dataFrameLoader.png)
+![alt text](../images/data_frame_loader.png)
 
 `@transformation` - transforms given dataframe(s) (filter, JOINing, grouping, ...) and returns the result
 
@@ -156,9 +156,9 @@ Besides the standard `@notebookFunction` decorator, the [datalake-bundle](https:
 
 ![alt text](../images/transformation.png)
 
-`@dataFrameSaver` - saves given dataframe into some permanent storage (parquet, Delta, csv, ...)
+`@data_frame_saver` - saves given dataframe into some permanent storage (parquet, Delta, csv, ...)
 
-![alt text](../images/dataFrameSaver.png)
+![alt text](../images/data_frame_saver.png)
 
 ### Chaining notebook-functions
 
@@ -180,21 +180,21 @@ parameters:
     tables:
       customer.my_table:
         params:
-          testDataPath: '/foo/bar'
+          test_data_path: '/foo/bar'
 ```
 
 Code of the **customer/my_table.py** notebook:
 
 ```python
 from logging import Logger
-from datalakebundle.notebook.decorators import notebookFunction, tableParams
+from datalakebundle.notebook.decorators import notebook_function, table_params
 
-@notebookFunction(tableParams('customer.my_table').testDataPath)
-def customers_table(testDataPath: str, logger: Logger):
-    logger.info(f'Test data path: {testDataPath}')
+@notebook_function(table_params('customer.my_table').test_data_path)
+def customers_table(test_data_path: str, logger: Logger):
+    logger.info(f'Test data path: {test_data_path}')
 ```
 
-The `tableParams('customer.my_table')` function call is a shortcut to using `%datalakebundle.tables."customer.my_table".params%` string parameter.
+The `table_params('customer.my_table')` function call is a shortcut to using `%datalakebundle.tables."customer.my_table".params%` string parameter.
 
 ## 6. Tables management
 
@@ -206,28 +206,28 @@ The following example recreates the `my_crm.customers` table (delete old data, c
 ```python
 from logging import Logger
 from pyspark.sql.dataframe import DataFrame
-from datalakebundle.notebook.decorators import dataFrameSaver
+from datalakebundle.notebook.decorators import data_frame_saver
 from datalakebundle.table.TableManager import TableManager
 
-@dataFrameSaver()
-def customers_table(df: DataFrame, logger: Logger, tableManager: TableManager):
+@data_frame_saver()
+def customers_table(df: DataFrame, logger: Logger, table_manager: TableManager):
     logger.info('Recreating table my_crm.customers')
 
-    tableManager.recreate('my_crm.customers')
+    table_manager.recreate('my_crm.customers')
 
-    return df.insertInto(tableManager.getName('my_crm.customers'))
+    return df.insertInto(table_manager.get_name('my_crm.customers'))
 ```
 
 **All TableManager's methods**:
 
-* `getName('my_crm.customers')` - returns final table name
-* `getConfig('my_crm.customers')` - returns [TableConfig instance](https://github.com/daipe-ai/datalake-bundle/blob/master/src/datalakebundle/table/config/TableConfig.py)
+* `get_name('my_crm.customers')` - returns final table name
+* `get_config('my_crm.customers')` - returns [TableConfig instance](https://github.com/daipe-ai/datalake-bundle/blob/master/src/datalakebundle/table/config/TableConfig.py)
 * `create('my_crm.customers')` - creates table
-* `createIfNotExists('my_crm.customers')` - creates table only if not exist yet
+* `create_if_not_exists('my_crm.customers')` - creates table only if not exist yet
 * `recreate('my_crm.customers')` - recreates (deletes Hive table, **deletes data**, create new empty table)
 * `exists('my_crm.customers')` - checks if table exists
 * `delete('my_crm.customers')` - deletes Hive table, **deletes data**
-* `optimizeAll()` - runs `OPTIMIZE` command on all defined tables
+* `optimize_all()` - runs `OPTIMIZE` command on all defined tables
 
 ## 7. Managing datalake tables using the console commands
 
@@ -264,7 +264,7 @@ You may always define the attribute **explictly** in the tables configuration:
 parameters:
   datalakebundle:
     table:
-      nameTemplate: '{identifier}'
+      name_template: '{identifier}'
     tables:
       customer_e.my_table:
         encrypted: True
@@ -278,9 +278,9 @@ If you don't want to duplicate the configuration, try using the `defaults` confi
 parameters:
   datalakebundle:
     table:
-      nameTemplate: '{identifier}'
+      name_template: '{identifier}'
       defaults:
-        encrypted: !expr 'dbIdentifier[-1:] == "e"'
+        encrypted: !expr 'db_identifier[-1:] == "e"'
     tables:
       customer_e.my_table:
       product_p.another_table:
@@ -294,25 +294,25 @@ from datalakebundle.table.identifier.ValueResolverInterface import ValueResolver
 
 class TargetPathResolver(ValueResolverInterface):
 
-    def __init__(self, basePath: str):
-        self.__basePath = basePath
+    def __init__(self, base_path: str):
+        self.__base_path = base_path
 
-    def resolve(self, rawTableConfig: Box):
-        encryptedString = 'encrypted' if rawTableConfig.encrypted is True else 'plain'
+    def resolve(self, raw_table_config: Box):
+        encrypted_string = 'encrypted' if raw_table_config.encrypted is True else 'plain'
 
-        return self.__basePath + '/' + rawTableConfig.dbIdentifier + '/' + encryptedString + '/' + rawTableConfig.tableIdentifier + '.delta'
+        return self.__base_path + '/' + raw_table_config.db_identifier + '/' + encrypted_string + '/' + raw_table_config.table_identifier + '.delta'
 ```
 
 ```yaml
 parameters:
   datalakebundle:
     table:
-      nameTemplate: '{identifier}'
+      name_template: '{identifier}'
       defaults:
-        targetPath:
-          resolverClass: 'datalakebundle.test.TargetPathResolver'
-          resolverArguments:
-            - '%datalake.basePath%'
+        target_path:
+          resolver_class: 'datalakebundle.test.TargetPathResolver'
+          resolver_arguments:
+            - '%datalake.base_path%'
     tables:
       customer_e.my_table:
       product_p.another_table:
