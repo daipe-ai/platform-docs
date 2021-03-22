@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-Bricksflow greatly simplify datalake(house) management: 
+Daipe greatly simplify datalake(house) management: 
 
 * Tools to simplify & automate table creation, updates and migrations.
 * Explicit table schema enforcing for Hive tables, CSVs, ...
@@ -130,7 +130,7 @@ parameters:
 
 Compared to bare notebooks, the function-based approach brings the **following advantages**: 
 
-1. create and publish auto-generated documentation and lineage of notebooks and pipelines (Bricksflow PRO) 
+1. create and publish auto-generated documentation and lineage of notebooks and pipelines (Daipe Enterprise) 
 1. write much cleaner notebooks with properly named code blocks
 1. (unit)test specific notebook functions with ease
 1. use YAML to configure your notebooks for given environment (dev/test/prod/...)
@@ -141,7 +141,7 @@ Just write the function, annotate it with `@[decorator]` (details bellow) and ru
 
 ### Datalake-related decorators
 
-Besides the standard `@notebookFunction` decorator, the [datalake-bundle](https://github.com/bricksflow/datalake-bundle) provides you with **3 new types of decorators**:
+Besides the standard `@notebookFunction` decorator, the [datalake-bundle](https://github.com/daipe-ai/datalake-bundle) provides you with **3 new types of decorators**:
  
 `@dataFrameLoader` - loads some Spark dataframe (from Hive table, csv, ...) and returns it
 
@@ -172,7 +172,7 @@ Similarly, once you run the `save_output` function's cell, it gets automatically
 
 ## 5. Using table-specific configuration
 
-Besides the [basic configuration options](https://github.com/bricksflow/databricks-bundle/blob/master/docs/configuration.md), you can also define **configuration for specific datalake tables**:
+Besides the [basic configuration options](https://github.com/daipe-ai/databricks-bundle/blob/master/docs/configuration.md), you can also define **configuration for specific datalake tables**:
 
 ```yaml
 parameters:
@@ -221,7 +221,7 @@ def customers_table(df: DataFrame, logger: Logger, tableManager: TableManager):
 **All TableManager's methods**:
 
 * `getName('my_crm.customers')` - returns final table name
-* `getConfig('my_crm.customers')` - returns [TableConfig instance](https://github.com/bricksflow/datalake-bundle/blob/master/src/datalakebundle/table/config/TableConfig.py)
+* `getConfig('my_crm.customers')` - returns [TableConfig instance](https://github.com/daipe-ai/datalake-bundle/blob/master/src/datalakebundle/table/config/TableConfig.py)
 * `create('my_crm.customers')` - creates table
 * `createIfNotExists('my_crm.customers')` - creates table only if not exist yet
 * `recreate('my_crm.customers')` - recreates (deletes Hive table, **deletes data**, create new empty table)
@@ -233,7 +233,7 @@ def customers_table(df: DataFrame, logger: Logger, tableManager: TableManager):
 
 **Example**: To create the `customer.my_table` table in your datalake, just type `console datalake:table:create customer.my_table --env=dev`
 into your terminal within your activated project's virtual environment.
-The command connects to your cluster via [Databricks Connect](https://github.com/bricksflow/databricks-bundle/blob/master/docs/databricks-connect.md) and creates the table as configured.
+The command connects to your cluster via [Databricks Connect](https://github.com/daipe-ai/databricks-bundle/blob/master/docs/databricks-connect.md) and creates the table as configured.
 
 Datalake management commands: 
 

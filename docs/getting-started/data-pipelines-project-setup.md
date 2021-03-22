@@ -6,13 +6,13 @@
 
 ## Introduction and Prerequisites
 
-[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new Data Pipelines project from the up-to-date [Bricksflow template](https://github.com/bricksflow/bricksflow).
+[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new Data Pipelines project from the up-to-date [Daipe template](https://github.com/daipe-ai/databricks-skeleton).
 
 The pipeline also contains the script for automatic protection of the master branch in newly created project.
 
 **Data Pipelines project consists of the following components:**
 
-- A git repo with DataFactory pipelines, Bricksflow project structure and sample notebooks to give you sense about the usage and workflow.
+- A git repo with DataFactory pipelines, Daipe project structure and sample notebooks to give you sense about the usage and workflow.
 
 - CI/CD pipelines:
   
@@ -29,7 +29,7 @@ For initial setup of Data Pipelines project / repository:
 ## How to set up Data Pipelines project?
 
 ###1. Create Personal access token for the first run of the pipeline
-- The Personal Access token is needed just for the first run of the pipeline to create a new Bricksflow based project DevOps repository and initial set up of the CICD pipeline
+- The Personal Access token is needed just for the first run of the pipeline to create a new Daipe based project DevOps repository and initial set up of the CICD pipeline
 - **It can be deleted** after the successful run of the `bricksflow-project-creator.yml` 
 
 **Go to**:
@@ -40,7 +40,7 @@ Then create the new Personal Token with these permissions.
 
 ![](../images/pat_step2.png)
 
-###2. Register the Bricksflow project creator pipeline and run it
+###2. Register the Daipe project creator pipeline and run it
 **Create** a new DevOps pipeline based on `.cicd/pipelines/bricksflow-project-creator` located in infrastructure repo
 
 ![](../images/resources_step5.png)
@@ -99,7 +99,7 @@ After an initial run of the pipelines, you will have **codes** available in the 
 
 ![](../images/bricks_dbx_ws.png){: style="width: 350px; padding-left: 5%"}
 
-You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow section.
+You can find the links to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Daipe section.
 Note that if you enter the workspace for the first time, you have to launch it from the corresponding Azure resource page using Azure portal. 
 
 ![](../images/bricks_dbx_link.png)
