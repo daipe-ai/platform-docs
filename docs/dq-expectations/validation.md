@@ -17,4 +17,4 @@ results
 ```
 After that, there is a `dq_tool` variable available to work with the DQ Tool.
 
-You'll see the validation result dict in your notebook. The results are written to the Expectation Store database. From there, the *Data User* can see them using the [web application](.view-validation-results.md)
+You'll see the validation result dict in your notebook. The results are written to the Expectation Store database. From there, the *Data User* can see them using the [web application](./view-validation-results.md)
