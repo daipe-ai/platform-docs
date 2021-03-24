@@ -1,7 +1,6 @@
 site_name: Daipe AI Platform
 repo_url: https://github.com/daipe-ai/platform-docs/
 site_url: https://daipe-ai.github.io/platform-docs/
-permalink: /404.md
 theme:
   name: material
   features:
