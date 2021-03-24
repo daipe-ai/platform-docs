@@ -1,6 +1,6 @@
 site_name: AI Suite
-repo_url: https://github.com/DataSentics/ai-platform-docs/
-site_url: https://datasentics.github.io/ai-platform-docs/
+site_url: https://docs.daipe.ai
+permalink: /404.md
 theme:
   name: material
   features:
