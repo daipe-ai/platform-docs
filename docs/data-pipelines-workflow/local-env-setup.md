@@ -14,7 +14,7 @@ We recommend using the following IDEs:
 
 ## Configure the project and environment
 
-Firstly you need to clone the git repository that holds the Bricksflow based project. 
+Firstly you need to clone the git repository that holds the Daipe based project. 
 ![](../images/bricks_clone.png)
 
 Then open the folder in terminal and run `./env-init.sh`.
@@ -27,7 +27,7 @@ The whole virtual environment with project dependencies will be created and read
 
 Open the DEV Databricks workspace. 
 
-(You can find the link to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Bricksflow to dev environment section.) 
+(You can find the link to the corresponding Databricks workspace directly in the CICD pipeline - Deploy Daipe to dev environment section.) 
 
 ![](../images/bricks_dbx_link.png)
 
@@ -61,7 +61,7 @@ Create a feature branch and then with activated conda environment use the consol
 $ console dbx:deploy --env=dev
 ```
 
-Your feature branch will be deployed to the DEV DataBricks workspace.
+Your feature branch will be deployed to the DEV Databricks workspace.
 
 ![](../images/bricks_feature_branch.png)
 

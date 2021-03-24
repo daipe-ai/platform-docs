@@ -7,24 +7,24 @@ In the *[rootpackage]/_config/bundles/databricksbundle.yaml* project bundle conf
 ```yaml
 parameters:
   databricksbundle:
-    databricksConnect:
+    databricks_connect:
       connection:
         address: 'https://dbc-123.cloud.databricks.com'
         token: 'abcd123456'
-        clusterId: '0416-084917-doles835'
+        cluster_id: '0416-084917-doles835'
 ```
 
-If you work with Azure Databricks, you need to specify the `orgId` as well. This parameter can be found in the Databricks Web UI URL (`?o=[orgId]`).
+If you work with Azure Databricks, you need to specify the `org_id` as well. This parameter can be found in the Databricks Web UI URL (`?o=[orgId]`).
 
 ```yaml
 parameters:
   databricksbundle:
-    databricksConnect:
+    databricks_connect:
       connection:
         address: 'https://westeurope.azuredatabricks.net'
         token: 'abcd123456'
-        clusterId: '0416-084917-doles835'
-        orgId: 123456789 # Azure specific parameter
+        cluster_id: '0416-084917-doles835'
+        org_id: 123456789 # Azure specific parameter
 ```
 
 Storing tokens and other sensitive information in YAML configs is generally not a good idea.
@@ -33,12 +33,12 @@ Try moving the token to your environment variables and the *.env* file located i
 ```yaml
 parameters:
   databricksbundle:
-    databricksConnect:
+    databricks_connect:
       connection:
         address: 'https://westeurope.azuredatabricks.net'
         token: '%env(DBX_TOKEN)%'
-        clusterId: '0416-084917-doles835'
-        orgId: 123456789 # Azure specific parameter
+        cluster_id: '0416-084917-doles835'
+        org_id: 123456789 # Azure specific parameter
 ```
 
 ### How to test Databricks connection?
