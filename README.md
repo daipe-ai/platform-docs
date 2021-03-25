@@ -1,6 +1,6 @@
 # Daipe AI Platform Documentation
 
-Published version: https://datasentics.github.io/ai-platform-docs/
+Published version: https://docs.daipe.ai/
 
 
 ## Local testing
