@@ -17,6 +17,8 @@ It is recommended to divide your tables and notebooks into the following layers:
 * **silver** - most business logic, one or multiple tables per use-case 
 * **gold** - additional filtering/aggregations of silver data (using views or materialized tables) to be served to the final customers
 
+![alt text](../images/bronze_silver_gold.png)
+
 For databases and tables in each of bronze/silver/gold layers it is recommended to follow the **[db_name/table_name]** directory structure.  
 
 ```yaml
