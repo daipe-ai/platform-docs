@@ -3,7 +3,7 @@ After the *Data Engineer* has added expectations, they need to create validation
 
 The validation notebook should have the following structure.
 
-Run the [Configuration Notebook](../getting-started/settle-dq-configuration-notebook.md)
+Run the [Configuration Notebook](../settle-dq-getting-started/configuration-notebook.md)
 ```python
 %run ./path/to/conf_notebook
 ```

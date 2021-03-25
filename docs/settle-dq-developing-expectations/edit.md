@@ -3,7 +3,7 @@ After you have [developed and stored](./develop-store.md) your expectations, you
 
 Think of this process as if you're using a command-line - you write some code that edits expectations and save them to the store. You only run this code once and then you can throw it away.
 
-First, you need to run the [Configuration Notebook](../getting-started/settle-dq-configuration-notebook.md)
+First, you need to run the [Configuration Notebook](../settle-dq-getting-started/configuration-notebook.md)
 ```python
 %run ./path/to/conf_notebook
 ```

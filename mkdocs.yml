@@ -24,7 +24,6 @@ nav:
       Data Pipelines project: getting-started/data-pipelines-project-setup.md
       Machine Learning project: getting-started/ml-project-setup.md
       Self-hosted agents (optional): getting-started/devops-agents-setup.md
-      Settle DQ - Create Configuration Notebook: getting-started/settle-dq-configuration-notebook.md
   - Developing Data Pipelines:
       Workflow overview: data-pipelines-workflow/index.md
       Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
@@ -34,10 +33,14 @@ nav:
       Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
-  - Developing Settle DQ Expectations:
-      Workflow Overview: dq-expectations/index.md
-      Developing and Storing DQ Expectations: dq-expectations/develop-store.md
-      Validating Your Data: dq-expectations/validation.md
-      Viewing Validation Results: dq-expectations/view-validation-results.md
-      Editing Expectations: dq-expectations/edit.md
+  - Settle DQ - Getting started:
+      Overview: settle-dq-getting-started/index.md
+      Azure Setup: settle-dq-getting-started/azure-setup.md
+      Create Configuration Notebook: settle-dq-getting-started/configuration-notebook.md
+  - Settle DQ - Developing Expectations:
+      Workflow Overview: settle-dq-developing-expectations/index.md
+      Developing and Storing DQ Expectations: settle-dq-developing-expectations/develop-store.md
+      Validating Your Data: settle-dq-developing-expectations/validation.md
+      Viewing Validation Results: settle-dq-developing-expectations/view-validation-results.md
+      Editing Expectations: settle-dq-developing-expectations/edit.md
 
