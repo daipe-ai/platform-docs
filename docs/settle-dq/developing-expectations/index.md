@@ -1,6 +1,6 @@
 # Settle DQ Workflow
 
-![](../images/settle-dq/development-workflow.png){: style="width: 750px; padding-left: 5%"}
+![](../images/development-workflow.png){: style="width: 750px; padding-left: 5%"}
 
 Working with Settle DQ is a continuous process. 
 

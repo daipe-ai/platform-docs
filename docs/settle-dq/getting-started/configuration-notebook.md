@@ -14,11 +14,11 @@ dq_tool = DQTool(
     spark=spark,
     db_store_connection={
         'drivername': 'postgresql',
-        'host': dbutils.secrets.get(scope='dq_db', key='host'),
-        'port': dbutils.secrets.get(scope='dq_db', key='port'),
-        'database': dbutils.secrets.get(scope='dq_db', key='database'),
-        'username': dbutils.secrets.get(scope='dq_db', key='username'),
-        'password': dbutils.secrets.get(scope='dq_db', key='password')
+        'host': dbutils.secrets.get(scope='dbx_scope', key='host'),
+        'port': dbutils.secrets.get(scope='dbx_scope', key='port'),
+        'database': dbutils.secrets.get(scope='dbx_scope', key='database'),
+        'username': dbutils.secrets.get(scope='dbx_scope', key='username'),
+        'password': dbutils.secrets.get(scope='dbx_scope', key='password')
     }
 )
 ```

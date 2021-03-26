@@ -3,7 +3,7 @@ After the *Data Engineer* settles with the *Data User* on DQ Agreements, it's ti
 
 You can think of this process as if you're using a command-line - you write some code that defines expectations and save them to the store. You only run this code once and then you can throw it away. When you want to update your expectations, you don't change your code, but write a different piece of code that updates the expectations in the store. 
 
-First, you need to run the [Configuration Notebook](../settle-dq-getting-started/configuration-notebook.md)
+First, you need to run the [Configuration Notebook](../getting-started/configuration-notebook.md)
 ```python
 %run ./path/to/conf_notebook
 ```

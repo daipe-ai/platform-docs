@@ -1,6 +1,6 @@
 # Getting started with Settle DQ
 
-![](../images/settle-dq/architecture-user.png){: style="width: 750px; padding-left: 5%"}
+![](../images/architecture-user.png){: style="width: 750px; padding-left: 5%"}
 
 The schema above shows the parts of the system as they are used by Settle DQ users.
 
