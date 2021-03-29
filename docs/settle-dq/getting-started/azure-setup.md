@@ -202,11 +202,24 @@ Create a [Storage Account in the Azure portal](https://portal.azure.com/#create/
 
 Click *Review + create*
 
+#### Enable Static Website
 Now open your newly created Storage Account. On the left side in *Settings* click *Static Website*. Use the following options:
+
 - *Static website*: click to set *Enabled*
 - *Index document name*: *index.html*
 
 Click *Save*
+
+#### Change Access Level
+Now Change access level for the $web container, so that it can be served as a website. Open your Storage Account, click *Overview*. Under *Essentials* click *Containers*. A table of containers opens.
+
+- Click on three dots on the right side of the $web container
+- Click *Change access level*
+
+![](../images/access-level.png){: style="width: 750px; padding-left: 5%"}
+
+- Choose *Blob (anonymous read access for blobs only)*
+- Click *OK*
 
 
 ### Upload Frontend Files to Storage Account
