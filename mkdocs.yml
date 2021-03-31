@@ -33,6 +33,7 @@ nav:
       Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
+    - MLOps pipelines: ml-workflow/pipelines.md
   - Settle DQ: 
     - Overview: settle-dq/index.md
     - Getting started:

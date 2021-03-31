@@ -17,3 +17,5 @@ There are four main components in the architecture:
     * Optionally, other services such as Azure Container Instances (ACI) or Kubernetes (K8S), which are used to host model in case of online serving
 * Consuming applications
     * Those include any applications (an ETL pipeline, web application backend, etc.) which consume the model in an offline or online manner 
+
+
