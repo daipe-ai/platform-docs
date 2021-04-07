@@ -15,7 +15,7 @@ However there are couple of assumptions
 ## Cloning repository with project skeleton
 
 - First clone usual daipe project skeleton `git clone https://github.com/daipe-ai/skeleton-databricks.git`
-- Then clone repository with offline access files `git clone https://github.com/DataSentics/bricksflow-offline-template.git`
+- Then clone repository with offline access files `git clone https://github.com/daipe-ai/offline-access.git`
 - Add files from this repository to your daipe project
 
 **Project structure**  

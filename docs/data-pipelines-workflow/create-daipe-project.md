@@ -12,7 +12,7 @@ We recommend using the following IDEs:
   - [PyCharm Community or Pro](https://www.jetbrains.com/pycharm/download/) with the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) installed
   - [Visual Studio Code](https://code.visualstudio.com/download) with the [PYTHONPATH setter extension](https://marketplace.visualstudio.com/items?itemName=datasentics.pythonpath-setter) installed
 
-## Create your first Daipe-powered project
+## Using Daipe project creator
 
 * On **Windows**, use Git Bash
 * On **Linux/Mac**, the use standard terminal
