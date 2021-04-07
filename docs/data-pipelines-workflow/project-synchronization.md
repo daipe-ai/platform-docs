@@ -41,9 +41,9 @@ $ git commit -m "Awesome new feature"
 $ git push origin feature-new-great-stuff
 ```
 
-## Updating Master Package
+## Updating The Master Package
 
-You have certainly noticed, that in the local bricksflow project there is a way more code than in Databricks, where only notebooks exists. It's mainly some `yaml` and `toml` configuration files which are uploaded in master package which is installed in each notebook. So if we want to make change to those files our only option is to edit them locally.
+You have certainly noticed, that in the local Daipe project there is a way more code than in Databricks, where only notebooks exists. It's mainly some `yaml` and `toml` configuration files which are uploaded in master package which is installed in each notebook. So if we want to make change to those files our only option is to edit them locally.
 
 **Example**
 

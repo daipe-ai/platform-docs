@@ -31,7 +31,7 @@ There are just some addinational files which helps you operate with minimal inre
 - `azure-pipelines.yml` - simple offline devops pipeline
 
 **Note**  
-In this skeleton project we included dependencies for Windows/Linux and Python 3.7. So we are able to develop bricksflow project on local Windows machine and also use it on some ci/cd Linux agent. Also very important thing is that our target Databricks runtime is DBR 7.5 which is Linux with Python 3.7. If you want to make some changes, e.g. add some python package it's your responsibility to add appropriate wheels in the `dependencies/` direcotry.
+In this skeleton project we included dependencies for Windows/Linux and Python 3.7. So we are able to develop Daipe project on local Windows machine and also use it on some ci/cd Linux agent. Also very important thing is that our target Databricks runtime is DBR 7.5 which is Linux with Python 3.7. If you want to make some changes, e.g. add some python package it's your responsibility to add appropriate wheels in the `dependencies/` direcotry.
 
 ## Configuration
 There are two new configuration options in `src/__myproject__/_config/bundles/dbxdeploy.yaml`
@@ -61,7 +61,7 @@ There is a slight difference in activating/deactivating python virtual environme
 - `source activate.sh`
 - `source deactivate.sh`
 
-After activating virtual environment you should be able to run standard bricksflow commands like `console dbx:deploy`.
+After activating virtual environment you should be able to run standard Daipe commands like `console dbx:deploy`.
 
 **Edge case**  
 One edge case we run into in one very strict environment is that we were not able to run `console` command because it is an executable and only defined set of executables was allowed to run. To avoid this issue we can run console command in this way `python .venv/Lib/site-packages/consolebundle/CommandRunner.py dbx:deploy`. To make life easier we can add following line in the `.bashrc` - `alias console='python .venv/Lib/site-packages/consolebundle/CommandRunner.py'`. Be aware that this way the `console` command will work only from project root.
