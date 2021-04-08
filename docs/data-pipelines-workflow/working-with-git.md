@@ -1,10 +1,17 @@
-# Syncing local project with Databricks
+# Working with GIT
 
-## Local -> Databricks
+## Create feature branch and work on it
+
+One of the most common cases is that you want to create feature branch out of master and make some changes.
 
 First activate conda environment
 ```bash
 $ ca
+```
+
+Now pull latest changes from master branch
+```bash
+$ git pull origin master
 ```
 
 Then create a feature branch
@@ -19,22 +26,21 @@ $ console dbx:deploy --env=dev
 
 Your feature branch will be deployed to the DEV Databricks workspace.
 
-![](../images/bricks_feature_branch.png)
-
 You can now code some awesome new features right in Databricks workspace!
 
-## Databricks -> Local
+![](../images/bricks_feature_branch.png)
 
-When you're happy with what you've done, open the project folder in terminal and use the following command
+## Commit your work to GIT repository
 
+When you're happy with what you've done in your feature branch you probably want to commit and push your changes to git repository.
+
+
+First download all of your work in Databricks workspace to your local machine using following command
 ```bash
 $ console dbx:workspace:export --env=dev
 ```
 
-This will download all Databricks notebooks from that feature branch workspace folder back to your computer.
-
-Now you can commit your changes
-
+Now you can commit and push your changes to repository
 ```bash
 $ git add .
 $ git commit -m "Awesome new feature"

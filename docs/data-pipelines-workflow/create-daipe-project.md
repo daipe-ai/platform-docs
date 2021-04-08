@@ -12,7 +12,7 @@ We recommend using the following IDEs:
   - [PyCharm Community or Pro](https://www.jetbrains.com/pycharm/download/) with the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) installed
   - [Visual Studio Code](https://code.visualstudio.com/download) with the [PYTHONPATH setter extension](https://marketplace.visualstudio.com/items?itemName=datasentics.pythonpath-setter) installed
 
-## Using Daipe project creator
+## Create your first Daipe-powered project
 
 * On **Windows**, use Git Bash
 * On **Linux/Mac**, the use standard terminal
@@ -51,7 +51,16 @@ or use a shortcut
 ```bash
 $ ca
 ```
-Now you can [synchronize](project-synchronization.md) your project with the Databricks.
+
+Now you can push your project to Databricks Workspace using following command
+
+```bash
+$ console dbx:deploy --env=dev
+```
+
+And you should see the pushed project in Databricks workspace
+
+![](../images/pushed_project.png)
 
 **Important scripts:**
 

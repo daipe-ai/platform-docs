@@ -25,14 +25,15 @@ nav:
       Machine Learning project: getting-started/ml-project-setup.md
       Self-hosted agents (optional): getting-started/devops-agents-setup.md
   - Developing Data Pipelines:
-      Create your first project: data-pipelines-workflow/create-daipe-project.md
-      Project synchronization: data-pipelines-workflow/project-synchronization.md
-      Workflow overview: data-pipelines-workflow/index.md
+      Overview: data-pipelines-workflow/index.md
+      Create daipe project: data-pipelines-workflow/create-daipe-project.md
+      Working with git: data-pipelines-workflow/working-with-git.md
+      Development workflow: data-pipelines-workflow/development-workflow.md
       Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
       Function-based notebooks: data-pipelines-workflow/coding-basics.md
       Managing datalake: data-pipelines-workflow/managing-datalake.md
       Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
-      Offline access: data-pipelines-workflow/offline-access.md
+      Overcoming security limitations: data-pipelines-workflow/overcoming-security-limitations.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
     - MLOps pipelines: ml-workflow/pipelines.md
