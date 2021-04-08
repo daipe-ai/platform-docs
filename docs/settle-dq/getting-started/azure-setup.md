@@ -148,6 +148,32 @@ WARNING: 401 Error, Credentials not correct for https://pkgs.dev.azure.com/xxx/_
 ERROR: No matching distribution found for dq_tool
 ```
 
+#### Configure private PyPI for a Databricks cluster (Optional)
+To make installation easier for Databricks users, you can do the following setup. 
+
+First you have to create a [Cluster init script](https://docs.microsoft.com/en-us/azure/databricks/clusters/init-scripts) if you don't have one and pass it to the cluster. 
+
+Add the following code to yor init script:
+```sh
+mkdir /root/.pip
+
+cat > /root/.pip/pip.conf <<EOF
+[global]
+extra-index-url=https://$DS_AZURE_EMAIL:$DS_AZURE_PAT@$DS_PYPI_URL
+EOF
+```
+Then configure the [cluster environment variables](https://docs.databricks.com/clusters/configure.html#environment-variables) as described below. The variable values will be taken from databricks secrets pointing to KeyVault.
+```
+DS_AZURE_EMAIL={{secrets/dbx_scope/ds_azure_email}}
+DS_AZURE_PAT={{secrets/dbx_scope/ds_azure_pat}}
+DS_PYPI_URL={{secrets/dbx_scope/ds_pypi_url}}
+```
+
+After this is done, to install dq_tool to your notebook, you only need to run the basic command below, without having to worry about the extra index url.
+```
+%pip install dq_tool
+```
+
 ### Verify The Installation
 Run the following code to verify you can connect to the database. 
 ```python
