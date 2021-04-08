@@ -6,13 +6,13 @@
 
 ## Introduction and Prerequisites
 
-[`bricksflow-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/bricksflow-project-creator.yml) is Azure DevOps pipeline that initiates a new Data Pipelines project from the up-to-date [Daipe template](https://github.com/daipe-ai/databricks-skeleton).
+[`daipe-project-creator.yml`](https://github.com/DataSentics/adap-infra-template/blob/master/.cicd/pipelines/daipe-project-creator.yml) is Azure DevOps pipeline that initiates a new Data Pipelines project from the up-to-date [Daipe template](https://github.com/daipe-ai/databricks-skeleton).
 
 The pipeline also contains the script for automatic protection of the master branch in newly created project.
 
 **Data Pipelines project consists of the following components:**
 
-- A git repo with DataFactory pipelines, Daipe project structure and sample notebooks to give you sense about the usage and workflow.
+- A git repo with DataFactory pipelines, Daipe project structure.
 
 - CI/CD pipelines:
   
@@ -23,14 +23,14 @@ The pipeline also contains the script for automatic protection of the master bra
 
 For initial setup of Data Pipelines project / repository:
 
-- Successfully deployed **Infrastructure** from [Datalake resources](datalake-resources-setup.md) page
+- Successfully deployed DEV/TEST/PROD **Infrastructure** from [Datalake resources](datalake-resources-setup.md) page
 - Permission to create Personal Access token in your DevOps organization project
 
 ## How to set up Data Pipelines project?
 
 ###1. Create Personal access token for the first run of the pipeline
 - The Personal Access token is needed just for the first run of the pipeline to create a new Daipe based project DevOps repository and initial set up of the CICD pipeline
-- **It can be deleted** after the successful run of the `bricksflow-project-creator.yml` 
+- **It can be deleted** after the successful run of the `daipe-project-creator.yml` 
 
 **Go to**:
 
@@ -41,7 +41,7 @@ Then create the new Personal Token with these permissions.
 ![](../images/pat_step2.png)
 
 ###2. Register the Daipe project creator pipeline and run it
-**Create** a new DevOps pipeline based on `.cicd/pipelines/bricksflow-project-creator` located in infrastructure repo
+**Create** a new DevOps pipeline based on `.cicd/pipelines/daipe-project-creator` located in infrastructure repo.
 
 ![](../images/resources_step5.png)
 ![](../images/resources_step6.png)
@@ -56,7 +56,12 @@ Set a **PA_TOKEN** variable under the Variables by providing Personal Access Tok
 
 You can now rename the pipeline, if you'd like to.
 
-**Run** the newly created pipeline and provide the **name of the project** you want to create.
+**Run** the newly created pipeline:
+
+- select the **dev** branch
+- provide the **name of the project** you want to create.  
+
+*selecting dev branch is necessary for initial setup of CICD in newly created Daipe project
 
 ![](../images/bricks_run.png)
 
@@ -84,12 +89,29 @@ After successful execution, you will find the following **resources**:
         - there needs to be in minimum ONE approval for the PR
         - Merging is done by the Squash commit
 
-* **Main CI/CD pipeline** created for the repo. The pipeline is called `master-$yourprojectname-deployment`. 
+- **Main CI/CD pipeline** created for the repo. The pipeline is called `master-$yourprojectname-deployment`.
   
-  ![](../images/bricks_created_pipeline.png)
+## Update project variables
 
+**Set** SERVICE_CONNECTION_NAME variables for your newly created project in `.cicd/variables/variables.yml`.
 
-**Note**: the pipeline will be executed automatically after creation of the Data Pipelines project repository for deploying sample notebooks to Databricks and will ask for permission to the service connection, as it is shown on the picture below.
+![](../images/bricks_update_variables.png)
+
+**Commit** the changes:
+
+- set the name of the branch, eq. `update-variables`
+- check Create pull request
+
+![](../images/bricks_commit.png){: style="width: 500px; padding-left: 15%"}
+
+It will automatically create Pull request to the master branch, get it approved and merge the changes.
+
+The deployment pipeline will be executed automatically, after the merge of updated variables.  
+You can find it running under the Pipelines tab.
+
+![](../images/bricks_created_pipeline.png)
+
+The project will be deployed to the DEV Databricks and pipeline will ask for permission to the service connection, as it is shown on the picture below.
 
 ![](../images/bricks_permission_cp.png)
 

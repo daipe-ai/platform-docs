@@ -5,7 +5,8 @@
 ![](../images/dia_infra.png){: style="width: 700px; padding-left: 5%"}
 
 
-**Overview of branches / workflow:**
+
+**Overview of project workflow (environments / branches):**
 
 | Environment 	| Branch  	| Databricks Workspace 	| Databricks Code branch                     	| DataFactory Resource                         	| DataFactory Pipelines Code branch          	| APP_ENV                                       	|
 |-------------	|---------	|----------------------	|--------------------------------------------	|----------------------------------------------	|--------------------------------------------	|-----------------------------------------------	|
@@ -13,9 +14,19 @@
 | sandbox     	| sandbox 	| DBX sandbox          	| [feature branch] (optional)                	| -                                            	| -                                          	| dev (if Bricskflow coding standards are used) 	|
 | dev         	| dev     	| DBX dev              	| [feature branch] (required)                	| ADF dev                                      	| [feature branch]                           	| dev                                           	|
 | test        	| test    	| DBX test             	| [feature branch] (auto-deployment with PR) 	| ADF [feature-branch] (auto-creation with PR) 	| [feature branch] (auto-deployment with PR) 	| dev                                           	|
-| prod        	| prod    	| DBX prod             	| prod (auto-deployment after merge to prod) 	| ADF prod                                     	| prod                                       	| prod                                          	|
+| prod        	| master    | DBX prod              | master (auto-deployment after tag) 	        | ADF prod                                     	| master                                       	| prod                                          	|
 
+Infrastructure repository workflow:
 
+  - branch based deployment
+  - each branch represents different environment with environment specific variables
+  - master branch holds the truth and deploys prod environment resources
+
+Daipe project repository workflow:
+
+  - feature branches are deployed to dev environment
+  - pull requests to master branch are deployed to test environment
+  - the master branch is presented in dev environment and released to prod environment after tagging the release  
 
 ## 1. Create repository for infrastructure and import it's code
 
@@ -40,27 +51,41 @@
 
 ![](../images/resources_step3.png)
 
-## 2. Set infrastructure variables
+## 2. Set main infrastructure variables
 
-The file `.cicd/variables/variables.yml` holds variables that you can use to customize your infrastructure.
+The file `.cicd/variables/variables.yml` holds the main variables that you can use to customize your infrastructure.  
+The files `.cicd/variables/variables-{temp/sand/dev/test/prod}.yml` hold specific variables for each environment.
 
 ![](../images/resources_step4.png)
 
-Replace the placeholders.
+**Replace** the general placeholders in `.cicd/variables/variables.yml`:
 
 - TENANT_ID - from [Azure setup](azure-setup.md) section 5
 - PROJECT_NAME - <span style="color: red">!! should be simple lowercase name (max 5 characters) !!</span>
-- SERVICE_CONNECTION_NAME_DEV - devops-service-connection-to-devsubscription
-- SERVICE_CONNECTION_NAME_TEST - devops-service-connection-to-testsubscription
-- SERVICE_CONNECTION_NAME_PROD - devops-service-connection-to-prodsubscription
 - GIT_ACCOUNT_NAME - name of your devops organization
 - GIT_PROJECT_NAME - name of your devops project
 
-In the files `.cicd/variables/variables-{dev/test/prod}.yml` change ADMIN_OBJECT_ID to object id of user of your choice. This user will have admin access to created keyvault.
+## 3. Create environment based branches
+**Create branches** based on environments you want to deploy:  
+<span style="color: red">(this needs to be done for all the environments you're about to deploy)</span>  
+For updating environment specific variables create branch and name it after the environment you want to deploy, update environment specific variables.
 
-You can find user object id in Active Directory.
+<u>**Non prod** environment:</u>  
 
-![](../images/user_object_id.png)
+- checkout newly created branch   
+- in the file`.cicd/variables/variables.yml` update SERVICE_CONNECTION_NAME variable for the environment you're about to deploy
+- update environment specific variables in the file `.cicd/variables/variables-{environment}.yml`
+    - update desired environment variables here
+    - change ADMIN_OBJECT_ID to object id of user of your choice. This user will have admin access to created keyvault
+    - You can find user object id in Active Directory.
+
+![](../images/user_object_id.png){: style="width: 900px; padding-left: 10%"}
+
+<span style="color: red">After the successful deployment based on next steps merge the commits to the master branch!</span>
+
+<u>**Prod** environment:</u>    
+Prod environment is based on the master branch.  
+When you're about to deploy prod resources, updated the prod based variables through the pull request, optional directly in the master branch.
 
 ## 3. Create DevOps pipeline for infrastructure build & deployment
 
@@ -78,15 +103,23 @@ You can find user object id in Active Directory.
 ![](../images/resources_step7.png)
 
 - It will automaticaly locate file `azure-pipelines.yml`
-- Click on Run
+- Click on Save 
 
 ![](../images/resources_step8.png)
+  
+- Click on run and select created branch with the variables of the environment you'd like to deploy.
+
+![](../images/resources_step9.png){: style="width: 600px; padding-left: 5%"}
+
+The environment resource group based on selected branch is deployed to the Subscription.
+
+**Run the pipeline again** with different branch selected if you'd like to deploy another environment.
 
 ## 4. Create Key Vault Secret Scope in Databricks
 
 When the pipeline is finished you need to create secret scope for Databricks.
 
-<span style="color: red">!! This needs to be done for all environments dev/test/prod !!</span>
+<span style="color: red">!! This needs to be done for all environments you deployed {temp/sand/dev/test/prod} !!</span>
 
 - Go to Databricks workspace
 
