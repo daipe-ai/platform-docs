@@ -143,30 +143,50 @@ Just write the function, annotate it with `@[decorator]` (details bellow) and ru
 
 ### Datalake-related decorators
 
-Besides the standard `@notebook_function` decorator, the [datalake-bundle](https://github.com/daipe-ai/datalake-bundle) provides you with **3 new types of decorators**:
+Besides the standard `@notebook_function` decorator, the [datalake-bundle](https://github.com/daipe-ai/datalake-bundle) provides you with additional decorators for loading, transforming and saving dataframes:
  
-`@data_frame_loader` - loads some Spark dataframe (from Hive table, csv, ...) and returns it
+**Loading data**
 
-* Support for displaying results by setting the `display=True` decorator argument.
+For loading dataframe `@transformation` decorator and `read` function are used.
 
-![alt text](../images/data_frame_loader.png)
+You can use `read_table` function which reads table from Hive metastore.
 
-`@transformation` - transforms given dataframe(s) (filter, JOINing, grouping, ...) and returns the result
+![alt text](../images/read_table.png)
+
+Or `read_csv` function which reads csv from path.
+
+![alt text](../images/read_csv.png)
+
+Or if you want something special you can use `@transformation` decorator alone and read data by your self.
+
+![alt text](../images/read_parquet.png)
+
+**Transforming data**
+
+For transforming data (filter, JOINing, grouping, ...) `@transformation` decorator alone is used
 
 * Support for displaying results by setting the `display=True` decorator argument.
 * Duplicate output columns checking enabled by default
 
-![alt text](../images/transformation.png)
+![alt text](../images/transform.png)
 
-`@data_frame_saver` - saves given dataframe into some permanent storage (parquet, Delta, csv, ...)
+**Writing data**
 
-![alt text](../images/data_frame_saver.png)
+For writing dataframe `@transformation` decorator and `table_{overwrite/append/upsert}` decorators are used.
+
+![alt text](../images/table_upsert.png)
 
 ### Chaining notebook-functions
 
 Calls of the notebook functions can be chained by passing function names as decorator arguments:
 
-![alt text](../images/notebook-functions.png)
+Simple chaining
+
+![alt text](../images/functions-chaining-simple.png)
+
+More compact way
+
+![alt text](../images/functions-chaining-compact.png)
 
 Once you run the `active_customers_only` function's cell, it gets is automatically called with the dataframe loaded by the `customers_table` function.
 
