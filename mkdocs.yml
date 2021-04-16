@@ -26,6 +26,7 @@ nav:
       Self-hosted agents (optional): getting-started/devops-agents-setup.md
   - Developing Data Pipelines:
       Overview: data-pipelines-workflow/index.md
+      Daipe demo project: data-pipelines-workflow/daipe-demo-project.md
       Create daipe project: data-pipelines-workflow/create-daipe-project.md
       Working with git: data-pipelines-workflow/working-with-git.md
       Development workflow: data-pipelines-workflow/development-workflow.md
