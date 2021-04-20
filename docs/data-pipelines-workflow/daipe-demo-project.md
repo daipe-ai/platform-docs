@@ -62,7 +62,7 @@ And you should see the pushed project in Databricks workspace
 ![](../images/pushed_daipedemo_project.png)
 
 
-## Creating@ a cluster
+## Creating a cluster
 
 In Databricks go to **Clusters** and create a new cluster.
 Select this version 
