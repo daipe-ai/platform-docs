@@ -208,31 +208,33 @@ When using the **string** table identifier, the `@table_overwrite` decorator sav
 
 To define a table schema a special class has to created. This class has to meet these conditions
 
-- class name == table name
 - params = `db`, `fields`, `primary_key`, `partition_by`
-- `db`, `fields`, `primary_key` are mandatory!
+- `primary_key`, `partition_by` are optional
 
 ```python
-class tbl_customers:
-    db = "silver"
-    fields = [
-        t.StructField("CustomerID", t.IntegerType(), True),
-        t.StructField("Name", t.StringType(), True),
-        t.StructField("Birthdate", t.DateType(), True),
-        ...
-    ]
-    primary_key = "CustomerID"
-    partition_by = "Birthdate"
+def get_schema():
+    return TableSchema(
+        [
+            t.StructField("ReportAsOfEOD", t.DateType(), True),
+            t.StructField("LoanID", t.StringType(), True),
+            t.StructField("Date", t.DateType(), True),
+            t.StructField("PrincipalRepayment", t.DoubleType(), True),
+            t.StructField("InterestRepayment", t.DoubleType(), True),
+            t.StructField("LateFeesRepayment", t.DoubleType(), True),
+        ],
+        primary_key=["LoanID", "Date"],
+        # partition_by = "Date" #---takes a very long time
+    )
 ```
 
-Using the `field_names` helper function for column selection.
+Using the `fields` property for column selection.
 
 ```python
-@transformation(read_csv("customers.csv"))
-@table_overwrite(tbl_customers)
+@transformation(read_csv("loans.csv"))
+@table_overwrite("bronze.tbl_loans", get_schema())
 def save(df: DataFrame, logger: Logger):
     return(
-        df.select(field_names(tbl_customers))
+        df.select(table_schema.fields)
     )
 ```
 
