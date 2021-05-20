@@ -26,13 +26,14 @@ nav:
       Self-hosted agents (optional): getting-started/devops-agents-setup.md
   - Developing Data Pipelines:
       Overview: data-pipelines-workflow/index.md
+      Technical documentation: data-pipelines-workflow/technical-docs.md
       Daipe demo project: data-pipelines-workflow/daipe-demo-project.md
       Create daipe project: data-pipelines-workflow/create-daipe-project.md
       Working with git: data-pipelines-workflow/working-with-git.md
       Development workflow: data-pipelines-workflow/development-workflow.md
       Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
-      Function-based notebooks: data-pipelines-workflow/coding-basics.md
-      Managing datalake: data-pipelines-workflow/managing-datalake.md
+      Simple data pipeline workflow: data-pipelines-workflow/coding-basics.md
+      Advanced features: data-pipelines-workflow/managing-datalake.md
       Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
       Overcoming security limitations: data-pipelines-workflow/overcoming-security-limitations.md
   - Developing ML models:
