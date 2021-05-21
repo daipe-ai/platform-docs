@@ -91,9 +91,9 @@ The command connects to your cluster via [Databricks Connect](https://github.com
 
 Datalake management commands: 
 
-* `datalake:table:create [table identifier/path to table class]` - Creates a metastore table based on it's YAML definition (name, schema, data path, ...)
+* `datalake:table:create [table identifier/path to TableSchema]` - Creates a metastore table based on it's YAML definition (name, schema, data path, ...)
 
-* `datalake:table:recreate [table identifier/path to table class]` - Re-creates a metastore table based on it's YAML definition (name, schema, data path, ...)
+* `datalake:table:recreate [table identifier/path to TableSchema]` - Re-creates a metastore table based on it's YAML definition (name, schema, data path, ...)
 
 * `datalake:table:delete-including-data [table identifier]` - Deletes a metastore table including data on HDFS
 

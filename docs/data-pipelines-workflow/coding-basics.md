@@ -93,6 +93,8 @@ def init(spark: SparkSession):
     spark.sql(f"create database if not exists {os.environ['APP_ENV']}_gold;")  # noqa: F821
 ```
 
+For more information see the [technical documentation](./technical-docs.md#notebook_function).
+
 #### Decorators can be injected with objects defined in the app
 
 ```python
@@ -143,6 +145,12 @@ def read_csv(df: DataFrame):
 def read_tbl_customers(df: DataFrame):
     return df
 ```
+
+For more information see the [technical documentation](./technical-docs.md#transformation).
+
+## Enviroments
+
+Each table is prefixed with an environment tag (__dev__, __test__, __prod__) to separate production data from the developement code and vice versa. The Daipe framework automatically inserts the prefix based on your selected environment therefore __the code stays the same__ across all environments.
 
 ## Chaining notebook functions
 
@@ -199,6 +207,8 @@ def save(df: DataFrame, logger: Logger):
 def join_tables(df1: DataFrame, df2: DataFrame):
     return df1.join(df2, "Customer_ID")
 ```
+
+For more information see the [technical documentation](./technical-docs.md#table_overwrite).
 
 ### Automatic schema
 
