@@ -11,6 +11,7 @@ from datalakebundle.imports import *
 ## Decorators
 
 ### @transformation {#transformation}
+
 __@transformation__(`*objects, display = False, check_duplicate_columns = True`)
 
 > Used for decorating a function which manipulates with a DataFrame. Runs the decorated function upon declaration.
@@ -31,6 +32,7 @@ def join_loans_and_repayments(df1: DataFrame, df2: DataFrame):
 ---
 
 ### @notebook_function {#notebook_function}
+
 __@notebook_function__(`*objects`)
 
 > Used for decorating any other function which is not decorated with the `@transformation` decorator. Runs the decorated function upon declaration.
@@ -81,6 +83,7 @@ def customers_table(spark: SparkSession, logger: Logger):
 ---
 
 ### @table_overwrite {#table_overwrite}
+
 __@table_overwrite__(`identifier: str, table_schema: TableSchema = None, recreate_table: bool = False, options: dict = None`)
 
 > Overwrites data in a table with a DataFrame returned by the decorated function 
@@ -96,6 +99,7 @@ Parameters:
 ---
 
 ### @table_append {#table_append}
+
 __@table_append__(`identifier: str, table_schema: TableSchema = None, options: dict = None`)
 
 > Appends data to a table with a DataFrame returned by the decorated function
@@ -109,6 +113,7 @@ Parameters:
 ---
 
 ### @table_upsert {#table_upsert}
+
 __@table_upsert__(`identifier: str, table_schema: TableSchema`)
 
 > Updates data or inserts new data to a table based on primary key with a DataFrame returned by the decorated function
