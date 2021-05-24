@@ -1,4 +1,4 @@
-# Simple data pipeline workflow
+# Data pipelines workflow
 
 ## Introduction
 

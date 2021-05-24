@@ -8,7 +8,9 @@ All Daipe components are now loaded using a single import.
 from datalakebundle.imports import *
 ```
 
-## Decorators
+## Top level decorators
+
+These decorators are used to wrap the entire content of a cell. 
 
 ### @transformation {#transformation}
 __@transformation__(`*objects, display = False, check_duplicate_columns = True`)
@@ -80,6 +82,10 @@ def customers_table(spark: SparkSession, logger: Logger):
 
 ---
 
+## Output decorators
+
+Output decorators are used to persist the output of the decorated function in multiple possible formats - table, delta, csv, json and parquet.
+
 ### @table_overwrite {#table_overwrite}
 __@table_overwrite__(`identifier: str, table_schema: TableSchema = None, recreate_table: bool = False, options: dict = None`)
 
@@ -120,6 +126,221 @@ Parameters:
 
 ---
 
+### @csv_append
+__@csv_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Appends a spark DataFrame to a CSV file
+
+Parameters:
+
+- `path` : str - path to the CSV file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @csv_overwrite
+__@csv_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Overwrites a CSV file by a spark DataFrame
+
+Parameters:
+
+- `path` : str - path to the CSV file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @csv_write_ignore
+__@csv_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a CSV file if it does not exist
+
+Parameters:
+
+- `path` : str - path to the CSV file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @csv_write_errorifexists
+__@csv_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a CSV file, throws an Exception if it already exists
+
+Parameters:
+
+- `path` : str - path to the CSV file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @delta_append
+__@delta_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Appends a spark DataFrame to a Delta
+
+Parameters:
+
+- `path` : str - path to the Delta
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @delta_overwrite
+__@delta_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Overwrites a Delta by a spark DataFrame
+
+Parameters:
+
+- `path` : str - path to the Delta
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @delta_write_ignore
+__@delta_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a Delta if it does not exist
+
+Parameters:
+
+- `path` : str - path to the Delta
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @delta_write_errorifexists
+__@delta_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a Delta, throws an Exception if it already exists
+
+Parameters:
+
+- `path` : str - path to the Delta
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @json_append
+__@json_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Appends a spark DataFrame to a json file
+
+Parameters:
+
+- `path` : str - path to the json file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @json_overwrite
+__@json_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Overwrites a json file by a spark DataFrame
+
+Parameters:
+
+- `path` : str - path to the json file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @json_write_ignore
+__@json_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a json file if it does not exist
+
+Parameters:
+
+- `path` : str - path to the json file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @json_write_errorifexists
+__@json_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a json file, throws an Exception if it already exists
+
+Parameters:
+
+- `path` : str - path to the json file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
+### @parquet_append
+__@parquet_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Appends a spark DataFrame to a parquet file
+
+Parameters:
+
+- `path` : str - path to the parquet file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @parquet_overwrite
+__@parquet_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Overwrites a parquet file by a spark DataFrame
+
+Parameters:
+
+- `path` : str - path to the parquet file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @parquet_write_ignore
+__@parquet_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a parquet file if it does not exist
+
+Parameters:
+
+- `path` : str - path to the parquet file
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+
+---
+
+### @parquet_write_errorifexists
+__@parquet_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
+
+> Saves a spark DataFrame to a parquet, throws an Exception if it already exists
+
+Parameters:
+
+- `path` : str - path to the parquet
+- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
+- `options` : dict, default None - options passed to `df.write.options(**options)`
+
+---
+
 ## Functions
 
 ### read_csv
@@ -144,74 +365,6 @@ def save(df: DataFrame):
 
 ---
 
-### csv_append
-__csv_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Appends a spark DataFrame to a CSV file
-
-Parameters:
-
-- `path` : str - path to the CSV file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### csv_overwrite
-__csv_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Overwrites a CSV file by a spark DataFrame
-
-Parameters:
-
-- `path` : str - path to the CSV file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### csv_write_ignore
-__csv_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a CSV file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the CSV file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### csv_write_ignore
-__csv_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a CSV file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the CSV file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
-### csv_write_errorifexists
-__csv_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a CSV file, throws an Exception if it already exists
-
-Parameters:
-
-- `path` : str - path to the CSV file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
 ### read_delta
 __read_delta__(`path: str, schema: StructType = None, options: dict = None`)
 
@@ -222,75 +375,6 @@ Parameters:
 - `path` : str - path to the Delta
 - `schema` : StructType, default None - Union[str, list], default None - schema of the Delta
 - `options` : dict, default None - options passed to `spark.read.options(**options)`
-
----
-
-
-### delta_append
-__delta_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Appends a spark DataFrame to a Delta
-
-Parameters:
-
-- `path` : str - path to the Delta
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### delta_overwrite
-__delta_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Overwrites a Delta by a spark DataFrame
-
-Parameters:
-
-- `path` : str - path to the Delta
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### delta_write_ignore
-__delta_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a Delta if it does not exist
-
-Parameters:
-
-- `path` : str - path to the Delta
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### delta_write_ignore
-__delta_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a Delta if it does not exist
-
-Parameters:
-
-- `path` : str - path to the Delta
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
-### delta_write_errorifexists
-__delta_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a Delta, throws an Exception if it already exists
-
-Parameters:
-
-- `path` : str - path to the Delta
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
 
 ---
 
@@ -307,74 +391,6 @@ Parameters:
 
 ---
 
-### json_append
-__json_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Appends a spark DataFrame to a json file
-
-Parameters:
-
-- `path` : str - path to the json file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### json_overwrite
-__json_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Overwrites a json file by a spark DataFrame
-
-Parameters:
-
-- `path` : str - path to the json file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### json_write_ignore
-__json_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a json file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the json file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### json_write_ignore
-__json_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a json file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the json file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
-### json_write_errorifexists
-__json_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a json file, throws an Exception if it already exists
-
-Parameters:
-
-- `path` : str - path to the json file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
 ### read_parquet
 __read_parquet__(`path: str, schema: StructType = None, options: dict = None`)
 
@@ -385,74 +401,6 @@ Parameters:
 - `path` : str - path to the parquet
 - `schema` : StructType, default None - Union[str, list], default None - schema of the parquet
 - `options` : dict, default None - options passed to `spark.read.options(**options)`
-
----
-
-### parquet_append
-__parquet_append__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Appends a spark DataFrame to a parquet file
-
-Parameters:
-
-- `path` : str - path to the parquet file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### parquet_overwrite
-__parquet_overwrite__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Overwrites a parquet file by a spark DataFrame
-
-Parameters:
-
-- `path` : str - path to the parquet file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### parquet_write_ignore
-__parquet_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a parquet file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the parquet file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
-
----
-
-### parquet_write_ignore
-__parquet_write_ignore__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a parquet file if it does not exist
-
-Parameters:
-
-- `path` : str - path to the parquet file
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
-
----
-
-### parquet_write_errorifexists
-__parquet_write_errorifexists__(`path: str, partition_by: Union[str, list] = None, options: dict = None`)
-
-> Saves a spark DataFrame to a parquet, throws an Exception if it already exists
-
-Parameters:
-
-- `path` : str - path to the parquet
-- `partition_by` : Union[str, list], default None - Union[str, list], default None - one or multiple fields to partition the data by
-- `options` : dict, default None - options passed to `df.write.options(**options)`
 
 ---
 
