@@ -54,26 +54,13 @@ $ ca
 Now you can push your project to Databricks Workspace using following command
 
 ```bash
-$ console dbx:deploy --env=dev
+$ console dbx:deploy
 ```
 
 And you should see the pushed project in Databricks workspace
 
 ![](../images/pushed_daipedemo_project.png)
 
-
-## Creating a cluster
-
-In Databricks go to **Clusters** and create a new cluster.
-Select this version 
-
-![](../images/dbr_version7.3.png)
-
-give it a name and in **Advanced Options** paste following
-
-```bash
-APP_ENV=dev
-```
 
 into the **Environment Variables**.
 
