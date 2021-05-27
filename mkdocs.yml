@@ -31,7 +31,7 @@ nav:
       Daipe demo project: data-pipelines-workflow/daipe-demo-project.md
       Create daipe project: data-pipelines-workflow/create-daipe-project.md
       Working with git: data-pipelines-workflow/working-with-git.md
-      Development workflow: data-pipelines-workflow/development-workflow.md
+      Datalake structure: data-pipelines-workflow/datalake-structure.md
       Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
       Data pipelines workflow: data-pipelines-workflow/coding-basics.md
       Advanced features: data-pipelines-workflow/managing-datalake.md

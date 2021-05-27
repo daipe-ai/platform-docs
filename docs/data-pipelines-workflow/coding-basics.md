@@ -9,39 +9,6 @@ Daipe greatly simplify datalake(house) management:
 * Decorators to write well-maintainable and self-documented function-based notebooks
 * Rich configuration options to customize naming standards, paths, and basically anything to match your needs
 
-## Recommended notebook structure
-
-It is recommended to divide your tables and notebooks into the following layers:
- 
-* **bronze** - "staging layer", raw data from source systems
-* **silver** - most business logic, one or multiple tables per use-case 
-* **gold** - additional filtering/aggregations of silver data (using views or materialized tables) to be served to the final customers
-
-![bronze, silver, gold](../images/bronze_silver_gold.png)
-
-For databases and tables in each of bronze/silver/gold layers it is recommended to follow the **[db_name/table_name]** directory structure.  
-
-```yaml
-src
-    [PROJECT_NAME]
-        bronze_db_batch
-            tbl_customers.py
-            tbl_products.py
-            tbl_contracts # it is possible to place notebooks in folders with the same name if necessary
-                tbl_contracts.py
-                csv_schema.py
-            ...
-        silver_db_batch
-            tbl_product_profitability.py
-            tbl_customer_profitability.py
-            tbl_customer_onboarding.py
-            ...
-        gold_db_batch
-            vw_product_profitability.py # view on silver_db_batch.tbl_product_profitability
-            tbl_customer_profitability.py # "materialized" view on silver_db_batch.tbl_customer_profitability
-            vw_customer_onboarding.py
-```
-
 ## Benefits of writing function based notebooks
 
 Compared to bare notebooks, the function-based approach brings the **following advantages**: 
@@ -248,30 +215,27 @@ def save(df: DataFrame, logger: Logger):
     )
 ```
 
-## (required) Setting datalake storage path
+## Schema generation
 
-Add the following configuration to `config.yaml` to set the default storage path for all the datalake tables:
+When using `@table_*` decorators __without__ an explicit schema,...
 
-```yaml
-parameters:
-  datalakebundle:
-    defaults:
-      target_path: '/mybase/data/{db_identifier}/{table_identifier}.delta'
+```python
+@transformation(
+  read_csv("/RepaymentsData.csv%", options=dict(header=True)),
+)
+@table_overwrite("bronze.tbl_repayments")
+def load_csv_and_save(df: DataFrame):
+    return df
 ```
 
-When setting `defaults`, you can utilize the following placeholders:
+...Daipe raises a __warning__ and generates a schema based on the DataFrame for you. 
 
-* `{identifier}` - `customer.my_table`
-* `{db_identifier}` - `customer`
-* `{table_identifier}` - `my_table`
-* [parsed custom fields](#8-parsing-fields-from-table-identifier)
+![test](../images/schema_generation.png)
 
-To modify storage path of any specific table, add the `target_path` attribute to given table's configuration:
+## Schema checking
 
-```yaml
-parameters:
-  datalakebundle:
-    tables:
-      customer.my_table:
-        target_path: '/some_custom_base/{db_identifier}/{table_identifier}.delta'
-```
+When using `@table_*` decorators __with__ an explicit schema, Daipe checks if the schemas match and raises an __Exception__ if they do not.
+
+It also shows a difference between the schemas so you can easily fix the problems.
+
+![test](../images/schema_diff.png)
