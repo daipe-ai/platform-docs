@@ -1,14 +1,22 @@
 # Daipe AI Platform Documentation
 
+## What is Daipe?
+
+### A Data Pipeline and Machine Learning Platform
+
+[Create a first Daipe project](getting-started/create-daipe-project.md) 
+
+![daipe](images/daipe_lifecycle.png)
+
 ## AI Platform
 
-* [Getting started](getting-started/index.md)  
-Details on how to fully setup Daipe on Azure Cloud including security best-practices and resources management automation.
 * [Developing Data Pipelines](data-pipelines-workflow/index.md)
 Complete Daipe data pipelines coding workflow in Databricks. Includes best-practices for datalake creation and documentation. 
 * [Developing ML models](ml-workflow/index.md)
 Workflow for developing ML intensive applications with Daipe. 
 Details on how to develop DQ Expectations and validate your data.
+* [Setup Daipe on Azure](advanced/index.md)  
+Details on how to fully setup Daipe on Azure Cloud including security best-practices and resources management automation.
 
 ## Settle DQ
 *Data users trust their scientists and engineers that they deliver reliable data results.​*
