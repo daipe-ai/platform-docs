@@ -174,9 +174,45 @@ parameters:
 
 The Daipe framework is extensible. A user can write their own decorators inside of their project if they follow the interface.
 
-### Example custom write decorator
+### Example custom read decorator
 
 First let's create a folder `lib` inside the root of our project to contain the custom code.
+
+We are going to create a `table_stream_read` decorator to read a table as stream. Let's create a file called `table_stream_read`.
+
+Now we just need to ashere to the interface. The function must be decorated using `@input_decorator_function` and it must contain a definition of a `wrapper` function which it returns. Example code:
+
+```python
+from logging import Logger
+from daipecore.function.input_decorator_function import input_decorator_function
+from injecta.container.ContainerInterface import ContainerInterface
+from pyspark.sql import SparkSession
+from datalakebundle.table.parameters.TableParametersManager import TableParametersManager
+
+
+@input_decorator_function
+def read_stream_table(identifier: str):
+    def wrapper(container: ContainerInterface):
+        table_parameters_manager: TableParametersManager = container.get(TableParametersManager)
+        table_parameters = table_parameters_manager.get_or_parse(identifier)
+
+        logger: Logger = container.get("datalakebundle.logger")
+        logger.info(f"Reading table `{table_parameters.full_table_name}`")
+
+        spark: SparkSession = container.get(SparkSession)
+
+        return spark.readStream.format("delta").table(table_parameters.full_table_name)
+
+    return wrapper
+```
+
+In our project we simple import the function using
+
+```python
+from our_project_name.lib.read_stream_table import read_stream_table
+```
+
+### Example custom write decorator
 
 We are going to create a `@table_stream_append` decorator therefore we need a file for the `table_stream_append` class which is the actual decorator class and `TableStreamAppender` class which handles the logic of writing the data.
 
@@ -312,3 +348,8 @@ class TableStreamAppender:
         self.__logger.info(f"Data successfully written to: {output_table_name}")
 ```
 
+In our project we simple import the function using
+
+```python
+from our_project_name.lib.table_stream_append import table_stream_append
+```
