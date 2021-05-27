@@ -18,16 +18,10 @@ extra_css:
 nav:
   - Home: index.md
   - Getting started:
-      Process Overview: getting-started/index.md
-      Azure environment: getting-started/azure-setup.md
-      Data Lake resources: getting-started/datalake-resources-setup.md
-      Data Pipelines project: getting-started/data-pipelines-project-setup.md
-      Machine Learning project: getting-started/ml-project-setup.md
-      Self-hosted agents (optional): getting-started/devops-agents-setup.md
+      Create daipe project: getting-started/create-daipe-project.md
   - Developing Data Pipelines:
       Overview: data-pipelines-workflow/index.md
       Daipe demo project: data-pipelines-workflow/daipe-demo-project.md
-      Create daipe project: data-pipelines-workflow/create-daipe-project.md
       Working with git: data-pipelines-workflow/working-with-git.md
       Datalake structure: data-pipelines-workflow/datalake-structure.md
       Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
