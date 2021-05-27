@@ -30,6 +30,7 @@ nav:
       Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
       Overcoming security limitations: data-pipelines-workflow/overcoming-security-limitations.md
       Technical documentation: data-pipelines-workflow/technical-docs.md
+      Local environment setup: data-pipelines-workflow/local-env-setup.md
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
     - MLOps pipelines: ml-workflow/pipelines.md
