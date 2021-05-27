@@ -39,6 +39,13 @@ nav:
   - Developing ML models:
     - Workflow overview: ml-workflow/index.md
     - MLOps pipelines: ml-workflow/pipelines.md
+  - Advanced:
+      Process Overview: advanced/index.md
+      Azure environment: advanced/azure-setup.md
+      Data Lake resources: advanced/datalake-resources-setup.md
+      Data Pipelines project: advanced/data-pipelines-project-setup.md
+      Machine Learning project: advanced/ml-project-setup.md
+      Self-hosted agents (optional): advanced/devops-agents-setup.md
   - Settle DQ: 
     - Overview: settle-dq/index.md
     - Getting started:
