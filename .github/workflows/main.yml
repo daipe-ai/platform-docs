@@ -2,20 +2,54 @@ name: ci
 on:
   push:
     branches:
-      - master
-      - main
+      - kg-datasciencefunctions
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Get daipeml latest release
+        run: |
+          TAG=$(curl -s https://${{ secrets.GH_PAT }}@api.github.com/repos/Datasentics/DataScienceFunctions/releases/latest | jq -r '.tag_name')
+          echo "DAIPEML_LATEST_TAG=$TAG" >> $GITHUB_ENV
+
+      - name: Checkout main repo
+        uses: actions/checkout@v2
         with:
-          python-version: 3.x
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.1.1
+          path: platform-docs
+
+      - name: Checkout daipeml repo
+        uses: actions/checkout@v2
         with:
-          version: 1.1.4
-      - run: poetry install --no-root
-      - run: poetry run mkdocs gh-deploy --force --strict
+          repository: daipe-ai/daipeml
+          path: daipeml
+          token: ${{ secrets.GH_PAT }}
+          ref: ${{ env.DAIPEML_LATEST_TAG }}
+#
+#      - name: Use Python 3.7
+#        uses: actions/setup-python@v2
+#        with:
+#          python-version: 3.7
+#
+#      - name: Install Poetry
+#        uses: snok/install-poetry@v1.1.1
+#        with:
+#          version: 1.1.4
+#
+#      - name: Build daipeml documentation
+#        run: |
+#          cd daipeml
+#          python -m venv .venv
+#          source .venv/bin/activate
+#          poetry install --no-root
+#          pydoc-markdown
+#          ls -l build/docs/content
+#
+#      - name: Copy daipeml docs to main docs
+#        run: |
+#          mkdir -p platform-docs/docs/daipeml/
+#          cp daipeml/build/docs/content/* platform-docs/docs/daipeml
+
+#      - name: Install dependencies
+#        run: poetry install --no-root
+#      - run: poetry run mkdocs gh-deploy --force --strict
