@@ -1,4 +1,4 @@
-site_name: Daipe AI Platform
+site_name: Daipe AI Platform Documentation
 site_url: https://docs.daipe.ai
 theme:
   name: material
@@ -10,6 +10,7 @@ markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
+  - meta
 
 extra_css:
   - stylesheets/extra.css
