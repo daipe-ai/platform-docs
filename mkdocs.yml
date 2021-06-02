@@ -16,7 +16,9 @@ extra_css:
 
 # Page tree
 nav:
-  - Home: index.md
+  - Home:
+      Daipe AI Platform Documentation: index.md
+      Release notes: release-notes.md
   - Getting started:
       Process Overview: getting-started/index.md
       Azure environment: getting-started/azure-setup.md
