@@ -47,6 +47,7 @@ nav:
     - Getting started:
         Overview: settle-dq/getting-started/index.md
         Azure Setup: settle-dq/getting-started/azure-setup.md
+        Daipe Integration: settle-dq/getting-started/daipe-integration.md
         Create Configuration Notebook: settle-dq/getting-started/configuration-notebook.md
     - Developing Expectations:
         Workflow Overview: settle-dq/developing-expectations/index.md

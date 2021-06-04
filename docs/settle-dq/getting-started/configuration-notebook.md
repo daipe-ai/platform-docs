@@ -1,5 +1,7 @@
 # Settle DQ Configuration Notebook
 
+The configuration notebook isn't needed when you use Daipe. If you're using Daipe, continue to the [Daipe Integration Guide](./daipe-integration.md). If not, continue reading. 
+
 The python interface to Settle DQ is called DQ Tool. It is distributed as a python wheel that you install to your Databricks cluster. 
 
 To use DQ Tool, you need to configure it so that it knows how to connect to the database. We highly recommend storing this configuration in a single notebook and run the notebook whenever you need to work with DQ Tool. 
