@@ -23,58 +23,58 @@ extra_css:
 # Page tree
 nav:
   - Home:
-      Daipe AI Platform Documentation: index.md
+    - Daipe AI Platform Documentation: index.md
   - Getting started:
-      Creating Daipe project:
-        - Creating from skeleton: create-daipe-project.md
-        - Connection setup: workspace-cluster-connection-setup.md
-        - Setting datalake storage path: datalake-storage-path.md
-      Daipe demo project: daipe-demo-project.md
+    - Creating Daipe project:
+      - Creating from skeleton: create-daipe-project.md
+      - Connection setup: workspace-cluster-connection-setup.md
+      - Setting datalake storage path: datalake-storage-path.md
+    - Daipe demo project: daipe-demo-project.md
   - Developing Data Pipelines:
-      Overview:
-        - Datalake structure: datalake-structure.md
-        - Project code structure: project-code-structure.md
-      Coding the "Daipe way":
-        - Intro: coding-daipe-way.md
-        - Using @notebook_function: using-notebook-function.md
-        - Using @transformation: using-transformation.md
-        - Chaining notebook functions: chaining-notebook-functions.md
-        - Writing function output: writing-function-output.md
-        - Using explicit schema: using-explicit-schema.md
-      Development workflow:
-        - Overview: data-pipelines-workflow.md
-        - Working with git: working-with-git.md
-        - Creating a new notebook: new-databricks-notebook.md
-        - Setting up a pipeline: new-datafactory-pipeline.md
-        - Creating a Pull Request: creating-pull-request.md
-      Overcoming security limitations:
-        - No internet access on Databricks: offline-databricks-solution.md
-        - Local machine access limited: local-machine-limited-access.md
-      Customizing Daipe Lake:
-        - Customizing table names: customizing-table-names.md
-        - Setting table defaults: customizing-table-defaults.md
-        - Setting table-specific parameters: setting-table-specific-params.md
-        - Creating a decorator function: creating-decorator-function.md
-        - Creating a custom output decorator: creating-custom-output-decorator.md
-      Advanced:
-        - Databricks Connect setup: databricks-connect-setup.md
-        - Managing tables using console: managing-tables-console.md
-      Technical reference:
-        - Input decorators: input-decorators.md
-        - Decorator functions: decorator-functions.md
-        - Output decorators: output-decorators.md
-        - Table schema: table-schema.md
+    - Overview:
+      - Datalake structure: datalake-structure.md
+      - Project code structure: project-code-structure.md
+    - Coding the "Daipe way":
+      - Intro: coding-daipe-way.md
+      - Using @notebook_function: using-notebook-function.md
+      - Using @transformation: using-transformation.md
+      - Chaining notebook functions: chaining-notebook-functions.md
+      - Writing function output: writing-function-output.md
+      - Using explicit schema: using-explicit-schema.md
+    - Development workflow:
+      - Overview: data-pipelines-workflow.md
+      - Working with git: working-with-git.md
+      - Creating a new notebook: new-databricks-notebook.md
+      - Setting up a pipeline: new-datafactory-pipeline.md
+      - Creating a Pull Request: creating-pull-request.md
+    - Overcoming security limitations:
+      - No internet access on Databricks: offline-databricks-solution.md
+      - Local machine access limited: local-machine-limited-access.md
+    - Customizing Daipe Lake:
+      - Customizing table names: customizing-table-names.md
+      - Setting table defaults: customizing-table-defaults.md
+      - Setting table-specific parameters: setting-table-specific-params.md
+      - Creating a decorator function: creating-decorator-function.md
+      - Creating a custom output decorator: creating-custom-output-decorator.md
+    - Advanced:
+      - Databricks Connect setup: databricks-connect-setup.md
+      - Managing tables using console: managing-tables-console.md
+    - Technical reference:
+      - Input decorators: input-decorators.md
+      - Decorator functions: decorator-functions.md
+      - Output decorators: output-decorators.md
+      - Table schema: table-schema.md
   - Developing ML models:
     - Workflow overview: ml-models-workflow.md
     - MLOps pipelines: mlops-pipelines.md
   - Advanced:
-      Process Overview: advanced.md
-      Azure environment: azure-setup.md
-      Data Lake resources: datalake-resources-setup.md
-      Data Pipelines project: data-pipelines-project-setup.md
-      Machine Learning project: ml-project-setup.md
-      Self-hosted agents (optional): devops-agents-setup.md
-      Release notes: release-notes.md
+    - Process Overview: advanced.md
+    - Azure environment: azure-setup.md
+    - Data Lake resources: datalake-resources-setup.md
+    - Data Pipelines project: data-pipelines-project-setup.md
+    - Machine Learning project: ml-project-setup.md
+    - Self-hosted agents (optional): devops-agents-setup.md
+    - Release notes: release-notes.md
 
 plugins:
   - redirects:
