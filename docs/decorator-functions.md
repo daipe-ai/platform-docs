@@ -92,4 +92,3 @@ Parameters:
 - `identifier` : str - full table name, format `db.table_name`
 - `param_path_parts` : list, default None - Union[str, list], default None - list of parameter levels leading to result
 ---
-w

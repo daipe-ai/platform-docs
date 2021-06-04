@@ -54,4 +54,4 @@ When using `@table_*` decorators __with__ an explicit schema, Daipe checks if th
 
 It also shows a difference between the schemas so you can easily fix the problems.
 
-![test](images/schema_diff.png)
+![test](images/schema_diff_example.png){: style="width: 60%"}
