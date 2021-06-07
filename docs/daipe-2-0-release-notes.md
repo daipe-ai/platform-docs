@@ -8,13 +8,13 @@
 ```python
 # Old Daipe
 @data_frame_loader(display=True)
-def my_transformation(spark: SparkSession, dbutils: DbUtils):
+def my_transformation(spark: SparkSession):
     return spark.read.table("my_database.my_table")
 ```
 ```python
 # New Daipe
 @transformation(read_table("my_database.my_table"), display=True)
-def my_transformation(df: DataFrame, dbutils: DbUtils):
+def my_transformation(df: DataFrame):
     return df
 ```
 - Support for DBR 8.x
