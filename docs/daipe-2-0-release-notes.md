@@ -1,6 +1,6 @@
-### Version 2.0
+# Daipe 2.0: Release Notes
 
-#### Enhancements
+## Enhancements
 
 - It is no longer necessary to define tables in a local environment, YAML config is __optional__. Local environment is only necessary for the initial setup of the project
 - It is now possible to use Daipe __without__ Databricks on whatever Spark environment or even without Spark just using Pandas
@@ -9,14 +9,12 @@
 # Old Daipe
 @data_frame_loader(display=True)
 def my_transformation(spark: SparkSession, dbutils: DbUtils):
-    mywidget = dbutils.widgets.text(...)
     return spark.read.table("my_database.my_table")
 ```
 ```python
 # New Daipe
 @transformation(read_table("my_database.my_table"), display=True)
 def my_transformation(df: DataFrame, dbutils: DbUtils):
-    mywidget = dbutils.widgets.text(...)
     return df
 ```
 - Support for DBR 8.x
@@ -33,7 +31,7 @@ def my_transformation(df: DataFrame, dbutils: DbUtils):
 
 ![](images/schema_diff_example.png){: style="width: 500px; padding-left: 3%"}
 
-#### Backwards incompatible changes
+## Backwards incompatible changes
 
 - Schema __is no longer loaded__ automatically from the `schema.py` file in the notebook folder. Now the schema can be defined inside the notebook as well as imported from a separate file, see [docs](data-pipelines-workflow/technical-docs/#table_schema) and example:
 
@@ -42,7 +40,7 @@ def my_transformation(df: DataFrame, dbutils: DbUtils):
 - Command `console datalake:table:create-missing`  has been __removed__, because it is no longer possible to rely on the tables being defined in YAML config
 - Command `console datalake:table:delete` renamed to `console datalake:table:delete-including-data`
 
-#### Deprecations
+## Deprecations
 
 - Decorator `@data_frame_loader` has been __deprecated__
 - Decorator `@data_frame_saver` has been __deprecated__

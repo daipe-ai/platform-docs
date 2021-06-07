@@ -68,13 +68,29 @@ nav:
     - Workflow overview: ml-models-workflow.md
     - MLOps pipelines: mlops-pipelines.md
   - Advanced:
-    - Process Overview: advanced.md
-    - Azure environment: azure-setup.md
-    - Data Lake resources: datalake-resources-setup.md
-    - Data Pipelines project: data-pipelines-project-setup.md
-    - Machine Learning project: ml-project-setup.md
-    - Self-hosted agents (optional): devops-agents-setup.md
-    - Release notes: release-notes.md
+    - Overview: advanced.md
+    - Azure Setup:
+      - Setup overview: azure-setup-overview.md
+      - Environment setup: azure-setup.md
+      - Data Lake resources: datalake-resources-setup.md
+      - Data Pipelines project: data-pipelines-project-setup.md
+      - Machine Learning project: ml-project-setup.md
+      - Self-hosted agents (optional): devops-agents-setup.md
+    - Settle DQ:
+      - Overview: settle-dq/index.md
+      - Getting started:
+          Overview: settle-dq/getting-started/index.md
+          Azure Setup: settle-dq/getting-started/azure-setup.md
+          Daipe Integration: settle-dq/getting-started/daipe-integration.md
+          Create Configuration Notebook: settle-dq/getting-started/configuration-notebook.md
+      - Developing Expectations:
+          Workflow Overview: settle-dq/developing-expectations/index.md
+          Developing and Storing DQ Expectations: settle-dq/developing-expectations/develop-store.md
+          Validating Your Data: settle-dq/developing-expectations/validation.md
+          Viewing Validation Results: settle-dq/developing-expectations/view-validation-results.md
+          Editing Expectations: settle-dq/developing-expectations/edit.md
+  - Release notes:
+      - Daipe 2.0: daipe-2-0-release-notes.md
 
 plugins:
   - redirects:
@@ -85,7 +101,6 @@ plugins:
           'data-pipelines-workflow/technical-docs.md': 'input-decorators.md'
           'data-pipelines-workflow/working-with-git.md': 'working-with-git.md'
           'data-pipelines-workflow/data-pipelines-workflow.md': 'data-pipelines-workflow.md'
-          'data-pipelines-workflow/coding-basics.md': 'coding-daipe-way.md'
           'data-pipelines-workflow/coding-workflow.md': 'new-databricks-notebook.md'
           'getting-started.md': 'azure-setup.md'
           'getting-started/azure-setup.md': 'azure-setup.md'
