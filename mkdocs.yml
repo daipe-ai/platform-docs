@@ -1,4 +1,4 @@
-site_name: Daipe AI Platform Documentation
+site_name: Daipe documentation
 site_url: https://datasentics-daipe-ai-docs.readthedocs-hosted.com/en/upgrade-docs/
 theme:
   name: material
