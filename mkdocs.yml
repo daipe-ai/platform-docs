@@ -36,8 +36,8 @@ nav:
       - Project code structure: project-code-structure.md
     - Coding the "Daipe way":
       - Intro: coding-daipe-way.md
-      - Using @notebook_function: using-notebook-function.md
       - Using @transformation: using-transformation.md
+      - Using @notebook_function: using-notebook-function.md
       - Chaining notebook functions: chaining-notebook-functions.md
       - Writing function output: writing-function-output.md
       - Using explicit schema: using-explicit-schema.md
@@ -83,5 +83,13 @@ plugins:
           'data-pipelines-workflow/daipe-demo-project.md': 'daipe-demo-project.md'
           'data-pipelines-workflow/coding-basics.md': 'coding-daipe-way.md'
           'data-pipelines-workflow/technical-docs.md': 'input-decorators.md'
-          'data-pipelines-workflow.md': 'datalake-structure.md'
+          'data-pipelines-workflow/working-with-git.md': 'working-with-git.md'
+          'data-pipelines-workflow/data-pipelines-workflow.md': 'data-pipelines-workflow.md'
+          'data-pipelines-workflow/coding-basics.md': 'coding-daipe-way.md'
+          'data-pipelines-workflow/coding-workflow.md': 'new-databricks-notebook.md'
           'getting-started.md': 'azure-setup.md'
+          'getting-started/azure-setup.md': 'azure-setup.md'
+          'getting-started/datalake-resources-setup.md': 'datalake-resources-setup.md'
+          'getting-started/data-pipelines-project-setup.md': 'data-pipelines-project-setup.md'
+          'getting-started/ml-project-setup.md': 'ml-project-setup.md'
+          'getting-started/devops-agents-setup.md': 'devops-agents-setup.md'

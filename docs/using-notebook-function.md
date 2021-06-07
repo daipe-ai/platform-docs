@@ -1,11 +1,5 @@
 # Using the @notebook_function() decorator
 
-First, import everything necessary for a Daipe pipeline workflow:
-
-```python
-from datalakebundle.imports import *
-```
-
 Then, define the `download_data` function and run it.
 
 ```python
