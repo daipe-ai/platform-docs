@@ -54,13 +54,14 @@ Now your can re-deploy your Daipe project and start using DQ Tool.
 To define a new expectation, run a notebook function like the following. 
 ```python
 from datalakebundle.imports import notebook_function
-from datalakebundle.table.TableManager import TableManager
-
+from datalakebundle.table.parameters.TableParametersManager import TableParametersManager
 from dq_tool import DQTool
+
 @notebook_function()
-def define_expectations_bronze_covid_tbl(dq_tool: DQTool, table_manager: TableManager):
+def define_expectations_bronze_covid_tbl(dq_tool: DQTool, table_parameters_manager: TableParametersManager):
     # playground lets you run expectation on top of a table
-    my_playground = dq_tool.get_playground(table_name=my_table_name)
+    params = table_parameters_manager.get_or_parse('my_db.my_table')
+    dq_tool.get_playground(table_name=params.table_identifier, database_name=params.db_identifier)
     # the NEVER column values should be between 0 and 1
     never_limits = my_playground.expect_column_values_to_be_between(column="NEVER", min_value=0, max_value=1)
     print(never_limits)
@@ -71,6 +72,7 @@ After you have fine-tuned your expectation definition, you can save it within a 
 ```python
 dq_tool.expectation_store.add(
     expectation=never_limits,
+    database_name=my_database_name,
     table_name=my_table_name,
     severity='error',
     agreement='The prediction model needs at least 400 rows to predict something meaningful.',
@@ -87,8 +89,9 @@ In your pipeline, you'll want to validate data in a table using expectations you
 from datalakebundle.imports import notebook_function
 
 @notebook_function()
-def validate_table(dq_tool: DQTool, table_manager: TableManager):
+def validate_table(dq_tool: DQTool, table_parameters_manager: TableParametersManager):
     results = dq_tool.expectation_store.validate_table(
+        database_name=my_database_name,
         table_name=my_table_name
     )
     print(results)
