@@ -29,7 +29,10 @@ nav:
       - Creating from skeleton: create-daipe-project.md
       - Connection setup: workspace-cluster-connection-setup.md
       - Setting datalake storage path: datalake-storage-path.md
-    - Daipe demo project: daipe-demo-project.md
+    - Daipe demo project:
+      - Cloning repository: clone-demo-project.md
+      - Configure project: configure-demo-project.md
+      - Deploy demo project: deploy-demo-project.md
   - Developing Data Pipelines:
     - Overview:
       - Datalake structure: datalake-structure.md
@@ -96,7 +99,7 @@ plugins:
   - redirects:
       redirect_maps:
           'data-pipelines-workflow/create-daipe-project.md': 'create-daipe-project.md'
-          'data-pipelines-workflow/daipe-demo-project.md': 'daipe-demo-project.md'
+          'data-pipelines-workflow/daipe-demo-project.md': 'clone-demo-project.md'
           'data-pipelines-workflow/coding-basics.md': 'coding-daipe-way.md'
           'data-pipelines-workflow/technical-docs.md': 'input-decorators.md'
           'data-pipelines-workflow/working-with-git.md': 'working-with-git.md'

@@ -25,7 +25,7 @@ def read_csv(df: DataFrame):
     return df
 ```
 
-See the [list of all functions](input-decorators.md#transformation) which can be used.
+See the [list of all functions](decorator-functions.md) which can be used.
 
 `display=True` option can be used for displaying the DataFrame.
 
