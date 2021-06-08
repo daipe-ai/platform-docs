@@ -1,5 +1,5 @@
 site_name: Daipe documentation
-site_url: !!python/object/apply:os.getenv ["SITE_URL"]
+site_url: https://docs.daipe.ai/
 theme:
   name: material
   palette:
@@ -91,6 +91,7 @@ nav:
           Validating Your Data: settle-dq/developing-expectations/validation.md
           Viewing Validation Results: settle-dq/developing-expectations/view-validation-results.md
           Editing Expectations: settle-dq/developing-expectations/edit.md
+          Expectations With Expressions: settle-dq/developing-expectations/expressions.md
   - Release notes:
       - Daipe 2.0: daipe-2-0-release-notes.md
 
