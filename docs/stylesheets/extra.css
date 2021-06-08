@@ -1,8 +1,20 @@
+@media (min-width:1000px){
+  .md-nav label.md-nav__title{
+      display: none !important;
+  }
+}
+
 a.md-nav__link--active {
     color: black !important;
     font-weight: bold;
     cursor: default;
 }
+
+a:not(.md-tabs__link, .md-nav__link) {
+    text-decoration: underline;
+}
+
+
 
 :root {
   --md-primary-fg-color: #11264A;
