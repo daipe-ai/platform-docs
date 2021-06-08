@@ -1,6 +1,6 @@
 # Creating a custom output decorator
 
-We are going to create a `@send_to_api` decorator which appends DataFrame to a table while simultaneously sends the data to an API.
+We are going to create a `@send_to_api` decorator which sends data to an API.
 
 Inside our project's `src/__project_name__/lib` we create a file called `send_to_api.py`
 
