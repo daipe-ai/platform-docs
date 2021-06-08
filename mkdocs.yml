@@ -1,15 +1,21 @@
-site_name: Daipe AI Platform
-site_url: https://docs.daipe.ai
+site_name: Daipe documentation
+site_url: https://docs.daipe.ai/
 theme:
   name: material
+  palette:
+    accent: deep orange
   features:
     - navigation.tabs
-    - toc.integrate
 
 markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.mark
+  - admonition
+  - meta
+  - toc:
+      toc_depth: 0
 
 extra_css:
   - stylesheets/extra.css
@@ -17,41 +23,96 @@ extra_css:
 # Page tree
 nav:
   - Home:
-      Daipe AI Platform Documentation: index.md
-      Release notes: release-notes.md
+    - Daipe AI Platform Documentation: index.md
   - Getting started:
-      Process Overview: getting-started/index.md
-      Azure environment: getting-started/azure-setup.md
-      Data Lake resources: getting-started/datalake-resources-setup.md
-      Data Pipelines project: getting-started/data-pipelines-project-setup.md
-      Machine Learning project: getting-started/ml-project-setup.md
-      Self-hosted agents (optional): getting-started/devops-agents-setup.md
+    - Creating Daipe project:
+      - Creating from skeleton: create-daipe-project.md
+      - Connection setup: workspace-cluster-connection-setup.md
+      - Setting datalake storage path: datalake-storage-path.md
+    - Daipe demo project:
+      - Cloning demo project: clone-demo-project.md
+      - Deploying to Databricks: deploy-demo-project.md
   - Developing Data Pipelines:
-      Overview: data-pipelines-workflow/index.md
-      Daipe demo project: data-pipelines-workflow/daipe-demo-project.md
-      Create daipe project: data-pipelines-workflow/create-daipe-project.md
-      Working with git: data-pipelines-workflow/working-with-git.md
-      Development workflow: data-pipelines-workflow/development-workflow.md
-      Detailed coding workflow: data-pipelines-workflow/coding-workflow.md
-      Data pipelines workflow: data-pipelines-workflow/coding-basics.md
-      Advanced features: data-pipelines-workflow/managing-datalake.md
-      Databricks Connect setup: data-pipelines-workflow/databricks-connect.md
-      Overcoming security limitations: data-pipelines-workflow/overcoming-security-limitations.md
-      Technical documentation: data-pipelines-workflow/technical-docs.md
-      Local environment setup: data-pipelines-workflow/local-env-setup.md
+    - Overview:
+      - Datalake structure: datalake-structure.md
+      - Project code structure: project-code-structure.md
+    - Coding the "Daipe way":
+      - Intro: coding-daipe-way.md
+      - Using @transformation: using-transformation.md
+      - Using @notebook_function: using-notebook-function.md
+      - Chaining notebook functions: chaining-notebook-functions.md
+      - Writing function output: writing-function-output.md
+      - Using explicit schema: using-explicit-schema.md
+    - Development workflow:
+      - Overview: data-pipelines-workflow.md
+      - Working with git: working-with-git.md
+      - Creating a new notebook: new-databricks-notebook.md
+      - Setting up a pipeline: new-datafactory-pipeline.md
+      - Creating a Pull Request: creating-pull-request.md
+    - Overcoming security limitations:
+      - No internet access on Databricks: offline-databricks-solution.md
+      - Local machine access limited: local-machine-limited-access.md
+    - Customizing Daipe Lake:
+      - Customizing table names: customizing-table-names.md
+      - Setting table defaults: customizing-table-defaults.md
+      - Setting table-specific parameters: setting-table-specific-params.md
+      - Creating a decorator function: creating-decorator-function.md
+      - Creating a custom output decorator: creating-custom-output-decorator.md
+    - Advanced:
+      - Databricks Connect setup: databricks-connect-setup.md
+      - Managing tables using console: managing-tables-console.md
+    - Technical reference:
+      - Input decorators: input-decorators.md
+      - Decorator functions: decorator-functions.md
+      - Output decorators: output-decorators.md
+      - Table schema: table-schema.md
   - Developing ML models:
-    - Workflow overview: ml-workflow/index.md
-    - MLOps pipelines: ml-workflow/pipelines.md
-  - Settle DQ: 
-    - Overview: settle-dq/index.md
-    - Getting started:
-        Overview: settle-dq/getting-started/index.md
-        Azure Setup: settle-dq/getting-started/azure-setup.md
-        Create Configuration Notebook: settle-dq/getting-started/configuration-notebook.md
-    - Developing Expectations:
-        Workflow Overview: settle-dq/developing-expectations/index.md
-        Developing and Storing DQ Expectations: settle-dq/developing-expectations/develop-store.md
-        Validating Your Data: settle-dq/developing-expectations/validation.md
-        Viewing Validation Results: settle-dq/developing-expectations/view-validation-results.md
-        Editing Expectations: settle-dq/developing-expectations/edit.md
+    - Workflow overview: ml-models-workflow.md
+    - MLOps pipelines: mlops-pipelines.md
+  - Advanced:
+    - Overview: advanced.md
+    - Azure Setup:
+      - Setup overview: azure-setup-overview.md
+      - Environment setup: azure-setup.md
+      - Data Lake resources: datalake-resources-setup.md
+      - Data Pipelines project: data-pipelines-project-setup.md
+      - Machine Learning project: ml-project-setup.md
+      - Self-hosted agents (optional): devops-agents-setup.md
+    - Settle DQ:
+      - Overview: settle-dq/index.md
+      - Getting started:
+          Overview: settle-dq/getting-started/index.md
+          Azure Setup: settle-dq/getting-started/azure-setup.md
+          Daipe Integration: settle-dq/getting-started/daipe-integration.md
+          Create Configuration Notebook: settle-dq/getting-started/configuration-notebook.md
+      - Developing Expectations:
+          Workflow Overview: settle-dq/developing-expectations/index.md
+          Developing and Storing DQ Expectations: settle-dq/developing-expectations/develop-store.md
+          Validating Your Data: settle-dq/developing-expectations/validation.md
+          Viewing Validation Results: settle-dq/developing-expectations/view-validation-results.md
+          Editing Expectations: settle-dq/developing-expectations/edit.md
+          Expectations With Expressions: settle-dq/developing-expectations/expressions.md
+  - Release notes:
+      - Daipe 2.0: daipe-2-0-release-notes.md
+
+plugins:
+  - redirects:
+      redirect_maps:
+          'data-pipelines-workflow/create-daipe-project.md': 'create-daipe-project.md'
+          'data-pipelines-workflow/daipe-demo-project.md': 'clone-demo-project.md'
+          'data-pipelines-workflow/coding-basics.md': 'coding-daipe-way.md'
+          'data-pipelines-workflow/technical-docs.md': 'input-decorators.md'
+          'data-pipelines-workflow/working-with-git.md': 'working-with-git.md'
+          'data-pipelines-workflow/data-pipelines-workflow.md': 'data-pipelines-workflow.md'
+          'data-pipelines-workflow/coding-workflow.md': 'new-databricks-notebook.md'
+          'data-pipelines-workflow/managing-datalake.md': 'customizing-table-names.md'
+          'data-pipelines-workflow/databricks-connect.md': 'databricks-connect-setup.md'
+          'data-pipelines-workflow/overcoming-security-limitations.md': 'offline-databricks-solution.md'
+          'getting-started.md': 'azure-setup.md'
+          'getting-started/azure-setup.md': 'azure-setup.md'
+          'getting-started/datalake-resources-setup.md': 'datalake-resources-setup.md'
+          'getting-started/data-pipelines-project-setup.md': 'data-pipelines-project-setup.md'
+          'getting-started/ml-project-setup.md': 'ml-project-setup.md'
+          'getting-started/devops-agents-setup.md': 'devops-agents-setup.md'
+  - search
 
