@@ -8,8 +8,8 @@ We must adhere to this interface.
 
 ```python
 @DecoratedDecorator
-class table_append_and_send_to_api(OutputDecorator):
-    def __init__(self, identifier: str, url: str, table_schema: TableSchema = None, options: dict = None):
+class send_to_api(OutputDecorator):
+    def __init__(self, *args, **kwargs):
         # init
         
         def process_result(self, result: DataFrame, container: ContainerInterface):
@@ -26,7 +26,7 @@ We define a custom method for sending data to an API.
 
 ```python
 def __send_to_api(self, df):
-    df_json = df.toPandas().head().to_json()
+    df_json = df.toPandas().to_json()
     conn = http.client.HTTPSConnection(self.__url)
     conn.request("POST", "/", df_json, {'Content-Type': 'application/json'})
 ```
@@ -42,35 +42,21 @@ from daipecore.decorator.OutputDecorator import OutputDecorator
 from injecta.container.ContainerInterface import ContainerInterface
 from pyspark.sql import DataFrame
 
-from datalakebundle.table.create.TableDefinitionFactory import TableDefinitionFactory
-from datalakebundle.table.schema.TableSchema import TableSchema
-from datalakebundle.table.schema.SchemaChecker import SchemaChecker
-
-
-@DecoratedDecorator
-from logging import Logger
-
-import http.client
-from daipecore.decorator.DecoratedDecorator import DecoratedDecorator
-from daipecore.decorator.OutputDecorator import OutputDecorator
-from injecta.container.ContainerInterface import ContainerInterface
-from pyspark.sql import DataFrame
-
 
 @DecoratedDecorator
 class send_to_api(OutputDecorator):
-    def __init__(self, identifier: str, options: dict = None):
-        self.__identifier = identifier
-        self.__options = options or {}
+    def __init__(self, url: str):
+        self.__url = url
 
     def process_result(self, result: DataFrame, container: ContainerInterface):
         logger: Logger = container.get("datalakebundle.logger")
         logger.info(f"Sending {result.count()} records to API")
 
-        self.__send_to_api(df_json)
+        self.__send_to_api(result)
 
-    def __send_to_api(self, df_json):
-        conn = http.client.HTTPSConnection('enb83qr9you8.x.pipedream.net')
+    def __send_to_api(self, df):
+        df_json = df.toPandas().to_json()
+        conn = http.client.HTTPSConnection(self.__url)
         conn.request("POST", "/", df_json, {'Content-Type': 'application/json'})
 
 ```
