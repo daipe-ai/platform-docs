@@ -30,9 +30,8 @@ nav:
       - Connection setup: workspace-cluster-connection-setup.md
       - Setting datalake storage path: datalake-storage-path.md
     - Daipe demo project:
-      - Cloning repository: clone-demo-project.md
-      - Configure project: configure-demo-project.md
-      - Deploy demo project: deploy-demo-project.md
+      - Cloning demo project: clone-demo-project.md
+      - Deploying to Databricks: deploy-demo-project.md
   - Developing Data Pipelines:
     - Overview:
       - Datalake structure: datalake-structure.md
