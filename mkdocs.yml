@@ -1,5 +1,5 @@
 site_name: Daipe documentation
-site_url: https://datasentics-daipe-ai-docs.readthedocs-hosted.com/en/upgrade-docs/
+site_url: https://docs.daipe.ai/
 theme:
   name: material
   palette:
