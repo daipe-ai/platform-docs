@@ -34,7 +34,7 @@ nav:
       - Deploying to Databricks: deploy-demo-project.md
   - Developing Data Pipelines:
     - Overview:
-      - Datalake structure: datalake-structure.md
+      - How does a datalake look like?: datalake-structure.md
       - Project code structure: project-code-structure.md
     - Coding the "Daipe way":
       - Intro: coding-daipe-way.md
