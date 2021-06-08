@@ -10,7 +10,7 @@ a.md-nav__link--active {
     cursor: default;
 }
 
-a:not(.md-tabs__link, .md-nav__link) {
+a:not(.md-tabs__link, .md-nav__link, .md-button) {
     text-decoration: underline;
 }
 
