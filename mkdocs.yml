@@ -115,4 +115,3 @@ plugins:
           'getting-started/ml-project-setup.md': 'ml-project-setup.md'
           'getting-started/devops-agents-setup.md': 'devops-agents-setup.md'
   - search
-
