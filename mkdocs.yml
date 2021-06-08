@@ -1,5 +1,5 @@
 site_name: Daipe documentation
-site_url: https://docs.daipe.ai/
+site_url: !!python/object/apply:os.getenv ["SITE_URL"]
 theme:
   name: material
   palette:
