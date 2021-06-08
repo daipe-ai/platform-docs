@@ -1,10 +1,10 @@
 # Using the @notebook_function() decorator
 
-Then, define the `download_data` function and run it.
+The `@notebook_function()` decorator is very simple. It recieves any number of arguments, passes it down to its decorated function and runs the function. You can use it for example on a function which downloads data and you want to log its progress. 
 
 ```python
 @notebook_function()
-def download_data():
+def download_data(logger: Logger):
     opener = urllib.request.URLopener()
     opener.addheader(
         "User-Agent",
@@ -12,29 +12,10 @@ def download_data():
     )
 
     opener.retrieve("https://www.bondora.com/marketing/media/LoanData.zip", "/loanData.zip")
+    logger.info("Loans data successfully downloaded")
     opener.retrieve("https://www.bondora.com/marketing/media/RepaymentsData.zip", "/repaymentsData.zip")
+    logger.info("Repayments data successfully downloaded")
 ```
-
-After you run the function, it gets is automatically called.
-
-## Passing objects into decorated functions
-
-```python
-@notebook_function()
-def create_input_widgets(dbutils: DBUtils):
-    dbutils.widgets.dropdown("base_year", "2015", list(map(str, range(2009, 2022))), "Base year")
-```
-
-The common objects that can be injected are:
-
-* `spark: SparkSession` (`from pyspark.sql.session import SparkSession`)  
-The Databricks spark instance itself.
-
-* `dbutils: DBUtils` (`from pyspark.dbutils import DBUtils`)  
-[Databricks utilities object](https://docs.databricks.com/dev-tools/databricks-utils.html).
-
-* `logger: Logger` (`from logging import Logger`)  
-Logger instance for the given notebook.
   
 !!! info "Technical Reference"
     Check the [Technical reference](input-decorators.md#notebook_function) for more details about the @notebook_function and other decorators.

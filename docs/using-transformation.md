@@ -1,12 +1,11 @@
 # Using the @transformation() decorator
 
+There are two main decorators in the Daipe framework - `@transformation()` and `@notebook_function()`.
+
+1. `@transformation()` understands Spark dataframes better and provides you with extra Spark-related functionality like display and duplicate columns checking.
+1. `@notebook_function()` should be used for functions and procedures which don't manipulate with a DataFrame e. g. downloading data.
+
 First, import everything necessary for a Daipe pipeline workflow:
-
-```python
-from datalakebundle.imports import *
-```
-
-Start with importing the Daipe decorators and functions as usual:
 
 ```python
 from datalakebundle.imports import *

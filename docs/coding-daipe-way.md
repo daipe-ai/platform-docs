@@ -16,10 +16,3 @@ Daipe **greatly simplify datalake(house) management**:
     1. (unit)test specific notebook functions with ease
     1. use YAML to configure your notebooks for given environment (dev/test/prod/...)
     1. utilize pre-configured objects to automate repetitive tasks
-
-
-There are two main decorators in the Daipe framework - `@transformation()` and `@notebook_function()`.
-
-1. `@transformation()` understands Spark dataframes better and provides you with extra Spark-related functionality like display and duplicate columns checking.
-1. `@notebook_function()` should be used for functions and procedures which don't manipulate with a DataFrame e. g. downloading data.
-
