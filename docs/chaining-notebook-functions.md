@@ -1,6 +1,6 @@
-# Chaining notebook functions
+# Chaining decorated functions
 
-Calls of the notebook functions can be chained by passing function names as decorator arguments:
+Calls of the decorated functions can be chained by passing function names as decorator arguments:
 
 ```python
 @transformation(read_table("bronze.tbl_customers"))
