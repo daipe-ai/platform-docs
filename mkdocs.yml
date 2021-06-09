@@ -1,5 +1,6 @@
 site_name: Daipe documentation
 site_url: https://docs.daipe.ai/
+repo_url: https://github.com/daipe-ai/platform-docs/
 theme:
   name: material
   palette:
