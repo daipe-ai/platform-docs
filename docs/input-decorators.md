@@ -74,6 +74,8 @@ def customers_table(spark: SparkSession, logger: Logger):
 Using `DBUtils`
 
 ```python
+from pyspark.dbutils import DBUtils
+
 @notebook_function()
 def create_input_widgets(dbutils: DBUtils):
     dbutils.widgets.dropdown("base_year", "2015", list(map(str, range(2009, 2022))), "Base year")
