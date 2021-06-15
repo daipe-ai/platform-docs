@@ -67,14 +67,15 @@ nav:
       - Decorator functions: decorator-functions.md
       - Output decorators: output-decorators.md
       - Table schema: table-schema.md
-  - DaipeML:
-      - Notebooks:
+  - Developing Data Science Models:
+      - Overview: daipeml-overview.md
+      - Classification:
+          - Classification: classification.ipynb
           - Basics of do_datasciencing: 01_basics_of_do_datasciencing.ipynb
           - Advanced do_datasciencing: 02_advanced_do_datasciencing.ipynb
           - Custom training pipelines: 03_custom_training_pipelines.ipynb
           - Custom MLModels and hyperparameter spaces: 04_custom_mlmodels_hyperparameter_spaces.ipynb
-          - Classification: classification.ipynb
-          - Feature selection: feature_selection.ipynb
+      - Feature selection: feature_selection.ipynb
   - Advanced:
     - Overview: advanced.md
     - Azure Setup:
