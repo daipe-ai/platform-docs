@@ -58,6 +58,7 @@ Objects available in __@transformation__ and __@notebook_function__
 
 - logger: Logger
 
+Using `Spark` and `Logger`
 
 ```python
 from logging import Logger
@@ -68,6 +69,14 @@ def customers_table(spark: SparkSession, logger: Logger):
     logger.info('Reading my_crm.customers')
 
     return spark.read.table('my_crm.customers')
+```
+
+Using `DBUtils`
+
+```python
+@notebook_function()
+def create_input_widgets(dbutils: DBUtils):
+    dbutils.widgets.dropdown("base_year", "2015", list(map(str, range(2009, 2022))), "Base year")
 ```
 
 ---
