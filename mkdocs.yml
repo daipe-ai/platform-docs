@@ -17,6 +17,7 @@ markdown_extensions:
   - meta
   - toc:
       toc_depth: 0
+      permalink: True
 
 extra_css:
   - stylesheets/extra.css
