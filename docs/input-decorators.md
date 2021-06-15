@@ -50,7 +50,7 @@ def download_data():
 
 ---
 
-Objects available in __@transformation__ and __@notebook_function__
+## Objects available in __@transformation__ and __@notebook_function__ {#objects_available_in_decorators}
 
 - spark: SparkSession
 
