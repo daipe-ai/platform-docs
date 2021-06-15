@@ -20,3 +20,7 @@ a:not(.md-tabs__link, .md-nav__link, .md-button) {
   --md-primary-fg-color: #11264A;
   --md-default-fg-color--light: #FE7F26;
 }
+
+.md-sidebar--secondary:not([hidden]) {
+    display: none;
+}
