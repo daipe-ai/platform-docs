@@ -63,6 +63,7 @@ nav:
     - Advanced:
       - Databricks Connect setup: databricks-connect-setup.md
       - Managing tables using console: managing-tables-console.md
+      - Logging into Azure setup: azure-logger-bundle.md
     - Technical reference:
       - Input decorators: input-decorators.md
       - Decorator functions: decorator-functions.md
@@ -75,7 +76,6 @@ nav:
       - Environment setup: azure-setup.md
       - Data Lake resources: datalake-resources-setup.md
       - Data Pipelines project: data-pipelines-project-setup.md
-      - Logging into Azure setup: azure-logger-bundle.md
       - Self-hosted agents (optional): devops-agents-setup.md
     - Settle DQ:
       - Overview: settle-dq/index.md
