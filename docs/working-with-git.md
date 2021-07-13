@@ -77,6 +77,7 @@ Add it to `pyproject.toml`, build master package again and upload it to Databric
 1. Now we run `%run install_master_package` cell again.
 1. Now you should be able to import `scipy` module
 1. __Important:__ The updated project should then be pushed to a central repository so that other team members can pull it and have the same dependencies.
+1. The dependencies are installed __automatically__ after running `git pull`
 
 #### Updating a dependency
 
@@ -88,3 +89,4 @@ Let's assume that we want to update a depency, e. g. `datalake-bundle`. We need 
 1. Now run `%run install_master_package` cell again.
 1. Now you should be able to use the updated `datalake-bundle` module
 1. __Important:__ The updated project should then be pushed to a central repository so that other team members can pull it and have the same dependencies.
+1. The dependencies are installed __automatically__ after running `git pull`
