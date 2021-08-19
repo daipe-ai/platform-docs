@@ -69,6 +69,7 @@ nav:
       - Decorator functions: decorator-functions.md
       - Output decorators: output-decorators.md
       - Table schema: table-schema.md
+      - Widgets: widgets.md
   - Advanced:
     - Overview: advanced.md
     - Azure Setup:
