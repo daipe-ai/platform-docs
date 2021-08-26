@@ -2,7 +2,7 @@
 
 Daipe widgets are cross-platform meaning the same interface works on both __Databricks__ and __Jupyter Lab__ as well as when running a `.py` file as a script from __CLI__.
 
-!!! Available since
+!!! info "Available since"
     * **databricks-bundle=^1.1.2** - for usage in Databricks
     * **jupyter-bundle=^1.1.1** - for usage in Jupyter Lab
     * **daipe-core=^1.1.1** - for usage in CLI
