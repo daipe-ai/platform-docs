@@ -51,6 +51,7 @@ nav:
       - Creating a new notebook: new-databricks-notebook.md
       - Setting up a pipeline: new-datafactory-pipeline.md
       - Creating a Pull Request: creating-pull-request.md
+      - Pipeline parametrization: datafactory-parametrization.md
     - Overcoming security limitations:
       - No internet access on Databricks: offline-databricks-solution.md
       - Local machine access limited: local-machine-limited-access.md
