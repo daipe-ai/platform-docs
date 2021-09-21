@@ -45,6 +45,7 @@ nav:
       - Chaining notebook functions: chaining-notebook-functions.md
       - Writing function output: writing-function-output.md
       - Using explicit schema: using-explicit-schema.md
+      - Using widgets: using-widgets.md
     - Development workflow:
       - Overview: data-pipelines-workflow.md
       - Working with git: working-with-git.md
