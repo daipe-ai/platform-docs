@@ -72,6 +72,16 @@ nav:
       - Output decorators: output-decorators.md
       - Table schema: table-schema.md
       - Widgets: widgets.md
+#  - Feature Store:
+#      - Overview: feature-store/overview.md
+#      - Installation: feature-store/installation.md
+#      - Feature Development:
+#        - Developing features old way: feature-store/old-way-dev.md
+#        - Developing features daipe way: feature-store/daipe-way-dev.md
+#        - Features orchestration: feature-store/orchestration.md
+#        - Reading features: feature-store/reading-features.md
+#        - Time Windows: feature-store/time-windows.md
+#        - Databricks Feature Store Integration: feature-store/dbx-fs-integration.md
   - Advanced:
     - Overview: advanced.md
     - Azure Setup:
