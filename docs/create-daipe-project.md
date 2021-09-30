@@ -10,6 +10,10 @@ curl -s https://raw.githubusercontent.com/daipe-ai/project-creator/master/create
     The following software needs to be installed first:
 
       - [Miniconda package manager](https://docs.conda.io/en/latest/miniconda.html)
+        - **IMPORTANT!** - To avoid Anaconda's [Terms of Service](https://www.anaconda.com/terms-of-service) run:
+            - `conda config channels --remove defaults`
+            - `conda config channels --append conda-forge`
+        - This sets up a community-driven [conda-forge](https://conda-forge.org/) as the only conda repository.
       - [Git for Windows](https://git-scm.com/download/win) or standard Git in Linux (_apt-get install git_)
       
     We recommend using the following IDEs:
