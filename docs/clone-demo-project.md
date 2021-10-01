@@ -11,10 +11,8 @@ git clone https://github.com/daipe-ai/daipe-demo-databricks.git
 !!! info "Prerequisites"
     The following software needs to be installed first:
 
-      - [Miniconda package manager](https://docs.conda.io/en/latest/miniconda.html)
-        - **IMPORTANT!** - To avoid Anaconda's [Terms of Service](https://www.anaconda.com/terms-of-service) run:
-            - `conda config channels --remove defaults`
-            - `conda config channels --append conda-forge`
+      - [Miniforge package manager](https://github.com/conda-forge/miniforge#download)
+        - We are using **Miniforge** a Miniconda alternative because according to their [Terms of Service](https://www.anaconda.com/terms-of-service), Anaconda's official repository is not free to use for commercial purposes
         - This sets up a community-driven [conda-forge](https://conda-forge.org/) as the only conda repository.
       - [Git for Windows](https://git-scm.com/download/win) or standard Git in Linux (_apt-get install git_)
       
