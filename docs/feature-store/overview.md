@@ -1,6 +1,6 @@
 # Feature Store
 
-![](../images/feature_store_overview.png)
+![](./images/feature_store_overview.png)
 
 ## **Advantages**
 
