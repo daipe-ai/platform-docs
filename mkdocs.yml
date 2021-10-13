@@ -73,6 +73,7 @@ nav:
       - Table schema: table-schema.md
       - Widgets: widgets.md
   - Feature Store:
+      - Overview: feature-store/overview.md
       - Installation: feature-store/installation.md
       - Feature Development:
         - Developing features old way: feature-store/old-way-dev.md

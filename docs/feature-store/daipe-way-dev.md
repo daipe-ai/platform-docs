@@ -1,7 +1,7 @@
 # Developing Features daipe way
 
-1. first you need to initialize the feature decorator for entity that you want,
-   e.g. "client".
+First you need to initialize the feature decorator for entity that you want,
+e.g. "client".
 
 ```python
 from pyspark.sql import types as t
@@ -24,10 +24,10 @@ class client_feature(feature):  # noqa N081
         super().__init__(*args, entity=entity, category=category, features_storage=features_storage)
 ```
 
-2. Now you can develop the features same way as you were used to,
-   except you wrap the code in daipe decorators. Note that features
-   defined in `client_feature` decorator must be mapped to the actual
-   features returned by transformation.
+Now you can develop the features same way as you were used to,
+except you wrap the code in daipe decorators. Note that features
+defined in `client_feature` decorator must be mapped to the actual
+features returned by transformation.
 
 ```python
 from pyspark.sql import functions as f
@@ -54,10 +54,10 @@ def client_personal_features(df: DataFrame):
     )
 ```
 
-3. Features can be written to Feature Store using Features Writer. Note that
-   `features_storage` was initialized in the first step. The write step is here
-   for completeness, but it is not recommended writing features in every notebook,
-   instead use write only in orchestration notebook (see section [orchestration](orchestration.md)).
+Features can be written to Feature Store using Features Writer. Note that
+`features_storage` was initialized in the first step. The write step is here
+for completeness, but it is not recommended writing features in every notebook,
+instead use write only in orchestration notebook (see section [orchestration](orchestration.md)).
 
 ```python
 from datalakebundle.imports import notebook_function
