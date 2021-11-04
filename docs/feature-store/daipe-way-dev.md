@@ -18,10 +18,13 @@ entity = Entity(
     time_column_type=t.DateType(),
 )
 
-@DecoratedDecorator
-class client_feature(feature):  # noqa N081
-    def __init__(self, *args, category=None):
-        super().__init__(*args, entity=entity, category=category, features_storage=features_storage)
+if not "client_feature" in globals():  # client_feature and features_storage are only initialized once
+    features_storage = FeaturesStorage(entity)  # features_storage stores DataFrames from all feature notebooks
+
+    @DecoratedDecorator
+    class client_feature(feature):  # your custom decorator for a specific entity
+        def __init__(self, *args, category=None):
+            super().__init__(*args, entity=entity, category=category, features_storage=features_storage)
 ```
 
 Now you can develop the features same way as you were used to,
