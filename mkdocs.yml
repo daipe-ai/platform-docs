@@ -28,11 +28,14 @@ nav:
     - Daipe AI Platform Documentation: index.md
   - Getting started:
     - Creating Daipe project:
-      - Creating from skeleton: create-daipe-project.md
-      - Connection setup: workspace-cluster-connection-setup.md
+      - Creating from template: create-daipe-project.md
+      - Workflow in Databricks: databricks-workflow.md
       - Setting datalake storage path: datalake-storage-path.md
     - Daipe demo project:
       - Cloning demo project: clone-demo-project.md
+    - Local Development:
+      - Setup Daipe Locally: daipe-local-setup.md
+      - Connection setup: workspace-cluster-connection-setup.md
       - Deploying to Databricks: deploy-demo-project.md
   - Developing Data Pipelines:
     - Overview:

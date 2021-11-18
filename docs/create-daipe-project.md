@@ -1,30 +1,23 @@
-# Creating project from skeleton
-
-Create a **new Daipe project** by running the following command:
-
-```
-curl -s https://raw.githubusercontent.com/daipe-ai/project-creator/master/create_project.sh | bash -s skeleton-databricks
-```
+# Creating project from template
 
 !!! info "Prerequisites"
-    The following software needs to be installed first:
+      - Enable 'Files in Repos' in your Databricks workspace at *Settings -> Admin Console -> Workspace Settings*
+      - Set up a GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+         - In your Databricks workspace at *Settings -> User Settings -> Git Integration* select GitHub as a provider and use your new token here
 
-      - [Miniconda package manager](https://docs.conda.io/en/latest/miniconda.html)
-        - **IMPORTANT!** - To avoid Anaconda's [Terms of Service](https://www.anaconda.com/terms-of-service) run:
-            - `conda config channels --remove defaults`
-            - `conda config channels --append conda-forge`
-        - This sets up a community-driven [conda-forge](https://conda-forge.org/) as the only conda repository.
-      - [Git for Windows](https://git-scm.com/download/win) or standard Git in Linux (_apt-get install git_)
-      
-    We recommend using the following IDEs:
-    
-      - [PyCharm Community or Pro](https://www.jetbrains.com/pycharm/download/) with the [EnvFile plugin](https://plugins.jetbrains.com/plugin/7861-envfile) installed
-      - [Visual Studio Code](https://code.visualstudio.com/download) with the [PYTHONPATH setter extension](https://marketplace.visualstudio.com/items?itemName=datasentics.pythonpath-setter) installed
+1. Create a new repository on GitHub:
+![](images/repos_create_step_1.png)
 
-    Tu run commands, use **Git Bash** on Windows or standard Terminal on **Linux/Mac**
+2. After creating a repo, press Import on the bottom of the page:
+![](images/repos_create_step_2.png)
 
-!!! summary "What does the command do?"
-    1. Asks for project & directory name of your new project 
-    2. Download the [Daipe project skeleton template](https://github.com/daipe-ai/skeleton-databricks)
-    3. Create the new project skeleton based on the template
-    4. Runs the Daipe [development environment initialization script](https://github.com/daipe-ai/benvy)
+3. Select one of the available Daipe templates and confirm:
+![](images/repos_create_step_3.png)
+     - Available templates:
+        - ```https://github.com/daipe-ai/daipe-template-base.git```
+        - ```https://github.com/daipe-ai/daipe-template-feature-store.git```
+
+
+
+4. Your Daipe project is ready to be cloned to Databricks:
+![](images/repos_create_step_4.png)
