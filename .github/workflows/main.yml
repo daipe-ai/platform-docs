@@ -3,19 +3,19 @@ on:
   push:
     branches:
       - master
-      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7.3
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.1.1
-        with:
-          version: 1.1.8
-      - run: poetry install --no-root
-      - run: poetry run mkdocs gh-deploy --force --strict
+      - name: setup
+        run: |
+          export SHELL=$SHELL # for python to be able to access the bash version
+          ./env-init.sh -y --verbose
+      - name: mkdocs-deploy
+        run: |
+          eval "$(conda shell.bash hook)"
+          conda activate $PWD/.venv
+          source ~/.poetry/env
+          mkdocs gh-deploy --force --strict
