@@ -1,0 +1,7 @@
+name: platform-docs
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7.3
+  - pip=21.2.*
+  - setuptools=<58
