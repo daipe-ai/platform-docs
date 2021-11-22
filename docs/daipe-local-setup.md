@@ -1,10 +1,4 @@
-# Creating project from skeleton
-
-Create a **new Daipe project** by running the following command:
-
-```
-curl -s https://raw.githubusercontent.com/daipe-ai/project-creator/master/create_project.sh | bash -s skeleton-databricks
-```
+# Setup Daipe locally
 
 !!! info "Prerequisites"
     The following software needs to be installed first:
@@ -23,8 +17,14 @@ curl -s https://raw.githubusercontent.com/daipe-ai/project-creator/master/create
 
     Tu run commands, use **Git Bash** on Windows or standard Terminal on **Linux/Mac**
 
-!!! summary "What does the command do?"
-    1. Asks for project & directory name of your new project 
-    2. Download the [Daipe project skeleton template](https://github.com/daipe-ai/skeleton-databricks)
-    3. Create the new project skeleton based on the template
-    4. Runs the Daipe [development environment initialization script](https://github.com/daipe-ai/benvy)
+1. Clone your Daipe project repo
+
+2. Run `./env-init.sh` to initialize your local python virtual environment
+
+3. Activating the Conda environment by running
+   ```bash
+   conda activate $PWD/.venv # or use the `ca` alias
+   ```
+
+4. Run the `daipe` command to list all available commands
+![](images/validate-daipe-local.png)
