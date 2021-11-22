@@ -1,6 +1,6 @@
 # Creating project from template
 
-1. Create a new repository on GitHub or any other GIT provider:
+1. Create a new empty repository on GitHub or any other GIT provider:
 ![](images/create-daipe-repo-step1.png)
 
 2. After creating a repo, press Import on the bottom of the page:
