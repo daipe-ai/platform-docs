@@ -1,5 +1,8 @@
 # Git workflow in Databricks
 
+!!! warning
+    If you are still using Daipe in Workspace / locally, [use this guide instead](working-with-git-local.md).
+
 !!! info "Prerequisites"
       - Enable 'Files in Repos' in your Databricks workspace at *Settings -> Admin Console -> Workspace Settings*
       - Set up a GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
@@ -28,5 +31,12 @@ To add, update or remove a dependency you need to:
 5. If you rerun `%run bootstrap` in your notebooks, the new dependencies should be available
 6. The updated project should then be pushed to a central repository so that other team members can pull it and have the same dependencies.
 
-Example of dbx_poetry run:
+## Example
+- Ran dbx_poetry notebook as described above
 ![](images/repos-workflow-step4.png)
+
+- Expected diff in pyproject.toml on commit
+![](images/pyproject-diff.png)
+
+- Expected diff in poetry.lock on commit
+![](images/poetry-lock-diff.png)
