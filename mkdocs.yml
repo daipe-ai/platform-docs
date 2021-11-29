@@ -68,6 +68,7 @@ nav:
       - Databricks Connect setup: databricks-connect-setup.md
       - Managing tables using console: managing-tables-console.md
       - Logging into Azure setup: azure-logger-bundle.md
+      - Read access to production data: read-access-prod.md
     - Technical reference:
       - Input decorators: input-decorators.md
       - Decorator functions: decorator-functions.md
