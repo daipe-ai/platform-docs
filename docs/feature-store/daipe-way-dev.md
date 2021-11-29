@@ -37,6 +37,7 @@ from pyspark.sql import functions as f
 from pyspark.sql import DataFrame
 from datalakebundle.imports import transformation, read_table
 
+
 @transformation(read_table("silver.tbl_loans"), display=True)
 @client_feature(
     ("Age", "Client's age"),
@@ -66,7 +67,8 @@ instead use write only in orchestration notebook (see section [orchestration](or
 from datalakebundle.imports import notebook_function
 from featurestorebundle.delta.DeltaWriter import DeltaWriter
 
-notebook_function()
+
+@notebook_function()
 def write_features(writer: DeltaWriter):
     writer.write_latest(features_storage)
 ```

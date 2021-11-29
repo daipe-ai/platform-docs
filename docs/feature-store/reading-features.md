@@ -6,7 +6,8 @@ Accessing Feature Store is pretty straightforward.
 from datalakebundle.imports import transformation
 from featurestorebundle.feature.FeatureStore import FeatureStore
 
-transformation(display=True)
+
+@transformation(display=True)
 def load_feature_store(feature_store: FeatureStore):
     return feature_store.get_latest("client")
 ```
