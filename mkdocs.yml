@@ -84,6 +84,7 @@ nav:
         - Features orchestration: feature-store/orchestration.md
         - Reading features: feature-store/reading-features.md
         - Templates: feature-store/templates.md
+        - Time windows: feature-store/time-windows.md
       - Technical reference:
         - Time windows: feature-store/time-windows-technical-reference.md
   - Advanced:
