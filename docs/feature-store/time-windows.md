@@ -10,7 +10,7 @@ If you need to create the same feature just for a multiple time windows e. g. __
 
 First, helper functions for dealing with time windows need to be imported and variables `run_date` and `time_windows` need to be defined.
 
-For more information about these functions, see the [technical reference](technical-reference.md).
+For more information about these functions, see the [technical reference](time-windows-technical-reference.md).
 
 A good practice is to define these using [Widgets](../using-widgets.md) but here they are just global variables for simplicity.
 
