@@ -83,6 +83,7 @@ nav:
         - Developing features daipe way: feature-store/daipe-way-dev.md
         - Features orchestration: feature-store/orchestration.md
         - Reading features: feature-store/reading-features.md
+        - Templates: feature-store/templates.md
   - Advanced:
     - Overview: advanced.md
     - Azure Setup:
