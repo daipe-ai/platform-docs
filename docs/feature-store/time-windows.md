@@ -1,4 +1,4 @@
-# Developing Features with time windows
+# Developing features with time windows
 
 Before reading this article, it is recommended to get familiar with [using templates](templates.md).
 
