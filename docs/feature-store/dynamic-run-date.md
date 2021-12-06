@@ -7,18 +7,18 @@ Before reading this article, it is recommended to get familiar with [using time 
 If you need to create __the same feature__ for a __fixed__ as well as __dynamic__ `run_date`, here is the recommended approach.
 
 Dynamic run date is used when the feature is calculated in reference to a different date for each instance of an entity, e. g. a `client`.
-A canonical example of a feature like this is _"How many times had a client paid by a debit card {time_windows} days before some date"_
+A canonical example of a feature like this is _"How many times had a client paid by a debit card {time_windows} days before_ __some date"__
 
 This feature can exist in __two states__:
 
-- __hot__: feature is calculated __periodically__ (e.g. every day) and it means _"How many times had a client paid by a debit card {time_windows} days before __the last calculation__"_
-- __frozen__: feature is calculated __once__ and it means _"How many times had a client paid by a debit card {time_windows} days before __they took a mortgage__"_
+- __hot__: feature is calculated __periodically__ (e.g. every day) and it means _"How many times had a client paid by a debit card {time_windows} days before_ __the last calculation"__
+- __frozen__: feature is calculated __once__ and it means _"How many times had a client paid by a debit card {time_windows} days before they_ __took a mortgage"__
 
 The following method enables you to calculate both of these features using the same code.
 
 ### Setup
 
-First variables to control the flow of operations have to be created. 
+First, variables to control the flow of operations have to be created. 
 
 A good practice is to define these using [Widgets](../using-widgets.md) but here they are just global variables for simplicity.
 
