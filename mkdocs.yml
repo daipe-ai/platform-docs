@@ -31,6 +31,7 @@ nav:
       - Create from template: create-repo-from-template.md
       - Clone to Databricks: create-daipe-project.md
       - Setting datalake storage path: datalake-storage-path.md
+      - Setup CI on GitHub: setup-ci-github.md
       - Daipe project templates: daipe-project-templates.md
     - Daipe demo project:
       - Clone demo project: clone-demo-project.md
