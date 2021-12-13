@@ -25,8 +25,8 @@ def joined_loans_and_repayments_with_time_windows(df: DataFrame):
 
 ---
 
-## widnowed() {#widnowed}
-__widnowed()__(`column: Column, time_window: str, default_value: Any = 0`) -> `Column`
+## windowed() {#windowed}
+__windowed()__(`column: Column, time_window: str, default_value: Any = 0`) -> `Column`
 
 > Wrapper for the following expression
 
