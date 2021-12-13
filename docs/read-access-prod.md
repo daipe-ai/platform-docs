@@ -1,4 +1,4 @@
-# Read access to production data
+# Using production data in dev environment
 
 Sometimes it's necessary to have production data on the development environment.
 For example a Data Scientist needs to build model on a real full dataset, but you
