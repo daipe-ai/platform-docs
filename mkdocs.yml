@@ -33,7 +33,7 @@ nav:
       - Setting datalake storage path: datalake-storage-path.md
       - Setup CI/CD on GitHub: github-ci-cd-setup.md
       - Setup CI/CD on Azure DevOps: azure-devops-ci-cd.md
-      - Daipe project templates: daipe-project-templates.md
+      - Storage Connection Setup: storage-connection-setup.md
     - Daipe demo project:
       - Clone demo project: clone-demo-project.md
     - Local Development:
