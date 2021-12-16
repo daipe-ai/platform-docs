@@ -53,10 +53,6 @@ nav:
     - Development workflow:
       - Overview: data-pipelines-workflow.md
       - Working with git: working-with-git.md
-      - Creating a new notebook: new-databricks-notebook.md
-      - Setting up a pipeline: new-datafactory-pipeline.md
-      - Creating a Pull Request: creating-pull-request.md
-      - Pipeline parametrization: datafactory-parametrization.md
     - Overcoming security limitations:
       - No internet access on Databricks: offline-databricks-solution.md
       - Local machine access limited: local-machine-limited-access.md
@@ -123,7 +119,6 @@ plugins:
           'data-pipelines-workflow/technical-docs.md': 'input-decorators.md'
           'data-pipelines-workflow/working-with-git.md': 'working-with-git.md'
           'data-pipelines-workflow/data-pipelines-workflow.md': 'data-pipelines-workflow.md'
-          'data-pipelines-workflow/coding-workflow.md': 'new-databricks-notebook.md'
           'data-pipelines-workflow/managing-datalake.md': 'customizing-table-names.md'
           'data-pipelines-workflow/databricks-connect.md': 'databricks-connect-setup.md'
           'data-pipelines-workflow/overcoming-security-limitations.md': 'offline-databricks-solution.md'
