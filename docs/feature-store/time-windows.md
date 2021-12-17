@@ -6,20 +6,21 @@ Before reading this article, it is recommended to get familiar with [using templ
 
 If you need to create the same feature just for a multiple time windows e. g. __Number of repayments made in the last 30, 60 and 90 days__, there is an optimal way to do it.
 
-### Setup
+## Setup
 
 First, helper functions for dealing with time windows need to be imported and variables `run_date` and `time_windows` need to be defined.
 
 For more information about these functions, see the [technical reference](time-windows-technical-reference.md).
 
-A good practice is to define these using [Widgets](../using-widgets.md) but here they are just global variables for simplicity.
+A good practice is to define these using [Widgets](../using-widgets.md).
 
 ```python
-from featurestorebundle.windows.windowed_features import windowed, with_time_windows
+from featurestorebundle.windows.windowed_features import windowed, with_time_windows, apply_windowed, get_windowed_column_list, TimeWindowed
 
 
-run_date = dt.date.today().strftime("%Y-%m-%d")
-time_windows = ["30d", "60d", "90d"]
+@notebook_function()
+def widgets(widgets: Widgets):
+    widgets.add_multiselect('time_windows', ["14d", "30d", "90d"], default_values=["14d"])
 ```
 
 ### Add time window columns
@@ -27,49 +28,133 @@ time_windows = ["30d", "60d", "90d"]
 The input DataFrame is passed into the `with_time_windows` function which generates one boolean column `is_time_window_{time_window}` for each `time_window` which indicates whether or not the row in desired time window.
 
 ```python
-@transformation(read_table("silver.tbl_joined_loans_and_repayments"), display=True)
-def joined_loans_and_repayments_with_time_windows(df: DataFrame):
+@transformation(
+    read_delta('%source_path.from.config%'),
+    get_widget_value("time_windows"),
+    display=False,
+)
+def card_transactions(card_transactions: DataFrame, time_windows: List[str]):
     return (
-      with_time_windows(df, "Date", f.lit(run_date), time_windows)
-      .select("LoanId", "Date", "InterestRepayment", *[f"is_time_window_{time_window}" for time_window in args.time_windows])
+      with_time_windows(card_transactions,  # Input DataFrame
+                        "cardtr_process_date",  # Column name of the event date
+                        f.col("run_date"),  # Column object which is being substracted from
+                        time_windows)
     )
 ```
 
 ![with_time_windows result](images/feature_store_with_time_windows.png)
 
-### Aggregate all features at once
+## Writing time windowed features
 
-With time window columns in the DataFrame, it is relatively simple to make the same feature for each time window.
-Looping through time windows and adding column aggregations into a list makes it easy to then `group_by` all the features at once.
+There are generally two options how to write time windowed features - a declarative and a customizable style.
+
+The declarative style is the recommended and should be used in a __95 %__ of cases.
+
+The customizable style should only be used when there is absolutely no way to achieve the same functionality using the declarative style.
+
+### Option 1: Declarative style
+
+Generally, each feature cell consists of aggregating some columns and potentially adding some more non aggregated ones afterwards.
+
+Therefore the declarative style has 3 steps:
+1. Define a function which takes time_window as argument and returns a list of __aggregated Columns__
+1. Define a function which takes time_window as argument and returns a list of __NON aggregated Columns__
+1. Return an instance of `TimeWindowed` instance which handles the proper grouping by `[id_column, time_column]` and time windowed columns
 
 ```python
-@transformation(joined_loans_and_repayments_with_time_windows, display=True)
-@loan_feature(
-    ("interest_repayment_{agg_fun}_{time_window}", "{agg_fun} of interest repayment in a {time_window} period"),
-    category="personal",
+@transformation(card_transactions, display=False)
+@client_feature_writer(
+  ('card_tr_location_{location}_flag_{time_window}', 'Flag if {location} transactions made in the last {time_window}.'),
+  ('card_tr_location_{location}_{agg_fun}_{time_window}', 'Total {agg_fun} of {location} transactions made in the last {time_window}.',),
+  category = 'card_transaction_city',
 )
-def new_features(df: DataFrame):
-  """Get all time windowed columns"""
-  agg_cols = []
-  for time_window in time_windows:
-      agg_cols.extend([
+def card_country_features(card_transactions: DataFrame):
+    # 1. Define a function which takes time_window as argument and returns a list of aggregated Columns
+    def country_agg_features(time_window: str) -> List[Column]:
+        return [
         f.sum(
-          windowed(f.col("InterestRepayment"), time_window)
-        ).alias(f'interest_repayment_sum_{time_window}')
-      ])
-  
-  """Aggregate all columns"""
-  grouped_df = (
-    df.groupby("LoanId")
-           .agg(
-             *agg_cols,
-           )
-  )
-  
-  """Return df with run_date"""
-  return (
-    grouped_df.withColumn('run_date', f.lit(run_date))
-  )
+          windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
+        ).alias(f'card_tr_location_czech_count_{time_window}'),
+        f.sum(
+          windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
+        ).alias(f'card_tr_location_abroad_count_{time_window}'),
+        f.sum(
+          windowed(f.when(f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
+        ).alias(f'card_tr_location_czech_volume_{time_window}'),
+        f.sum(
+          windowed(f.when(~f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
+        ).alias(f'card_tr_location_abroad_volume_{time_window}'),
+        ]
+    
+    # 2. Define a function which takes time_window as argument and returns a list of NON aggregated Columns
+    def flag_features(time_window: str) -> List[Column]:
+        return [(f.col(f"card_tr_location_abroad_count_{time_window}") > 0).cast("integer").alias(f"card_tr_location_abroad_flag_{time_window}"),]
+    
+    # 3. Return an instance of TimeWindowed instance which handles the proper grouping by [id_column, time_column] and time windowed columns
+    return (
+        TimeWindowed(card_transactions,
+                     country_agg_features, # Aggregated columns function
+                     flag_features)  # Non aggregated columns function
+    )
 ```
 
-![time windowed features result](images/feature_store_time_windowed_features.png)
+![feature_store_time_windowed_features](images/feature_store_time_windowed_features.png)
+![feature_store_time_windowed_features_metadata](images/feature_store_time_windowed_features_metadata.png)
+
+### Option 2: Customizable style
+
+For some complicated features it might be necessary to use the customizable style.
+Functions like `get_windowed_column_list` and `apply_windowed` are provided to simplify some frequently used tasks.
+
+If it's necessary to add more non-time-windowed columns into the aggregation, it is possible to get the list using `get_windowed_column_list` and customize it.
+
+For any other operations there is always the `apply_windowed` function which takes as argument a function of two arguments (DataFrame and time_window)
+and returns a modified DataFrame.
+
+```python
+@transformation(card_transactions, get_widget_value("time_windows"), display=False)
+@client_feature_writer(
+  ('card_tr_location_{location}_flag_{time_window}', 'Flag if {location} transactions made in the last {time_window}.'),
+  ('card_tr_location_{location}_{agg_fun}_{time_window}', 'Total {agg_fun} of {location} transactions made in the last {time_window}.',),
+  category = 'card_transaction_city',
+)
+def card_country_features(card_transactions: DataFrame, time_windows: List[str]):
+    # Define a function which takes time_window as argument and returns a list of aggregated Columns
+    def country_agg_features(time_window: str) -> List[Column]:
+        return [
+        f.sum(
+          windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
+        ).alias(f'card_tr_location_czech_count_{time_window}'),
+        f.sum(
+          windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
+        ).alias(f'card_tr_location_abroad_count_{time_window}'),
+        f.sum(
+          windowed(f.when(f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
+        ).alias(f'card_tr_location_czech_volume_{time_window}'),
+        f.sum(
+          windowed(f.when(~f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
+        ).alias(f'card_tr_location_abroad_volume_{time_window}'),
+        ]
+  
+    # Get list of all time windowed aggregated columns
+    # This is useful when it's necessary to append custom columns to be aggregated as well
+    agg_cols = get_windowed_column_list(country_agg_features, time_windows)
+  
+    # Perform aggregations
+    grouped_card_transactions = (
+        card_transactions
+            .groupby([id_column, time_column])
+            .agg(*agg_cols)
+    )
+  
+    # Create a function which takes DataFrame and time window as arguments and returns a DataFrame
+    # This is useful when you need to do an operation on a DataFrame per each time window
+    def add_flag_features(df: DataFrame, time_window: str) -> DataFrame:
+        return df.withColumn(f"card_tr_location_abroad_flag_{time_window}", (f.col(f"card_tr_location_abroad_count_{time_window}") > 0).cast("integer"))
+  
+    # Use apply_windowed to apply custom function to a DataFrame per each time window
+    return apply_windowed(grouped_card_transactions, add_flag_features, time_windows)
+```
+
+![feature_store_time_windowed_features](images/feature_store_time_windowed_features.png)
+![feature_store_time_windowed_features_metadata](images/feature_store_time_windowed_features_metadata.png)
