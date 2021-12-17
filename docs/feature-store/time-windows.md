@@ -15,7 +15,7 @@ For more information about these functions, see the [technical reference](time-w
 A good practice is to define these using [Widgets](../using-widgets.md).
 
 ```python
-from featurestorebundle.windows.windowed_features import windowed, with_time_windows, apply_windowed, get_windowed_column_list, TimeWindowed
+from featurestorebundle.windows.windowed_features import windowed, with_time_windows, apply_per_window, get_windowed_column_list, TimeWindowed
 
 
 @notebook_function()
@@ -73,10 +73,10 @@ def card_country_features(card_transactions: DataFrame):
     def country_agg_features(time_window: str) -> List[Column]:
         return [
             f.sum(
-              windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
+              windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window)
             ).alias(f'card_tr_location_czech_count_{time_window}'),
             f.sum(
-              windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
+              windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window)
             ).alias(f'card_tr_location_abroad_count_{time_window}'),
         ]
     
@@ -98,11 +98,11 @@ def card_country_features(card_transactions: DataFrame):
 ### Option 2: Customizable style
 
 For some complicated features it might be necessary to use the customizable style.
-Functions like `get_windowed_column_list` and `apply_windowed` are provided to simplify some frequently used tasks.
+Functions like `get_windowed_column_list` and `apply_per_window` are provided to simplify some frequently used tasks.
 
 If it's necessary to add more non-time-windowed columns into the aggregation, it is possible to get the list using `get_windowed_column_list` and customize it.
 
-For any other operations there is always the `apply_windowed` function which takes as argument a function of two arguments (DataFrame and time_window)
+For any other operations there is always the `apply_per_window` function which takes as argument a function of two arguments (DataFrame and time_window)
 and returns a modified DataFrame.
 
 ```python
@@ -141,7 +141,7 @@ def card_country_features(card_transactions: DataFrame, time_windows: List[str])
         return df.withColumn(f"card_tr_location_abroad_flag_{time_window}", (f.col(f"card_tr_location_abroad_count_{time_window}") > 0).cast("integer"))
   
     # Use apply_windowed to apply custom function to a DataFrame per each time window
-    return apply_windowed(grouped_card_transactions, add_flag_features, time_windows)
+    return apply_per_window(grouped_card_transactions, add_flag_features, time_windows)
 ```
 
 ![feature_store_time_windowed_features](images/feature_store_time_windowed_features.png)
