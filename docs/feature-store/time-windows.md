@@ -35,9 +35,9 @@ The input DataFrame is passed into the `with_time_windows` function which genera
 )
 def card_transactions(card_transactions: DataFrame, time_windows: List[str]):
     return (
-      with_time_windows(card_transactions,  # Input DataFrame
-                        "cardtr_process_date",  # Column name of the event date
-                        f.col("run_date"),  # Column object which is being substracted from
+      with_time_windows(card_transactions,      # Input DataFrame
+                        "cardtr_process_date",  # Column name of the event date is subsctracted from "run_date"
+                        f.col("run_date"),      # Column object which the "cardtr_process_date" is being substracted from
                         time_windows)
     )
 ```
@@ -72,18 +72,12 @@ def card_country_features(card_transactions: DataFrame):
     # 1. Define a function which takes time_window as argument and returns a list of aggregated Columns
     def country_agg_features(time_window: str) -> List[Column]:
         return [
-        f.sum(
-          windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
-        ).alias(f'card_tr_location_czech_count_{time_window}'),
-        f.sum(
-          windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
-        ).alias(f'card_tr_location_abroad_count_{time_window}'),
-        f.sum(
-          windowed(f.when(f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
-        ).alias(f'card_tr_location_czech_volume_{time_window}'),
-        f.sum(
-          windowed(f.when(~f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
-        ).alias(f'card_tr_location_abroad_volume_{time_window}'),
+            f.sum(
+              windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
+            ).alias(f'card_tr_location_czech_count_{time_window}'),
+            f.sum(
+              windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
+            ).alias(f'card_tr_location_abroad_count_{time_window}'),
         ]
     
     # 2. Define a function which takes time_window as argument and returns a list of NON aggregated Columns
@@ -94,7 +88,7 @@ def card_country_features(card_transactions: DataFrame):
     return (
         TimeWindowed(card_transactions,
                      country_agg_features, # Aggregated columns function
-                     flag_features)  # Non aggregated columns function
+                     flag_features)        # Non aggregated columns function
     )
 ```
 
@@ -122,18 +116,12 @@ def card_country_features(card_transactions: DataFrame, time_windows: List[str])
     # Define a function which takes time_window as argument and returns a list of aggregated Columns
     def country_agg_features(time_window: str) -> List[Column]:
         return [
-        f.sum(
-          windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
-        ).alias(f'card_tr_location_czech_count_{time_window}'),
-        f.sum(
-          windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
-        ).alias(f'card_tr_location_abroad_count_{time_window}'),
-        f.sum(
-          windowed(f.when(f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
-        ).alias(f'card_tr_location_czech_volume_{time_window}'),
-        f.sum(
-          windowed(f.when(~f.col("cardtr_country").isin('CZ', 'CZE'), f.col('cardtr_amount_czk')).otherwise(0), time_window, None)
-        ).alias(f'card_tr_location_abroad_volume_{time_window}'),
+            f.sum(
+              windowed(f.col("cardtr_country").isin('CZ', 'CZE').cast("integer"), time_window, None)
+            ).alias(f'card_tr_location_czech_count_{time_window}'),
+            f.sum(
+              windowed((~f.col("cardtr_country").isin('CZ', 'CZE')).cast("integer"), time_window, None)
+            ).alias(f'card_tr_location_abroad_count_{time_window}'),
         ]
   
     # Get list of all time windowed aggregated columns
