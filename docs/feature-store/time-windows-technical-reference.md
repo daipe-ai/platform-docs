@@ -1,16 +1,16 @@
 # Time windows helper classes and functions
 
-## WindowedDataFrame() {#WindowedDataFrame}
-__WindowedDataFrame()__(`self, df: DataFrame, entity: Entity, time_column: str, time_windows: List[str]`) -> `WindowedDataFrame`
+## WindowedDataFrame {#WindowedDataFrame}
+__WindowedDataFrame__(`self, df: DataFrame, entity: Entity, time_column: str, time_windows: List[str]`) -> `WindowedDataFrame`
 
 > DataFrame which allows for time_windowed calculations
 
 - `df` : DataFrame, input DataFrame
 - `entity` : Entity, the feature store `Entity` instance, such as `client`
 - `time_column` : str, name of `Date` or `Timestamp` Column in `df`, which is subtracted __from__ the `run_date` to create the time window interval
-- `time_windows`: List[str], list of time windows as a `[0-9]+[dhw]`, suffixes `d` = days, `h` = hours, `w` = weeks 
+- `time_windows`: `List[str]`, list of time windows as a `[0-9]+[dhw]`, suffixes `d` = days, `h` = hours, `w` = weeks 
 
-Methods:
+### Methods:
 
 ## time_windowed {#time_windowed}
 __time_windowed__(`self, agg_columns_function: Callable[[str], List[WindowedColumn]] = lambda x: list(), non_agg_columns_function: Callable[[str], List[Column]] = lambda x: list(), extra_group_keys: List[str] = []`) -> `WindowedDataFrame`
@@ -105,8 +105,8 @@ __get_windowed_column_list__(`self, column_names: List[str]`) -> `List[str]`
 
 ---
 
-## make_windowed() {#with_time_windows}
-__make_windowed()__(`df: DataFrame, entity: Entity, time_column: str`) -> `WindowedDataFrame`
+## make_windowed {#with_time_windows}
+__make_windowed__(`df: DataFrame, entity: Entity, time_column: str`) -> `WindowedDataFrame`
 
 > Used for creating a WindowedDataFrame instance.
 
@@ -135,21 +135,21 @@ def card_transactions_with_time_windows(windowed_card_transactions: WindowedData
 
 ---
 
-## WindowedColumn() {#WindowedColumn}
+## WindowedColumn {#WindowedColumn}
 __WindowedColumn__
 
 > Alias for type `Callable[[str], Column]`
 
 ---
 
-## sum_windowed() {#sum_windowed}
-__sum_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## sum_windowed {#sum_windowed}
+__sum_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.sum`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.sum_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_count_{time_window}")```
     * **Don't** - ```tw.sum_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_count_{time_window}")```
 
@@ -164,81 +164,81 @@ tw.sum_windowed(
 
 ---
 
-## count_windowed() {#count_windowed}
-__count_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## count_windowed {#count_windowed}
+__count_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.count`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.count_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_count_{time_window}")```
     * **Don't** - ```tw.count_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_count_{time_window}")```
 
 ---
 
-## count_distinct_windowed() {#count_distinct_windowed}
-__count_distinct_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## count_distinct_windowed {#count_distinct_windowed}
+__count_distinct_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.countDistinct`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.count_distinct_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_count_{time_window}")```
     * **Don't** - ```tw.count_distinct_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_count_{time_window}")```
 
 ---
 
-## min_windowed() {#min_windowed}
-__min_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## min_windowed {#min_windowed}
+__min_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.min`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.min_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_min_{time_window}")```
     * **Don't** - ```tw.min_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_min_{time_window}")```
 
 ---
 
-## max_windowed() {#max_windowed}
-__max_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## max_windowed {#max_windowed}
+__max_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.max`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.max_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_max_{time_window}")```
     * **Don't** - ```tw.max_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_max_{time_window}")```
 
 ---
 
-## mean_windowed() {#mean_windowed}
-__mean_windowed()__(`col: Column, name: str`) -> `WindowedColumn`
+## mean_windowed {#mean_windowed}
+__mean_windowed__(`col: Column, name: str`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.mean`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! warning "`name` is NOT an f-string"
+!!! info "`name` is NOT an f-string"
     * **Do** - ```tw.mean_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), "card_tr_location_czech_mean_{time_window}")```
     * **Don't** - ```tw.mean_windowed(f.col("cardtr_country").isin("CZ", "CZE").cast("integer"), f"card_tr_location_czech_mean_{time_window}")```
 
 ---
 
-## column_windowed() {#column_windowed}
-__column_windowed()__(`col: Column, name: str`) -> `Column`
+## column_windowed {#column_windowed}
+__column_windowed__(`col: Column, name: str`) -> `Column`
 > Alias for `col.alias(name)`
 
 - `col` : PySpark `Column`
 - `name` : name of the column with placeholder `{time_window}`
 
-!!! danger "Different warning"
+!!! warning "In `column_windowed` it IS an f-string"
 
-!!! warning "`name` IS an f-string"
+!!! info "`name` IS an f-string"
     * **Do** - ```tw.column_windowed(f.col("card_tr_location_abroad_count_{time_window}") > 0, f"card_tr_location_flag_{time_window}")```
     * **Don't** - ```tw.column_windowed(f.col("card_tr_location_abroad_count_{time_window}") > 0, "card_tr_location_flag_{time_window}")```
 
