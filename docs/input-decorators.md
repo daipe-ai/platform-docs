@@ -27,7 +27,7 @@ def join_loans_and_repayments(df1: DataFrame, df2: DataFrame):
 ## @dp.notebook_function {#notebook_function}
 __@dp.notebook_function__(`*objects`)
 
-> Used for decorating any other function which is not decorated with the `@transformation` decorator. Runs the decorated function upon declaration.
+> Used for decorating any other function which is not decorated with the `@dp.transformation` decorator. Runs the decorated function upon declaration.
 
 Parameters:
 
@@ -52,7 +52,7 @@ def download_data():
 
 ---
 
-## Objects available in __@transformation__ and __@dp.notebook_function__ {#objects_available_in_decorators}
+## Objects available in __@dp.transformation__ and __@dp.notebook_function__ {#objects_available_in_decorators}
 
 - spark: SparkSession
 
