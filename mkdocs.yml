@@ -79,11 +79,11 @@ nav:
       - Feature Development:
         - Developing features old way: feature-store/old-way-dev.md
         - Developing features daipe way: feature-store/daipe-way-dev.md
+        - Bad practices: feature-store/bad-practices.md
         - Features orchestration: feature-store/orchestration.md
         - Reading features: feature-store/reading-features.md
         - Templates: feature-store/templates.md
         - Time windows: feature-store/time-windows.md
-        - Dynamic run date: feature-store/dynamic-run-date.md
       - Technical reference:
         - Time windows: feature-store/time-windows-technical-reference.md
   - Advanced:

@@ -21,69 +21,62 @@ The matched metadata is saved into the __Extra__ `key` `value` column of the met
     - Templates matching priority is from top to bottom –> always put more specific templates on top and more general template on the bottom. 
 
 
+## Imports
+
 ```python
 import daipe as dp
+from featurestorebundle.time_windows import time_windows as tw
+```
 
+## Features calculation
+
+```python
 @dp.transformation(card_transactions)
-@client_feature_writer(
+@client_feature(
    # Feature template
   ("card_tr_location_{location}_{channel}_{agg_fun}_{time_window}",
    # Description template
    'Total {agg_fun} of {location} {channel} withdrawals in the last {time_window}.'),
   category = 'card_transaction_country_channel'
 )
-def card_channle_country_features(card_transactions: DataFrame):
-  columns_for_agg = []
-  for time_window in time_windows:
-      columns_for_agg.extend([
-        f.sum(
-          windowed(f.when((f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'ATM'),
-                    f.col('cardtr_amount_czk')).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}czech_atm_volume_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((~f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'ATM'),
-                    f.col('cardtr_amount_czk')).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}abroad_atm_volume_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'POS'),
-                    f.col('cardtr_amount_czk')).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}czech_pos_volume_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((~f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'POS'),
-                    f.col('cardtr_amount_czk')).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}abroad_pos_volume_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'ATM'),
-                    f.lit(1)).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}czech_atm_count_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((~f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'ATM'),
-                    f.lit(1)).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}abroad_atm_count_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'POS'),
-                    f.lit(1)).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}czech_pos_count_" + f"{time_window}",),
-        f.sum(
-          windowed(f.when((~f.col("cardtr_country").isin('CZ', 'CZE')) & (f.col('cardtr_channel_name') == 'POS'),
-                    f.lit(1)).otherwise(f.lit(0)), time_window)
-        ).alias(f"{col_name}abroad_pos_count_" + f"{time_window}",),
-      ])
+def card_channle_country_features(wdf: WindowedDataFrame):
+    def country_agg_features(_) -> List[tw.WindowedColumn]:
+        return [
+            tw.sum_windowed(
+                f.col("cardtr_country").isin("CZ", "CZE").cast("integer"),
+                "card_tr_location_czech_count_{time_window}",
+            ),
+            tw.sum_windowed(
+                (~f.col("cardtr_country").isin("CZ", "CZE")).cast("integer"),
+                "card_tr_location_abroad_count_{time_window}",
+            ),
+            tw.sum_windowed(
+                f.when(
+                    f.col("cardtr_country").isin("CZ", "CZE"),
+                    f.col("cardtr_amount_czk"),
+                ).otherwise(0),
+                "card_tr_location_czech_volume_{time_window}",
+            ),
+            tw.sum_windowed(
+                f.when(
+                    ~f.col("cardtr_country").isin("CZ", "CZE"),
+                    f.col("cardtr_amount_czk"),
+                ).otherwise(0),
+                "card_tr_location_abroad_volume_{time_window}",
+            ),
+        ]
+
+    def flag_features(time_window: str) -> List[Column]:
+        return [
+            tw.column_windowed(
+                (f.col(f"card_tr_location_abroad_count_{time_window}") > 0).cast(
+                    "integer"
+                ),
+                f"card_tr_location_abroad_flag_{time_window}",
+            )
+        ]
   
-  df_channle_country = (
-    card_transactions.groupby(["customer_id"])
-           .agg(
-             *columns_for_agg
-           )
-  )
-  
-  ids = spark.read.table("work.table_id").select('customer_id_new', 'client_id')
-  return (
-    df_channle_country
-    .join(ids, df_channle_country.customer_id==ids.customer_id_new, 'inner')
-    .drop('customer_id', 'customer_id_new')
-    .withColumn('run_date', f.lit(run_date))
-  )
+    return wdf.time_windowed(country_agg_features, flag_features)
 ```
 
 ### Matched metadata
