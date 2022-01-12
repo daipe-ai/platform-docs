@@ -79,6 +79,7 @@ nav:
       - Feature Development:
         - Developing features old way: feature-store/old-way-dev.md
         - Developing features daipe way: feature-store/daipe-way-dev.md
+        - Bad practices: feature-store/bad-practices.md
         - Features orchestration: feature-store/orchestration.md
         - Reading features: feature-store/reading-features.md
         - Templates: feature-store/templates.md
