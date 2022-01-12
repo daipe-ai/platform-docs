@@ -1,6 +1,6 @@
 # Writing function output
 
-Output decorators are used in conjunction with the `@transformation` input decorator. They take either a string identifier of the table...
+Output decorators are used in conjunction with the `@dp.transformation` input decorator. They take either a string identifier of the table...
 
 ```python
 import daipe as dp
