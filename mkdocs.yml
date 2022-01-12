@@ -44,8 +44,8 @@ nav:
       - Project code structure: project-code-structure.md
     - Coding the "Daipe way":
       - Intro: coding-daipe-way.md
-      - Using @transformation: using-transformation.md
-      - Using @notebook_function: using-notebook-function.md
+      - Using @dp.transformation: using-transformation.md
+      - Using @dp.notebook_function: using-notebook-function.md
       - Chaining notebook functions: chaining-notebook-functions.md
       - Writing function output: writing-function-output.md
       - Using explicit schema: using-explicit-schema.md

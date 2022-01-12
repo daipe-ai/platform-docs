@@ -4,10 +4,10 @@ Widgets are a great tool for parametrizing notebooks in both Databricks and Jupy
 
 Standardized **Daipe widgets** support Databricks, Jupyter Lab and CLI.
 
-Import Daipe: 
-
 ```python
-import daipe as dp```
+# Import daipe
+import daipe as dp
+```
 Create a widget:
 
 ```python
