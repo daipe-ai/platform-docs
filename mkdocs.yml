@@ -83,7 +83,6 @@ nav:
         - Reading features: feature-store/reading-features.md
         - Templates: feature-store/templates.md
         - Time windows: feature-store/time-windows.md
-        - Dynamic run date: feature-store/dynamic-run-date.md
       - Technical reference:
         - Time windows: feature-store/time-windows-technical-reference.md
   - Advanced:
