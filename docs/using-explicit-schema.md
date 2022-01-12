@@ -3,8 +3,10 @@
 Table schema can be easily created using the TableSchema class:
 
 ```python
+import daipe as dp
+
 def get_schema():
-    return TableSchema(
+    return dp.TableSchema(
         [
             t.StructField("ReportAsOfEOD", t.DateType(), True),
             t.StructField("LoanID", t.StringType(), True),
@@ -23,8 +25,10 @@ For more details see the [TableSchema reference](table-schema.md).
 ## Selecting all fields from the schema before writing them into table:
 
 ```python
-@transformation(read_csv("loans.csv"))
-@table_overwrite("bronze.tbl_loans", get_schema())
+import daipe as dp
+
+@dp.transformation(dp.read_csv("loans.csv"))
+@dp.table_overwrite("bronze.tbl_loans", get_schema())
 def save(df: DataFrame):
     return (
         df.select(get_schema().fieldNames())
@@ -36,10 +40,11 @@ def save(df: DataFrame):
 When using `@table_*` decorators __without__ an explicit schema,...
 
 ```python
-@transformation(
-    read_csv("/RepaymentsData.csv", options=dict(header=True)),
+import daipe as dp
+@dp.transformation(
+    dp.read_csv("/RepaymentsData.csv", options=dict(header=True)),
 )
-@table_overwrite("bronze.tbl_repayments")
+@dp.table_overwrite("bronze.tbl_repayments")
 def load_csv_and_save(df: DataFrame):
     return df
 ```

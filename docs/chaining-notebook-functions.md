@@ -3,17 +3,17 @@
 Calls of the decorated functions can be chained by passing function names as decorator arguments:
 
 ```python
-@transformation(read_table("bronze.tbl_customers"))
+@dp.transformation(dp.read_table("bronze.tbl_customers"))
 def tbl_customers(df: DataFrame):
     return df
 ```
 ```python
-@transformation(tbl_customers)
+@dp.transformation(tbl_customers)
 def active_customers_only(df: DataFrame):
     return df.filter(f.col("active") == 1)
 ```
 ```python
-@transformation(active_customers_only, display=True)
+@dp.transformation(active_customers_only, display=True)
 def save(df: DataFrame):
     return df
 ```
@@ -21,7 +21,7 @@ def save(df: DataFrame):
 More compact way:
 
 ```python
-@transformation(read_table("bronze.tbl_customers"), display=True)
+@dp.transformation(dp.read_table("bronze.tbl_customers"), display=True)
 def tbl_active_customers(df: DataFrame):
     return df.filter(f.col("active") == 1)
 ```

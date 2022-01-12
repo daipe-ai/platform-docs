@@ -77,7 +77,7 @@ The created cluster should now be able to read from production storage.
 ## 3. Create tables in hive metastore
 
 We need to create production tables in development Databricks hive metastore in order
-to call `read_table`. This is a manual one time operation.
+to call `dp.read_table`. This is a manual one time operation.
 
 It's considered a best practice to separate environment at the database level.
 
@@ -114,8 +114,10 @@ parameters:
 - You can now read the table using the Daipe decorator function like you are used to
 
 ```python
+import daipe as dp
+
 # will result in spark.read.table("prod_bronze.some_table")
-@transformation(read_table("bronze.some_table"))
+@dp.transformation(dp.read_table("bronze.some_table"))
 def read_some_table(df: DataFrame):
     return df
 ```
@@ -130,8 +132,8 @@ def read_some_table(df: DataFrame):
 
 ```python
 # will result in 403 permission error
-@transformation(something)
-@table_append("bronze.some_table")
+@dp.transformation(something)
+@dp.table_append("bronze.some_table")
 def write_some_table(df: DataFrame):
     return df
 ```

@@ -6,14 +6,16 @@ __with_time_windows()__(`df: DataFrame, window_col: str, target_date_column: Col
 > Used for adding time window columns to a DataFrame.
 
 - `df` : DataFrame, input DataFrame
-- `window_col` : str, name of `Date` or `Timestamp` Column in `df`, which is substracted __from__ the `target_date_column` to create the time window interval
-- `target_date_column` : Column, date from which the time window is substracted
+- `window_col` : str, name of `Date` or `Timestamp` Column in `df`, which is subtracted __from__ the `target_date_column` to create the time window interval
+- `target_date_column` : Column, date from which the time window is subtracted
 - `time_windows`: List[str], list of time windows as a `[0-9]+[dhw]`, suffixes `d` = days, `h` = hours, `w` = weeks 
 
 Example:
 
 ```python
-@transformation(read_table("silver.tbl_joined_loans_and_repayments"), display=True)
+import daipe as dp
+
+@dp.transformation(dp.read_table("silver.tbl_joined_loans_and_repayments"), display=True)
 def joined_loans_and_repayments_with_time_windows(df: DataFrame):
     return (
       with_time_windows(df, "Date", f.lit(run_date), time_windows)

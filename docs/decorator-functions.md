@@ -1,7 +1,7 @@
 # Decorator functions
 
 ## read_csv
-__read_csv__(`path: str, schema: StructType = None, options: dict = None`)
+__dp.read_csv__(`path: str, schema: StructType = None, options: dict = None`)
 
 > Reads a CSV file into a spark DataFrame
 
@@ -12,10 +12,9 @@ Parameters:
 - `options` : dict, default None - options passed to `spark.read.options(**options)`
 
 Example:
-
 ```python
-@transformation(read_csv("/LoanData.csv", options=dict(header=True, inferSchema=True)), display=True)
-@table_overwrite("bronze.tbl_loans")
+@dp.transformation(dp.read_csv("/LoanData.csv", options=dict(header=True, inferSchema=True)), display=True)
+@dp.table_overwrite("bronze.tbl_loans")
 def save(df: DataFrame):
     return df.orderBy("LoanDate")
 ```
@@ -23,7 +22,7 @@ def save(df: DataFrame):
 ---
 
 ## read_delta
-__read_delta__(`path: str, schema: StructType = None, options: dict = None`)
+__dp.read_delta__(`path: str, schema: StructType = None, options: dict = None`)
 
 > Reads a Delta from a path
 
@@ -36,7 +35,7 @@ Parameters:
 ---
 
 ## read_json
-__read_json__(`path: str, schema: StructType = None, options: dict = None`)
+__dp.read_json__(`path: str, schema: StructType = None, options: dict = None`)
 
 > Reads a json file from a path
 
@@ -49,7 +48,7 @@ Parameters:
 ---
 
 ## read_parquet
-__read_parquet__(`path: str, schema: StructType = None, options: dict = None`)
+__dp.read_parquet__(`path: str, schema: StructType = None, options: dict = None`)
 
 > Reads a parquet from a path
 
@@ -62,7 +61,7 @@ Parameters:
 ---
 
 ## read_table
-__read_table__(`identifier: str`)
+__dp.read_table__(`identifier: str`)
 
 > Reads a table into a spark DataFrame
 
@@ -73,7 +72,7 @@ Parameters:
 Example:
 
 ```python
-@transformation(read_table("silver.tbl_loans"))
+@dp.transformation(dp.read_table("silver.tbl_loans"))
 def read_table_bronze_loans_tbl_loans(df: DataFrame, dbutils: DBUtils):
     base_year = dbutils.widgets.get("base_year")
 
@@ -83,7 +82,7 @@ def read_table_bronze_loans_tbl_loans(df: DataFrame, dbutils: DBUtils):
 ---
 
 ## table_params
-__table_params__(`identifier: str, param_path_parts: list = None`)
+__dp.table_params__(`identifier: str, param_path_parts: list = None`)
 
 > Reads parameters from _datalakebundle.tables.[`identifier`]_
 

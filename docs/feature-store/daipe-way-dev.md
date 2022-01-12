@@ -35,10 +35,10 @@ features returned by transformation.
 ```python
 from pyspark.sql import functions as f
 from pyspark.sql import DataFrame
-from datalakebundle.imports import transformation, read_table
+import daipe as dp
 
 
-@transformation(read_table("silver.tbl_loans"), display=True)
+@dp.transformation(dp.read_table("silver.tbl_loans"), display=True)
 @client_feature(
     ("Age", "Client's age"),
     ("Gender", "Client's gender"),
@@ -64,11 +64,10 @@ for completeness, but it is not recommended writing features in every notebook,
 instead use write only in orchestration notebook (see section [orchestration](orchestration.md)).
 
 ```python
-from datalakebundle.imports import notebook_function
-from featurestorebundle.delta.DeltaWriter import DeltaWriter
+import daipe as dp
 
 
-@notebook_function()
+@dp.notebook_function()
 def write_features(writer: DeltaWriter):
     writer.write_latest(features_storage)
 ```
