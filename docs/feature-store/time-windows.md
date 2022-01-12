@@ -15,11 +15,12 @@ For more information about these functions, see the [technical reference](time-w
 A good practice is to define these using [Widgets](../using-widgets.md).
 
 ```python
+import daipe as dp
 from featurestorebundle.windows.windowed_features import windowed, with_time_windows, apply_per_window, get_windowed_column_list, TimeWindowed
 
 
-@notebook_function()
-def widgets(widgets: Widgets):
+@dp.notebook_function()
+def widgets(widgets: dp.Widgets):
     widgets.add_multiselect('time_windows', ["14d", "30d", "90d"], default_values=["14d"])
 ```
 
@@ -28,9 +29,9 @@ def widgets(widgets: Widgets):
 The input DataFrame is passed into the `with_time_windows` function which generates one boolean column `is_time_window_{time_window}` for each `time_window` which indicates whether or not the row in desired time window.
 
 ```python
-@transformation(
-    read_delta('%source_path.from.config%'),
-    get_widget_value("time_windows"),
+@dp.transformation(
+    dp.read_delta('%source_path.from.config%'),
+    dp.get_widget_value("time_windows"),
     display=False,
 )
 def card_transactions(card_transactions: DataFrame, time_windows: List[str]):
@@ -62,7 +63,7 @@ Therefore the declarative style has 3 steps:
 1. Return an instance of `TimeWindowed` instance which handles the proper grouping by `[id_column, time_column]` and time windowed columns
 
 ```python
-@transformation(card_transactions, display=False)
+@dp.transformation(card_transactions, display=False)
 @client_feature_writer(
   ('card_tr_location_{location}_flag_{time_window}', 'Flag if {location} transactions made in the last {time_window}.'),
   ('card_tr_location_{location}_{agg_fun}_{time_window}', 'Total {agg_fun} of {location} transactions made in the last {time_window}.',),
@@ -106,7 +107,7 @@ For any other operations there is always the `apply_per_window` function which t
 and returns a modified DataFrame.
 
 ```python
-@transformation(card_transactions, get_widget_value("time_windows"), display=False)
+@dp.transformation(card_transactions, dp.get_widget_value("time_windows"), display=False)
 @client_feature_writer(
   ('card_tr_location_{location}_flag_{time_window}', 'Flag if {location} transactions made in the last {time_window}.'),
   ('card_tr_location_{location}_{agg_fun}_{time_window}', 'Total {agg_fun} of {location} transactions made in the last {time_window}.',),

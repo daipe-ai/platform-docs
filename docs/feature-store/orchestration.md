@@ -16,8 +16,9 @@ notebook and write all features at once.
 ```
 
 ```python
-from datalakebundle.imports import notebook_function
+import daipe as dp
 from featurestorebundle.delta.DeltaWriter import DeltaWriter
+
 ```
 ```python
 %run ./features_notebook1
@@ -29,7 +30,7 @@ from featurestorebundle.delta.DeltaWriter import DeltaWriter
 
 ```python
 # write all features at once
-@notebook_function()
+@dp.notebook_function()
 def write_features(writer: DeltaWriter):
     writer.write_latest(features_storage)
 ```

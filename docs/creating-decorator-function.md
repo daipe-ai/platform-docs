@@ -29,10 +29,11 @@ def read_stream_table(identifier: str):
 ## Usage
 
 ```python
+import daipe as dp
 from __myproject__.lib.read_stream_table import read_stream_table
 
-@transformation(read_stream_table("bronze.steaming_events"))
-@table_overwrite("silver.tbl_loans")
+@dp.transformation(read_stream_table("bronze.steaming_events"))
+@dp.table_overwrite("silver.tbl_loans")
 def save(df: DataFrame):
     return df.filter(f.col("type") == "new_loan").orderBy("LoanDate")
 ```

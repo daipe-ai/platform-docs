@@ -15,11 +15,11 @@ Code of the **customer/my_table.py** notebook:
 
 ```python
 from logging import Logger
-from datalakebundle.notebook.decorators import notebook_function, table_params
+import daipe as dp
 
-@notebook_function(table_params('customer.my_table').test_data_path)
+@dp.notebook_function(dp.table_params('customer.my_table').test_data_path)
 def customers_table(test_data_path: str, logger: Logger):
     logger.info(f'Test data path: {test_data_path}')
 ```
 
-The `table_params('customer.my_table')` function call is a shortcut to using `%datalakebundle.tables."customer.my_table".params%` string parameter.
+The `dp.table_params('customer.my_table')` function call is a shortcut to using `%datalakebundle.tables."customer.my_table".params%` string parameter.

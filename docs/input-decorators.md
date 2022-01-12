@@ -2,8 +2,8 @@
 
 These decorators are used to wrap the entire content of a cell. 
 
-## @transformation {#transformation}
-__@transformation__(`*objects, display = False, check_duplicate_columns = True`)
+## @dp.transformation {#transformation}
+__@dp.transformation__(`*objects, display = False, check_duplicate_columns = True`)
 
 > Used for decorating a function which manipulates with a DataFrame. Runs the decorated function upon declaration.
 
@@ -14,16 +14,18 @@ __@transformation__(`*objects, display = False, check_duplicate_columns = True`)
 Example:
 
 ```python
-@transformation(read_table("silver.tbl_loans"), read_table("silver.tbl_repayments"), display=True)
-@table_overwrite("silver.tbl_joined_loans_and_repayments", get_joined_schema())
+import daipe as dp
+
+@dp.transformation(dp.read_table("silver.tbl_loans"), dp.read_table("silver.tbl_repayments"), display=True)
+@dp.table_overwrite("silver.tbl_joined_loans_and_repayments", get_joined_schema())
 def join_loans_and_repayments(df1: DataFrame, df2: DataFrame):
     return df1.join(df2, "LoanID")
 ```
 
 ---
 
-## @notebook_function {#notebook_function}
-__@notebook_function__(`*objects`)
+## @dp.notebook_function {#notebook_function}
+__@dp.notebook_function__(`*objects`)
 
 > Used for decorating any other function which is not decorated with the `@transformation` decorator. Runs the decorated function upon declaration.
 
@@ -36,7 +38,7 @@ Parameters:
 Example:
 
 ```python
-@notebook_function()
+@dp.notebook_function()
 def download_data():
     opener = urllib.request.URLopener()
     opener.addheader(
@@ -50,7 +52,7 @@ def download_data():
 
 ---
 
-## Objects available in __@transformation__ and __@notebook_function__ {#objects_available_in_decorators}
+## Objects available in __@transformation__ and __@dp.notebook_function__ {#objects_available_in_decorators}
 
 - spark: SparkSession
 
@@ -64,7 +66,7 @@ Using `Spark` and `Logger`
 from logging import Logger
 from pyspark.sql.session import SparkSession
 
-@notebook_function()
+@dp.notebook_function()
 def customers_table(spark: SparkSession, logger: Logger):
     logger.info('Reading my_crm.customers')
 
@@ -76,7 +78,7 @@ Using `DBUtils`
 ```python
 from pyspark.dbutils import DBUtils
 
-@notebook_function()
+@dp.notebook_function()
 def create_input_widgets(dbutils: DBUtils):
     dbutils.widgets.dropdown("base_year", "2015", list(map(str, range(2009, 2022))), "Base year")
 ```

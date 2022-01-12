@@ -1,21 +1,21 @@
-# Using the @transformation() decorator
+# Using the @dp.transformation() decorator
 
-There are two main decorators in the Daipe framework - `@transformation()` and `@notebook_function()`.
+There are two main decorators in the Daipe framework - `@dp.transformation()` and `@dp.notebook_function()`.
 
-1. `@transformation()` understands Spark dataframes better and provides you with extra Spark-related functionality like display and duplicate columns checking.
-1. `@notebook_function()` should be used for functions and procedures which don't manipulate with a DataFrame e. g. downloading data.
+1. `@dp.transformation()` understands Spark dataframes better and provides you with extra Spark-related functionality like display and duplicate columns checking.
+1. `@dp.notebook_function()` should be used for functions and procedures which don't manipulate with a DataFrame e. g. downloading data.
 
 First, import everything necessary for a Daipe pipeline workflow:
 
 ```python
-from datalakebundle.imports import *
+import daipe as dp
 ```
 
 Any decorator can also take functions as parameters:
 
 ```python
-@transformation(
-    read_csv(
+@dp.transformation(
+    dp.read_csv(
         "/data.csv",
         options=dict(header=True, inferSchema=True)
     ),
@@ -29,8 +29,8 @@ See the [list of all functions](decorator-functions.md) which can be used.
 `display=True` option can be used for displaying the DataFrame.
 
 ```python
-@transformation(
-    read_table(
+@dp.transformation(
+    dp.read_table(
         "bronze.tbl_customers",
         options=dict(header=True, inferSchema=True)
     ),

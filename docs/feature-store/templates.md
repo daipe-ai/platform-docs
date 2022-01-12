@@ -22,7 +22,9 @@ The matched metadata is saved into the __Extra__ `key` `value` column of the met
 
 
 ```python
-@transformation(card_transactions)
+import daipe as dp
+
+@dp.transformation(card_transactions)
 @client_feature_writer(
    # Feature template
   ("card_tr_location_{location}_{channel}_{agg_fun}_{time_window}",

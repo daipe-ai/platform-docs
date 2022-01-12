@@ -53,11 +53,11 @@ Now your can re-deploy your Daipe project and start using DQ Tool.
 ### Define expectations
 To define a new expectation, run a notebook function like the following. 
 ```python
-from datalakebundle.imports import notebook_function
+import daipe as dp
 from datalakebundle.table.parameters.TableParametersManager import TableParametersManager
 from dq_tool import DQTool
 
-@notebook_function()
+@dp.notebook_function()
 def define_expectations_bronze_covid_tbl(dq_tool: DQTool, table_parameters_manager: TableParametersManager):
     # playground lets you run expectation on top of a table
     params = table_parameters_manager.get_or_parse('my_db.my_table')
@@ -86,9 +86,9 @@ Note that this is a throw-away code that doesn't need to be stored in git. All e
 In your pipeline, you'll want to validate data in a table using expectations you saved in the previous step. Use the following snippet as an example. 
 
 ```python
-from datalakebundle.imports import notebook_function
+import daipe as dp
 
-@notebook_function()
+@dp.notebook_function()
 def validate_table(dq_tool: DQTool, table_parameters_manager: TableParametersManager):
     results = dq_tool.expectation_store.validate_table(
         database_name=my_database_name,

@@ -41,7 +41,9 @@ The input DataFrame is passed into the `with_time_windows` function which genera
 The __time_windows__ are created in relation to the `target_date_column` 
 
 ```python
-@transformation(joined_loans_and_repayments, target_date_column, args, display=True)
+import daipe as dp
+
+@dp.transformation(joined_loans_and_repayments, target_date_column, args, display=True)
 def joined_loans_and_repayments_with_time_windows(df: DataFrame, target_date_column: Column):
     df_with_time_windows = with_time_windows(df, "Date", target_date_column, time_windows)
     
@@ -57,7 +59,8 @@ def joined_loans_and_repayments_with_time_windows(df: DataFrame, target_date_col
 The feature code does not need to change whatsoever. Instead of appending the static `run_date` the `target_date_column` is used as `run_date`.
 
 ```python
-@transformation(joined_loans_and_repayments_with_time_windows, args, display=True)
+import daipe as dp
+@dp.transformation(joined_loans_and_repayments_with_time_windows, args, display=True)
 @loan_feature(
   ('number_of_repayments_in_last_{time_window}', 'Number of repayments made in the last {time_window}.'),
     category = 'test',

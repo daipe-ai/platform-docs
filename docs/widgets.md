@@ -10,8 +10,7 @@ Daipe widgets are cross-platform meaning the same interface works on both __Data
 ## Imports
 
 ```python
-from daipecore.widgets.Widgets import Widgets
-from datalakebundle.imports import *
+import daipe as dp
 ```
 
 ## Usage
@@ -30,8 +29,8 @@ Parameters:
 Example:
 
 ```python
-@notebook_function()
-def create_text_widget(widgets: Widgets):
+@dp.notebook_function()
+def create_text_widget(widgets: dp.Widgets):
     widgets.add_text("text_widget", "Hello", "Test widget")
 ```
 ___
@@ -50,8 +49,8 @@ Parameters:
 Example:
 
 ```python
-@notebook_function()
-def create_select_widget(widgets: Widgets):
+@dp.notebook_function()
+def create_select_widget(widgets: dp.Widgets):
     widgets.add_select("select_widget", ["option1", "option2", "option3"], "option1", "Test widget")
 ```
 
@@ -71,8 +70,8 @@ Parameters:
 Example:
 
 ```python
-@notebook_function()
-def create_multiselect_widget(widgets: Widgets):
+@dp.notebook_function()
+def create_multiselect_widget(widgets: dp.Widgets):
     widgets.add_multiselect("multiselect_widget", ["option1", "option2", "option3"], "option1", "Test widget")
 ```
 ___
@@ -89,8 +88,8 @@ Parameters:
 Example:
 
 ```python
-@transformation(load_df)
-def get_widget_value(df: DataFrame, widgets: Widgets):
+@dp.transformation(load_df)
+def get_widget_value(df: DataFrame, widgets: dp.Widgets):
     value = widgets.get_value("text_widget")  # value: "Hello"
     return df.filter(f.col("col") == value)
 ```
@@ -109,8 +108,8 @@ Parameters:
 Example:
 
 ```python
-@notebook_function()
-def remove_widget(widgets: Widgets):
+@dp.notebook_function()
+def remove_widget(widgets: dp.Widgets):
     widgets.remove("text_widget")
 ```
 
@@ -124,8 +123,8 @@ __widgets.remove_all__(self)
 Example:
 
 ```python
-@notebook_function()
-def remove_widget(widgets: Widgets):
+@dp.notebook_function()
+def remove_widget(widgets: dp.Widgets):
     widgets.remove_all()
 ```
 
