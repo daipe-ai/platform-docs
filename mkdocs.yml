@@ -53,6 +53,7 @@ nav:
     - Development workflow:
       - Overview: data-pipelines-workflow.md
       - Working with git: working-with-git.md
+      - Checking coding standards: checking-coding-standards.md
     - Overcoming security limitations:
       - No internet access on Databricks: offline-databricks-solution.md
       - Local machine access limited: local-machine-limited-access.md
