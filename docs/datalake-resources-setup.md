@@ -1,4 +1,5 @@
 # Spinning up Data Lake resources
+After completing the setup steps you will have all the data lake resources running. A resource group containing all resources is created for each environment you define. 
 
 [Go to setup steps ↓](datalake-resources-setup.md#1-create-repository-for-infrastructure-and-import-its-code)
 
@@ -61,8 +62,9 @@ The files `.cicd/variables/variables-{temp/sand/dev/test/prod}.yml` hold specifi
 
 - TENANT_ID - from [Azure setup](azure-setup.md) section 5
 - PROJECT_NAME - <span style="color: red">!! should be simple lowercase name (max 5 characters) !!</span>
-- GIT_ACCOUNT_NAME - name of your devops organization
-- GIT_PROJECT_NAME - name of your devops project
+- DEVOPS_ACCOUNT_NAME - name of your devops organization
+- DEVOPS_PROJECT_NAME - name of your devops project
+![](images/resources_devops_variables.png)
 
 ## 3. Create environment based branches
 **Create branches** based on environments you want to deploy:  
@@ -72,7 +74,7 @@ For updating environment specific variables create branch and name it after the 
 <u>**Non prod** environment:</u>  
 
 - checkout newly created branch   
-- in the file`.cicd/variables/variables.yml` update SERVICE_CONNECTION_NAME variable for the environment you're about to deploy
+- in the file`.cicd/variables/variables.yml` update SERVICE_CONNECTION_NAME variable for the environment you're about to deploy. The service connection decides into which subscription the resource group will be created. [How to create service connection](datalake-resources-setup.md#1-create-repository-for-infrastructure-and-import-its-code)
 - update environment specific variables in the file `.cicd/variables/variables-{environment}.yml`
     - update desired environment variables here
     - change ADMIN_OBJECT_ID to object id of user of your choice. This user will have admin access to created keyvault
@@ -116,6 +118,8 @@ The environment resource group based on selected branch is deployed to the Subsc
 
 ## 4. Create Key Vault Secret Scope in Databricks
 
+### Create the scope
+
 When the pipeline is finished you need to create secret scope for Databricks.
 
 <span style="color: red">!! This needs to be done for all environments you deployed {temp/sand/dev/test/prod} !!</span>
@@ -138,7 +142,46 @@ When the pipeline is finished you need to create secret scope for Databricks.
 
 ![](images/resources_step16.png)
 
-## 5. Resources overview
+### Add service principal to Key-Vault
+Try to run the newly created cluster. If the DBX cluster fails on start with message `Cluster terminated.Reason:Invalid Argument`, add AzureDatabricks service principal to KV Access policies
+
+- Go to the newly created **Key vault**
+- Click on **Access policies**
+- Click on **Add Access Policy**
+- Check **Get** and **List** in the **Secret permissions** field
+  ![](images/resources_step17.png)
+- Click on **None selected**
+- Find and select *AzureDatabricks* service principal
+- Click on **Add**
+
+## 5. Enable reading of PROD storage from DEV Databricks
+
+**Add Role assignment**
+
+- Go to Access Control (IAM) page within PROD blob storage
+- Go to the **Role Assignment** panel and click on **Add button** → **Add Role assignment**
+- Find and select **Storage Blob Data Reader** role, click on the Next button
+- Select the service principal that belongs to the **DEV** storage
+
+**OAuth authentication** 
+
+- Add PROD OAuth variables to the cluster settings. You can copy variables from PROD Databricks.
+
+Replace `TENANT_OBJECT_ID` placeholder.
+
+Replace `STORAGE_ACCOUNT_NAME` placeholder (e.g. `adapczp360lakeg2prod`)
+
+```bash
+fs.azure.account.oauth.provider.type.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider
+fs.azure.account.oauth2.client.secret.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net {{secrets/unit-kv/dbx-client-secret}}
+fs.azure.account.oauth2.client.endpoint.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net https://login.microsoftonline.com/<TENANT_OBJECT_ID>/oauth2/token
+fs.azure.account.oauth2.client.id.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net {{secrets/unit-kv/dbx-client-id}}
+fs.azure.account.auth.type.<STORAGE_ACCOUNT_NAME>.dfs.core.windows.net OAuth
+```
+
+Finally, there should be similar variables for DEV and PROD storage.
+
+## 6. Resources overview
 
 After the infrastructure is deployed you can check the resources under resource group `adap-cz-PROJECT_NAME-rg-dev`
 
