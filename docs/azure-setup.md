@@ -68,10 +68,12 @@ Assigning permission scope for service principal will be done in next steps so d
 ![](images/service_principal_step5.png)
 
 - You need to repeat this process do grant same permission to legacy API. Reason for this that some Microsoft tools still using this legacy API.
+ 
+```bash
+az ad app permission add --id <service_principal_id> --api 00000002-0000-0000-c000-000000000000 --api-permissions 824c81eb-e3f8-4ee6-8f6d-de7f50d565b7=Role
+```
 
-![](images/service_principal_step6.png)
-
-- These changes must be approved by some AAD Administrator.
+- <span style="color:red"> These changes must be approved by some AAD Administrator. </span>
 
 ![](images/service_principal_step7.png)
 
