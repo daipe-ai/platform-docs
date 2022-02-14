@@ -13,48 +13,49 @@ __WindowedDataFrame__(`self, df: DataFrame, entity: Entity, time_column: str, ti
 ### Methods:
 
 ## time_windowed {#time_windowed}
-__time_windowed__(`self, agg_columns_function: Callable[[str], List[WindowedColumn]] = lambda x: list(), non_agg_columns_function: Callable[[str], List[Column]] = lambda x: list(), extra_group_keys: List[str] = []`) -> `WindowedDataFrame`
+__time_windowed__(`self, agg_columns_function: Callable[[str], List[WindowedColumn]] = lambda x: list(), non_agg_columns_function: Callable[[str], List[Column]] = lambda x: list(), extra_group_keys: List[str] = [], unnest_structs: bool = False`) -> `WindowedDataFrame`
 
 > Returns a new WindowedDataFrame with calculated aggregated and non aggregated columns
 
 - `agg_columns_function: Callable[[str], List[WindowedColumn]] = lambda x: list()`: Function which takes `time_window: str` and returns `List[WindowedColumn]`
 - `non_agg_columns_function: Callable[[str], List[Column]] = lambda x: list()`: Function which takes `time_window: str` and returns `List[Column]`
 - `extra_group_keys: List[str] = []`: By default it groups by `entity.primary_key`, use `extra_group_keys` to add more columns to group by
+- `unnest_structs: bool = False`: if `True`, all structs will be expanded into regular columns
 
 Example:
 
 ```python
 @dp.transformation(card_transactions)
-def card_channle_country_features(card_transactions: WindowedDataFrame):
-    def country_agg_features(_) -> List[tw.WindowedColumn]:
+def card_channel_country_features(wdf: WindowedDataFrame):
+    def country_agg_features(time_window: str) -> List[tw.WindowedColumn]:
         return [
             tw.sum_windowed(
                 f.col("cardtr_country").isin("CZ", "CZE").cast("integer"),
-                "card_tr_location_czech_count_{time_window}",
+                f"card_tr_location_czech_count_{time_window}",
             ),
             tw.sum_windowed(
                 (~f.col("cardtr_country").isin("CZ", "CZE")).cast("integer"),
-                "card_tr_location_abroad_count_{time_window}",
+                f"card_tr_location_abroad_count_{time_window}",
             ),
             tw.sum_windowed(
                 f.when(
                     f.col("cardtr_country").isin("CZ", "CZE"),
                     f.col("cardtr_amount_czk"),
                 ).otherwise(0),
-                "card_tr_location_czech_volume_{time_window}",
+                f"card_tr_location_czech_volume_{time_window}",
             ),
             tw.sum_windowed(
                 f.when(
                     ~f.col("cardtr_country").isin("CZ", "CZE"),
                     f.col("cardtr_amount_czk"),
                 ).otherwise(0),
-                "card_tr_location_abroad_volume_{time_window}",
+                f"card_tr_location_abroad_volume_{time_window}",
             ),
         ]
 
     def flag_features(time_window: str) -> List[Column]:
         return [
-            tw.column_windowed(
+            tw.column(
                 (f.col(f"card_tr_location_abroad_count_{time_window}") > 0).cast(
                     "integer"
                 ),
@@ -76,17 +77,18 @@ __apply_per_time_window__(`self, function: Callable[[WindowedDataFrame, str], Da
 Example:
 
 ```python
+
 @dp.transformation(frequencies, display=False)
 def frequencies_structs(wdf: WindowedDataFrame):
     def make_structs(wdf: WindowedDataFrame, time_window: str):
         return wdf.withColumn(
             f"values_{time_window}",
             f.struct(
-                tw.column_windowed(
+                tw.column(
                     f.col(f"transaction_city_count_{time_window}"),
                     f"card_tr_location_city_most_common_count_{time_window}",
                 ),
-                tw.column_windowed(
+                tw.column(
                     f.col(f"transaction_city_volume_{time_window}"),
                     f"card_tr_location_city_most_common_volume_{time_window}",
                 )
@@ -94,14 +96,26 @@ def frequencies_structs(wdf: WindowedDataFrame):
         )
 
     return wdf.apply_per_time_window(make_structs)
+
 ```
+
+---
+
+## is_time_window {#is_time_window}
+__is_time_window__(`self, time_window: str`) -> `Column`
+
+> Returns a boolean `Column` to indicate if a row in the desired `time_window`
+
+- `time_window: str`: time window as a `[0-9]+[dhw]`, suffixes `d` = days, `h` = hours, `w` = weeks 
+
+---
 
 ## get_windowed_column_list {#get_windowed_column_list}
 __get_windowed_column_list__(`self, column_names: List[str]`) -> `List[str]`
 
 > Get windowed column names
 
-- `column_names: List[str]`: List of column names with placeholder `{time_window}`, such as `["feature1_{time_window}", "feature2_{time_window}", "feature3_{time_window}"]`
+- `column_names: List[str]`: List of column names with a `{time_window}` placeholder, such as `["feature1_{time_window}", "feature2_{time_window}", "feature3_{time_window}"]`
 
 ---
 
@@ -142,6 +156,68 @@ __WindowedColumn__
 
 ---
 
+## column {#column}
+__column__(`name: str, col: Column`) -> `Column`
+> Alias for `col.alias(name)`
+
+- `name` : name of the column
+- `col` : PySpark `Column`
+
+!!! warning
+    * **No time window functionality**: `column` is intended to only be used in non aggregated columns function, it does __not__ handle time windows on its own.
+
+---
+
+## most_common {#most_common}
+__most_common__(name: str, *columns: Column): -> `Column`
+> Performs a most common element calculation based on the input `columns`
+
+- `name` : name of the column
+- `columns` : PySpark `Column`
+
+Example:
+
+This example code calculates __most common__ cities based on the number of transactions conducted in the city.
+
+The order of the argument `columns` determines the outcome. The __most common__ columns is the maximum struct.
+The maximum struct si determined the same way the `max` function works in Python.
+```python
+a = (10, -5, "Praha")
+b = (11, -1000, "Zlín")
+c = (10, -5, "Brno")
+
+max(a, b, c)  # Result: (11, -1000, 'Zlín')
+max(a, c)     # Result: (10, -5, "Praha")
+```
+When the number of transactions is 0 for __all__ cities, the result is `NULL`.
+
+```python
+@dp.transformation(city_amount, display=False)
+def most_common_city(wdf: WindowedDataFrame):
+    def most_common_features(time_window: str):
+        return [
+            tw.most_common(
+                f"most_common_city_{time_window}",
+                tw.column(
+                    f"card_tr_location_city_most_common_count_{time_window}",
+                    f.col(f"transaction_city_count_{time_window}")
+                ),
+                tw.column(
+                    f"random_number_{time_window}",
+                    f.hash(*wdf.primary_key)
+                ),
+                tw.column(
+                    f"card_tr_location_city_most_common_{time_window}",
+                    f.when(f.col(f"transaction_city_count_{time_window}") > 0, f.col("cardtr_transaction_city"))
+                ),
+            )
+        ]
+
+    return wdf.time_windowed(most_common_features, unnest_structs=True)
+```
+
+---
+
 ## sum_windowed {#sum_windowed}
 __sum_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.sum`
@@ -149,9 +225,6 @@ __sum_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 - `name` : name of the column with a `{time_window}`
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.sum_windowed(f"card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.sum_windowed("card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
 
 Example:
 
@@ -171,22 +244,14 @@ __count_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 - `name` : name of the column
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.count_windowed(f"card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.count_windowed("card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-
 ---
 
 ## count_distinct_windowed {#count_distinct_windowed}
-__count_distinct_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__count_distinct_windowed__(`name: str, cols: List[Column]`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.countDistinct`
 
 - `name` : name of the column
-- `col` : PySpark `Column`
-
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.count_distinct_windowed(f"card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.count_distinct_windowed("card_tr_location_czech_count_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
+- `cols` : PySpark `Column`
 
 ---
 
@@ -197,10 +262,6 @@ __min_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 - `name` : name of the column
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.min_windowed(f"card_tr_location_czech_min_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.min_windowed("card_tr_location_czech_min_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-
 ---
 
 ## max_windowed {#max_windowed}
@@ -210,10 +271,15 @@ __max_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 - `name` : name of the column
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.max_windowed(f"card_tr_location_czech_max_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.max_windowed("card_tr_location_czech_max_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
+---
 
+## avg_windowed {#avg_windowed}
+__avg_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+> Returns and aggregated WindowedColumn for the PySpark function `f.avg`
+
+- `name` : name of the column
+- `col` : PySpark `Column`
+- 
 ---
 
 ## mean_windowed {#mean_windowed}
@@ -223,22 +289,13 @@ __mean_windowed__(`name: str, col: Column`) -> `WindowedColumn`
 - `name` : name of the column
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.mean_windowed(f"card_tr_location_czech_mean_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-    * **Don't**: ```tw.mean_windowed("card_tr_location_czech_mean_{time_window}", f.col("cardtr_country").isin("CZ", "CZE").cast("integer"))```
-
 ---
 
-## column_windowed {#column_windowed}
-__column_windowed__(`name: str, col: Column`) -> `Column`
-> Alias for `col.alias(name)`
+## first_windowed {#first_windowed}
+__first_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+> Returns and aggregated WindowedColumn for the PySpark function `f.first`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
 
-!!! info "`name` is an f-string"
-    * **Do**: ```tw.column_windowed(f"card_tr_location_flag_{time_window}", f.col("card_tr_location_abroad_count_{time_window}") > 0)```
-    * **Don't**: ```tw.column_windowed("card_tr_location_flag_{time_window}", f.col("card_tr_location_abroad_count_{time_window}") > 0)```
-
 ---
-
