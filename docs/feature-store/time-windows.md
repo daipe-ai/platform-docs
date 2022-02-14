@@ -16,7 +16,8 @@ A good practice is to define these using [Widgets](../using-widgets.md).
 
 ```python
 import daipe as dp
-from featurestorebundle.time_windows.time_windows import tw
+import featurestorebundle.time_windows as tw
+from featurestorebundle.time_windows.time_windows import WindowedColumn, WindowedDataFrame
 
 
 @dp.notebook_function()
@@ -52,8 +53,8 @@ It has some added properties such as `entity` and `time_windows` which allow it 
     ),
     display=False,
 )
-def card_transactions_with_time_windows(windowed_card_transactions: WindowedDataFrame):
-    return windowed_card_transactions
+def card_transactions_with_time_windows(wdf: WindowedDataFrame):
+    return wdf
 ```
 
 ## Writing time windowed features
@@ -82,29 +83,29 @@ Therefore the declarative style has 3 steps:
 )
 def card_country_features(wdf: WindowedDataFrame):
     # 1. Define a function which takes time_window as argument and returns a list of aggregated Columns
-    def country_agg_features(_) -> List[tw.WindowedColumn]:
+    def country_agg_features(time_window: str) -> List[WindowedColumn]:
         return [
             tw.sum_windowed(
                 f.col("cardtr_country").isin("CZ", "CZE").cast("integer"),
-                "card_tr_location_czech_count_{time_window}",
+                f"card_tr_location_czech_count_{time_window}",
             ),
             tw.sum_windowed(
                 (~f.col("cardtr_country").isin("CZ", "CZE")).cast("integer"),
-                "card_tr_location_abroad_count_{time_window}",
+                f"card_tr_location_abroad_count_{time_window}",
             ),
             tw.sum_windowed(
                 f.when(
                     f.col("cardtr_country").isin("CZ", "CZE"),
                     f.col("cardtr_amount_czk"),
                 ).otherwise(0),
-                "card_tr_location_czech_volume_{time_window}",
+                f"card_tr_location_czech_volume_{time_window}",
             ),
             tw.sum_windowed(
                 f.when(
                     ~f.col("cardtr_country").isin("CZ", "CZE"),
                     f.col("cardtr_amount_czk"),
                 ).otherwise(0),
-                "card_tr_location_abroad_volume_{time_window}",
+                f"card_tr_location_abroad_volume_{time_window}",
             ),
         ]
 
@@ -181,7 +182,6 @@ def card_city_features(wdf_ct_amount: WindowedDataFrame):
         [
             "card_tr_location_volume_{time_window}",
             "card_tr_location_count_{time_window}",
-            "random_number_{time_window}",
         ]
     )
     
