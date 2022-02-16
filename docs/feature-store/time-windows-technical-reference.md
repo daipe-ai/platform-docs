@@ -157,7 +157,7 @@ __WindowedColumn__
 ---
 
 ## column {#column}
-__column__(`name: str, col: Column`) -> `Column`
+__column__(`name: str, col: Column) -> `Column`
 > Alias for `col.alias(name)`
 
 - `name` : name of the column
@@ -219,11 +219,12 @@ def most_common_city(wdf: WindowedDataFrame):
 ---
 
 ## sum_windowed {#sum_windowed}
-__sum_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__sum_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.sum`
 
 - `name` : name of the column with a `{time_window}`
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 
 Example:
@@ -238,64 +239,71 @@ tw.sum_windowed(
 ---
 
 ## count_windowed {#count_windowed}
-__count_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__count_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.count`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
 
 ## count_distinct_windowed {#count_distinct_windowed}
-__count_distinct_windowed__(`name: str, cols: List[Column]`) -> `WindowedColumn`
+__count_distinct_windowed__(`name: str, cols: List[Column]`, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.countDistinct`
 
 - `name` : name of the column
 - `cols` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
 
 ## min_windowed {#min_windowed}
-__min_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__min_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.min`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
 
 ## max_windowed {#max_windowed}
-__max_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__max_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.max`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
 
 ## avg_windowed {#avg_windowed}
-__avg_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__avg_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.avg`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
-- 
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
+
 ---
 
 ## mean_windowed {#mean_windowed}
-__mean_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__mean_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.mean`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
 
 ## first_windowed {#first_windowed}
-__first_windowed__(`name: str, col: Column`) -> `WindowedColumn`
+__first_windowed__(`name: str, col: Column, default_value=None`) -> `WindowedColumn`
 > Returns and aggregated WindowedColumn for the PySpark function `f.first`
 
 - `name` : name of the column
 - `col` : PySpark `Column`
+- `default_value = None`: value given to all rows not fitting in a current `time_window`
 
 ---
