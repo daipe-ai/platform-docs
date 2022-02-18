@@ -25,5 +25,6 @@ This approach has many disadvantages
 - Every developer might write features to different locations
 - Might be slow or running in conflicts when multiple notebooks try to write features in same location
 - None features metadata information
+- No track of what was computed and when
 
 Feature store tries to address those problems.

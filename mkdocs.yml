@@ -87,6 +87,12 @@ nav:
         - Time windows: feature-store/time-windows.md
       - Technical reference:
         - Time windows: feature-store/time-windows-technical-reference.md
+      - Feature Store 2.0:
+        - Features Development: feature-store/feature-store-20/features-development.md
+        - Features Tracking: feature-store/feature-store-20/features-tracking.md
+        - Features Orchestration: feature-store/feature-store-20/orchestration.md
+        - Target Store: feature-store/feature-store-20/target-store.md
+        #- Reading Features: feature-store/feature-store-20/reading-features.md
   - Advanced:
     - Overview: advanced.md
     - Azure Setup:
