@@ -59,12 +59,12 @@ You can now select target you want.
 ![](../images/target_widgets.png)
 
 And finally when loading input dataframe you need to use function
-`add_timestamps` which will make sure you will be working only with
+`with_timestamps` which will make sure you will be working only with
 clients given by selected target.
 
 ```python
 @dp.transformation(
-    dp.fs.add_timestamps(
+    dp.fs.with_timestamps(
         dp.read_table('silver.card_transactions'),
         entity,
     ),
