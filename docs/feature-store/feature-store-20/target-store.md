@@ -15,10 +15,12 @@ Paths to target store tables are specified in config.
 parameters:
   featurestorebundle:
     target:
-      entity_targets_table_name_template: 'targets_{entity}'
-      entity_targets_path_template: '%featurestorebundle.base_path%/targets/{entity}.delta'
-      targets_table: 'targets'
-      targets_path: '%featurestorebundle.base_path%/targets/targets.delta'
+      table:
+        name_template: 'targets_{entity}'
+        path_template: '%featurestorebundle.base_path%/targets/{entity}.delta'
+      enum_table:
+        name: 'targets_enum'
+        path: '%featurestorebundle.base_path%/targets/targets_enum.delta'
       backend: delta_path # available: delta_table, delta_path
 ```
 

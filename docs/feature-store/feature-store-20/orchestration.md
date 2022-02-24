@@ -16,10 +16,10 @@ parameters:
       num_parallel: 8
       stages:
         stage1:
-          - '%daipe.project_root%/src/myproject/feature_store/features_ntb1'
-          - '%daipe.project_root%/src/myproject/feature_store/features_ntb2'
+          - '%databricksbundle.project_root.repo.path%/src/myproject/feature_store/features_ntb1'
+          - '%databricksbundle.project_root.repo.path%/src/myproject/feature_store/features_ntb2'
         stage2:
-          - '%daipe.project_root%/src/myproject/feature_store/features_ntb3'
+          - '%databricksbundle.project_root.repo.path%/src/myproject/feature_store/features_ntb3'
 ```
 
 This configuration means that you want to first run `features_ntb1` and
