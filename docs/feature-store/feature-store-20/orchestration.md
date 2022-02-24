@@ -36,7 +36,6 @@ You can now use orchestration notebook to run the orchestration.
 
 ```python
 import daipe as dp
-from featurestorebundle.orchestration.DatabricksOrchestrator import DatabricksOrchestrator
 ```
 
 ```python
@@ -47,6 +46,6 @@ def checkpointing_setup(spark: SparkSession):
 
 ```python
 @dp.notebook_function()
-def orchestrate(orchestrator: DatabricksOrchestrator):
+def orchestrate(orchestrator: dp.fs.DatabricksOrchestrator):
     orchestrator.orchestrate()
 ```
