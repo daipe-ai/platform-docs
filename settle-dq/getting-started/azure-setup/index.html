@@ -1,0 +1,2130 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://docs.daipe.ai/settle-dq/getting-started/azure-setup/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+    
+    
+      
+        <title>Azure Setup - Daipe documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f955dcd.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="" data-md-color-accent="deep-orange">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Daipe documentation" class="md-header__button md-logo" aria-label="Daipe documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Daipe documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Azure Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/daipe-ai/platform-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../create-repo-from-template/" class="md-tabs__link">
+        Getting started
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../datalake-structure/" class="md-tabs__link">
+        Developing Data Pipelines
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../feature-store/overview/" class="md-tabs__link">
+        Feature Store
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../advanced/" class="md-tabs__link md-tabs__link--active">
+        Advanced
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../daipe-2-0-release-notes/" class="md-tabs__link">
+        Release notes
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Daipe documentation" class="md-nav__button md-logo" aria-label="Daipe documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Daipe documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/daipe-ai/platform-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Daipe AI Platform Documentation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Getting started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getting started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        Creating Daipe project
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Creating Daipe project" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Creating Daipe project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../create-repo-from-template/" class="md-nav__link">
+        Create from template
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../create-daipe-project/" class="md-nav__link">
+        Clone to Databricks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../datalake-storage-path/" class="md-nav__link">
+        Setting datalake storage path
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../github-ci-cd-setup/" class="md-nav__link">
+        Setup CI/CD on GitHub
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../azure-devops-ci-cd/" class="md-nav__link">
+        Setup CI/CD on Azure DevOps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../storage-connection-setup/" class="md-nav__link">
+        Storage Connection Setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Daipe demo project
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Daipe demo project" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Daipe demo project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../clone-demo-project/" class="md-nav__link">
+        Clone demo project
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_3">
+        Local Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Local Development" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Local Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../daipe-local-setup/" class="md-nav__link">
+        Setup Daipe locally
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Developing Data Pipelines
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developing Data Pipelines" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Developing Data Pipelines
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Overview
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Overview" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Overview
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../datalake-structure/" class="md-nav__link">
+        How does a datalake look like?
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../project-code-structure/" class="md-nav__link">
+        Project code structure
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Coding the "Daipe way"
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Coding the "Daipe way"" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Coding the "Daipe way"
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../coding-daipe-way/" class="md-nav__link">
+        Intro
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../using-transformation/" class="md-nav__link">
+        Using @dp.transformation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../using-notebook-function/" class="md-nav__link">
+        Using @dp.notebook_function
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../chaining-notebook-functions/" class="md-nav__link">
+        Chaining notebook functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../writing-function-output/" class="md-nav__link">
+        Writing function output
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../using-explicit-schema/" class="md-nav__link">
+        Using explicit schema
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../using-widgets/" class="md-nav__link">
+        Using widgets
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        Development workflow
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development workflow" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Development workflow
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data-pipelines-workflow/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../working-with-git/" class="md-nav__link">
+        Working with git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checking-coding-standards/" class="md-nav__link">
+        Checking coding standards
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      <label class="md-nav__link" for="__nav_3_4">
+        Overcoming security limitations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Overcoming security limitations" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Overcoming security limitations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../offline-databricks-solution/" class="md-nav__link">
+        No internet access on Databricks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../local-machine-limited-access/" class="md-nav__link">
+        Local machine access limited
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      <label class="md-nav__link" for="__nav_3_5">
+        Customizing Daipe Lake
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Customizing Daipe Lake" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Customizing Daipe Lake
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../customizing-table-names/" class="md-nav__link">
+        Customizing table names
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../customizing-table-defaults/" class="md-nav__link">
+        Setting table defaults
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setting-table-specific-params/" class="md-nav__link">
+        Setting table-specific parameters
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../creating-decorator-function/" class="md-nav__link">
+        Creating a decorator function
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../creating-custom-output-decorator/" class="md-nav__link">
+        Creating a custom output decorator
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      <label class="md-nav__link" for="__nav_3_6">
+        Advanced
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Advanced" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../databricks-connect-setup/" class="md-nav__link">
+        Databricks Connect setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../managing-tables-console/" class="md-nav__link">
+        Managing tables using console
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../azure-logger-bundle/" class="md-nav__link">
+        Logging into Azure setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../read-access-prod/" class="md-nav__link">
+        Read access to production data
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_7" type="checkbox" id="__nav_3_7" >
+      
+      <label class="md-nav__link" for="__nav_3_7">
+        Technical reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Technical reference" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          Technical reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../input-decorators/" class="md-nav__link">
+        Input decorators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decorator-functions/" class="md-nav__link">
+        Decorator functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../output-decorators/" class="md-nav__link">
+        Output decorators
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../table-schema/" class="md-nav__link">
+        Table schema
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../widgets/" class="md-nav__link">
+        Widgets
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Feature Store
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Feature Store" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Feature Store
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      <label class="md-nav__link" for="__nav_4_3">
+        Feature Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Feature Development" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Feature Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/old-way-dev/" class="md-nav__link">
+        Developing features old way
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/daipe-way-dev/" class="md-nav__link">
+        Developing features daipe way
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/bad-practices/" class="md-nav__link">
+        Bad practices
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/orchestration/" class="md-nav__link">
+        Features orchestration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/reading-features/" class="md-nav__link">
+        Reading features
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/templates/" class="md-nav__link">
+        Templates
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/time-windows/" class="md-nav__link">
+        Time windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      <label class="md-nav__link" for="__nav_4_4">
+        Technical reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Technical reference" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Technical reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/time-windows-technical-reference/" class="md-nav__link">
+        Time windows
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      <label class="md-nav__link" for="__nav_4_5">
+        Feature Store 2.0
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Feature Store 2.0" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Feature Store 2.0
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/feature-store-20/features-development/" class="md-nav__link">
+        Features Development
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/feature-store-20/features-tracking/" class="md-nav__link">
+        Features Tracking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/feature-store-20/orchestration/" class="md-nav__link">
+        Features Orchestration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../feature-store/feature-store-20/target-store/" class="md-nav__link">
+        Target Store
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      <label class="md-nav__link" for="__nav_5">
+        Advanced
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Advanced" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Advanced
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../advanced/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      <label class="md-nav__link" for="__nav_5_2">
+        Azure Setup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Azure Setup" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Azure Setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../azure-setup-overview/" class="md-nav__link">
+        Setup overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../azure-setup/" class="md-nav__link">
+        Environment setup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../datalake-resources-setup/" class="md-nav__link">
+        Data Lake resources
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../devops-agents-setup/" class="md-nav__link">
+        Self-hosted agents (optional)
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" checked>
+      
+      <label class="md-nav__link" for="__nav_5_3">
+        Settle DQ
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Settle DQ" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Settle DQ
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3_2" type="checkbox" id="__nav_5_3_2" checked>
+      
+      <label class="md-nav__link" for="__nav_5_3_2">
+        Getting started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getting started" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Getting started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Azure Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Azure Setup
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../daipe-integration/" class="md-nav__link">
+        Daipe Integration
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-notebook/" class="md-nav__link">
+        Create Configuration Notebook
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3_3" type="checkbox" id="__nav_5_3_3" >
+      
+      <label class="md-nav__link" for="__nav_5_3_3">
+        Developing Expectations
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developing Expectations" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Developing Expectations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/" class="md-nav__link">
+        Workflow Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/develop-store/" class="md-nav__link">
+        Developing and Storing DQ Expectations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/validation/" class="md-nav__link">
+        Validating Your Data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/view-validation-results/" class="md-nav__link">
+        Viewing Validation Results
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/edit/" class="md-nav__link">
+        Editing Expectations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developing-expectations/expressions/" class="md-nav__link">
+        Expectations With Expressions
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      <label class="md-nav__link" for="__nav_6">
+        Release notes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Release notes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Release notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../daipe-2-0-release-notes/" class="md-nav__link">
+        Daipe 2.0
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/daipe-ai/platform-docs/edit/master/docs/settle-dq/getting-started/azure-setup.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="azure-setup">Azure Setup<a class="headerlink" href="#azure-setup" title="Permanent link">&para;</a></h1>
+<p><img alt="" src="../../images/infrastructure.png" style="width: 750px; padding-left: 5%" /></p>
+<p>The schema above shows the infrastructure the system operates on. You will need to set up the resources displayed in the <em>Your Azure Cloud</em> rectangle.</p>
+<p>We recommend creating the resources in the order described in this guide.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>You will need the following prerequisites to start following this guide.</p>
+<h3 id="guest-user-in-datasentics-azure-cloud">Guest user in DataSentics Azure Cloud<a class="headerlink" href="#guest-user-in-datasentics-azure-cloud" title="Permanent link">&para;</a></h3>
+<p>You will install Settle DQ code from artifacts that are distributed using DataSentics Azure cloud. DataSentics will invite you as a guest user. For that you will need an email address that can receive emails. We recommend using a technical user, not a real person's email.</p>
+<p>The access to our Azure will be used for downloading and installing artifacts as a part of the initial setup as well as upgrading to future Settle DQ versions. </p>
+<p>Follow these steps to create a guest user account:</p>
+<ul>
+<li>Locate an invitation email in your inbox from <em>invites@microsoft.com</em></li>
+<li>Click an <em>Accept Invitation</em> link in the email</li>
+<li>If this email address doesn't have a Microsoft account yet, it needs to sign up for one. Follow the instructions. You will get another email with a verification link or code.</li>
+<li>You will be promted to accept permissions for DataSentics to Sign in and Read email address. Click accept. </li>
+<li>You will get yet another email that welcomes you to Azure Devops</li>
+</ul>
+<p>Now you will be able to login with this guest account to Subscriber resources in DataSentics Azure cloud. Verify you can log in. </p>
+<h3 id="artifact-feed-urls-from-datasentics">Artifact Feed URLs from DataSentics<a class="headerlink" href="#artifact-feed-urls-from-datasentics" title="Permanent link">&para;</a></h3>
+<p>DataSentics will give you the following URLs. You'll use them to download artifacts described in the guide.</p>
+<ul>
+<li>Python Artifact Feed URL, format <code>https://dev.azure.com/xxx/_packaging?_a=feed&amp;feed=dq_tool%40Local</code></li>
+<li>private PyPI URL, format <code>pkgs.dev.azure.com/xxx/_packaging/dq_tool%40Local/pypi/simple/</code></li>
+<li>Universal Packages Artifact Feed URL, format <code>https://dev.azure.com/xxx/_packaging?_a=feed&amp;feed=web_files_zip</code></li>
+</ul>
+<h3 id="web-app-container-registry-credentials-from-datasentics">Web App: Container Registry Credentials from DataSentics<a class="headerlink" href="#web-app-container-registry-credentials-from-datasentics" title="Permanent link">&para;</a></h3>
+<p>For deploying the web app, you will need credentials to Azure Container Registry. From there you will pull a docker image to run in your Azure Web App. </p>
+<p>You will need:</p>
+<ul>
+<li>Server URL</li>
+<li>Username</li>
+<li>Password</li>
+<li>Image and tag</li>
+</ul>
+<h3 id="azure-cli-installed">Azure CLI installed<a class="headerlink" href="#azure-cli-installed" title="Permanent link">&para;</a></h3>
+<p>Follow the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">installation instructions</a></p>
+<p>Add the DevOps extension:
+<div class="highlight"><pre><span></span><code>az extension add --name azure-devops
+</code></pre></div></p>
+<h3 id="permissions">Permissions<a class="headerlink" href="#permissions" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../../../images/subscription_resource_providers.png" /></p>
+<p>You will need a subscription in your Azure Cloud where you have permissions to the following Resource providers. The ones that are <strong>bold</strong> are explicitly needed for the system to be set up and work properly.  </p>
+<ul>
+<li><strong>Microsoft.Databricks</strong></li>
+<li>Microsoft.DataFactory</li>
+<li>Microsoft.OperationalInsights</li>
+<li><strong>Microsoft.KeyVault</strong></li>
+<li><strong>Microsoft.Storage</strong></li>
+<li>Microsoft.Network</li>
+<li><strong>Microsoft.ManagedIdentity</strong></li>
+<li>Microsoft.Security</li>
+<li><strong>Microsoft.PolicyInsights</strong></li>
+<li>Microsoft.GuestConfiguration</li>
+<li>Microsoft.Compute</li>
+<li><strong>Microsoft.ContainerService</strong></li>
+<li>Microsoft.Advisor</li>
+<li>microsoft.insights</li>
+<li>Microsoft.MachineLearningServices</li>
+<li>Microsoft.Purview</li>
+<li><strong>Microsoft.DBforPostgreSQL</strong></li>
+<li><strong>Microsoft.Web</strong></li>
+</ul>
+<h2 id="1-resource-group">1. Resource Group<a class="headerlink" href="#1-resource-group" title="Permanent link">&para;</a></h2>
+<p>We recommend <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal#create-resource-groups">creating a new resource group</a> for all resources that you will create for Settle DQ. </p>
+<h2 id="2-key-vault">2. Key Vault<a class="headerlink" href="#2-key-vault" title="Permanent link">&para;</a></h2>
+<p>You will need an Azure Key Vault to store database connection parameters. If you already have a Key Vault, you can use it. If not <a href="https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal">create one</a> in your Resource Group. </p>
+<h2 id="3-database">3. Database<a class="headerlink" href="#3-database" title="Permanent link">&para;</a></h2>
+<p>The database is the center piece of the DQ Tool. The Python API stores expectation definitions and validations results there. The Web App reads information to display from there. </p>
+<p>If you already have an Azure PostgreSQL Database server, you can just create a new database there. Connect to the server and <a href="https://www.postgresql.org/docs/10/sql-createdatabase.html">create a new database</a>.</p>
+<p>If you don't have a database server, you'll need to create one. We recommend using Azure Database for PostgreSQL. Follow the <a href="https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal">quickstart guide</a>. We recommend the following options:</p>
+<ul>
+<li>Single server</li>
+<li>PosgreSQL 10</li>
+<li>Choose the machine depending on your expected workload, the minimal recommended requirements are 1 vcore, 20GB storage</li>
+</ul>
+<p>For later steps you will need the following parameters. <a href="https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal">Store them to your Key Vault</a>.</p>
+<ul>
+<li>host</li>
+<li>port</li>
+<li>database</li>
+<li>username</li>
+<li>password</li>
+</ul>
+<h2 id="4-databricks">4. Databricks<a class="headerlink" href="#4-databricks" title="Permanent link">&para;</a></h2>
+<p>If you're not using Azure Databricks yet, you'll need to <a href="https://docs.microsoft.com/en-us/azure/databricks/scenarios/quickstart-create-databricks-workspace-portal?tabs=azure-portal">create a new Databricks Workspace</a>. </p>
+<p>If you're already using Azure Databricks and have a workspace, you can just use that. </p>
+<p>You will need an interactive cluster with Databricks Runtime &gt;= 7.0 to install the wheel to. </p>
+<p>Your Databricks will need access to Azure Key Vault to retrieve the database credentials. Follow <a href="https://docs.microsoft.com/en-us/azure/databricks/security/secrets/secret-scopes#akv-ss">the guide to create an Azure Key Vault-backed secret scope</a>. Call it <code>dbx_scope</code>. </p>
+<p>Now we'll install <code>dq_tool</code> python wheel to Databricks. The wheel provides a python interface that <em>Data Engineers</em> use to <a href="../../developing-expectations/">develop and manage data expectations</a>. There are two options how to install the wheel.</p>
+<h3 id="option-a-manual-wheel-installation">Option A: Manual Wheel Installation<a class="headerlink" href="#option-a-manual-wheel-installation" title="Permanent link">&para;</a></h3>
+<p>We only recommend using this option when your Databricks workspace doesn't have access to internet. The downside is that you will need to manually download and update the wheel with every new version.</p>
+<ul>
+<li>Download a wheel from the Pytho Artifact Feed URL you got as a prerequisity</li>
+<li>Upload the wheel to your Databricks workspace and install the wheel to the given <a href="https://docs.databricks.com/libraries/cluster-libraries.html">cluster</a> or <a href="https://docs.databricks.com/libraries/notebooks-python-libraries.html">notebook</a>.</li>
+</ul>
+<h3 id="option-b-installation-from-private-pypi">Option B: Installation from private PyPI<a class="headerlink" href="#option-b-installation-from-private-pypi" title="Permanent link">&para;</a></h3>
+<p>This is an automated way to install the <code>dq_tool</code> package. You don't need to store the wheel anywhere, it will always be installed from DataSentics private PyPI that is a part of an Azure DevOps Artifact Feed.</p>
+<p>First you need to <a href="https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&amp;tabs=preview-page#create-a-pat">generate a Personal Access Token (PAT)</a> for your guest user. In the <em>Create a new personal access token</em> dialog you need to provide the following:</p>
+<ul>
+<li><em>Organization</em>: settle-dq-ext. If you can't see settle-dq-ext, choose <em>All accessible organizations</em></li>
+<li><em>Scopes: Custom defined</em></li>
+<li>In <em>Packaging</em> section check <em>Read</em></li>
+<li><em>Name</em> and <em>Expiration</em> are up to you</li>
+</ul>
+<p><img alt="" src="../../images/pat.png" style="width: 750px; padding-left: 5%" /></p>
+<p>Save the token and <a href="https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal">add it to your Key Vault</a> as <code>ds_azure_pat</code> along with the technical user email address <code>ds_azure_email</code> and DataSentics PyPI URL <code>ds_pypi_url</code> you got as a prerequisity.</p>
+<p>In your notebook, install the library using something like</p>
+<div class="highlight"><pre><span></span><code><span class="n">user</span> <span class="o">=</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;dbx_scope&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;ds_azure_email&quot;</span><span class="p">)</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;dbx_scope&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;ds_azure_pat&quot;</span><span class="p">)</span>
+<span class="n">pypi_url</span> <span class="o">=</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;dbx_scope&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;ds_pypi_url&quot;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">dq_tool</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="err">$</span><span class="n">user</span><span class="p">:</span><span class="err">$</span><span class="n">token</span><span class="o">@</span><span class="err">$</span><span class="n">pypi_url</span>
+</code></pre></div>
+<p>If you get an error like the one below, it means you don't have permissions for the feed, or your PAT is wrong.</p>
+<div class="highlight"><pre><span></span><code>WARNING: 401 Error, Credentials not correct for https://pkgs.dev.azure.com/xxx/_packaging/dq_tool%40Local/pypi/simple/dq_tool/
+  ERROR: Could not find a version that satisfies the requirement dq_tool (from versions: none)
+ERROR: No matching distribution found for dq_tool
+</code></pre></div>
+<h4 id="configure-private-pypi-for-a-databricks-cluster-optional">Configure private PyPI for a Databricks cluster (Optional)<a class="headerlink" href="#configure-private-pypi-for-a-databricks-cluster-optional" title="Permanent link">&para;</a></h4>
+<p>To make installation easier for Databricks users, you can do the following setup. </p>
+<p>First you have to create a <a href="https://docs.microsoft.com/en-us/azure/databricks/clusters/init-scripts">Cluster init script</a> if you don't have one and pass it to the cluster. </p>
+<p>Add the following code to yor init script:
+<div class="highlight"><pre><span></span><code>mkdir /root/.pip
+
+cat &gt; /root/.pip/pip.conf <span class="s">&lt;&lt;EOF</span>
+<span class="s">[global]</span>
+<span class="s">extra-index-url=https://$DS_AZURE_EMAIL:$DS_AZURE_PAT@$DS_PYPI_URL</span>
+<span class="s">EOF</span>
+</code></pre></div>
+Then configure the <a href="https://docs.databricks.com/clusters/configure.html#environment-variables">cluster environment variables</a> as described below. The variable values will be taken from databricks secrets pointing to KeyVault.
+<div class="highlight"><pre><span></span><code>DS_AZURE_EMAIL={{secrets/dbx_scope/ds_azure_email}}
+DS_AZURE_PAT={{secrets/dbx_scope/ds_azure_pat}}
+DS_PYPI_URL={{secrets/dbx_scope/ds_pypi_url}}
+</code></pre></div></p>
+<p>After this is done, to install dq_tool to your notebook, you only need to run the basic command below, without having to worry about the extra index url.
+<div class="highlight"><pre><span></span><code>%pip install dq_tool
+</code></pre></div></p>
+<h3 id="verify-the-installation">Verify The Installation<a class="headerlink" href="#verify-the-installation" title="Permanent link">&para;</a></h3>
+<p>Run the following code to verify you can connect to the database. 
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dq_tool</span> <span class="kn">import</span> <span class="n">DQTool</span>
+<span class="n">dq_tool</span> <span class="o">=</span> <span class="n">DQTool</span><span class="p">(</span>
+    <span class="n">spark</span><span class="o">=</span><span class="n">spark</span><span class="p">,</span>
+    <span class="n">db_store_connection</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;drivername&#39;</span><span class="p">:</span> <span class="s1">&#39;postgresql&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;host&#39;</span><span class="p">:</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dbx_scope&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;port&#39;</span><span class="p">:</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dbx_scope&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;port&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;database&#39;</span><span class="p">:</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dbx_scope&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;database&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dbx_scope&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;username&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">dbutils</span><span class="o">.</span><span class="n">secrets</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;dbx_scope&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p>The code creates the database schema if it's not there yet. Then you can start using the python interface as described in the <a href="../../developing-expectations/">Develop Expectations guide</a>. Save the code, you'll use it in the <a href="../configuration-notebook/">Configuration Notebook</a></p>
+<h2 id="5-web-application">5. Web Application<a class="headerlink" href="#5-web-application" title="Permanent link">&para;</a></h2>
+<p>The <em>Data User</em> checks the validation results in a web application. It needs an Azure Web app and a Storage account.
+add Web App</p>
+<h3 id="create-web-app">Create Web App<a class="headerlink" href="#create-web-app" title="Permanent link">&para;</a></h3>
+<p>Create a <a href="https://portal.azure.com/#create/Microsoft.WebSite">Web App in the Azure portal</a>. Use the following options:</p>
+<ul>
+<li>Select your <em>Subscription</em> and <em>Resource Group</em></li>
+<li><em>WebApp name</em>: your choice</li>
+<li><em>Publish</em>: select <em>Docker Conatiner</em></li>
+<li><em>Operating system</em>: <em>Linux</em></li>
+<li><em>Service Plan</em>: Create new</li>
+<li><em>SKU size</em>: select <em>B1</em> at least</li>
+</ul>
+<p>Click <em>Next : Docker &gt;</em></p>
+<p>Now you'll need to fill in the credentials for a private Docker registry, you got from DataSentics.</p>
+<ul>
+<li><em>Options</em>: <em>Single Container</em></li>
+<li><em>Image Source</em>: <em>Private Registry</em></li>
+</ul>
+<p><img alt="" src="../../images/web-app-docker.png" style="width: 750px; padding-left: 5%" /></p>
+<p>Click <em>Review + create</em></p>
+<h3 id="create-storage-account">Create Storage Account<a class="headerlink" href="#create-storage-account" title="Permanent link">&para;</a></h3>
+<p>Create a <a href="https://portal.azure.com/#create/Microsoft.StorageAccount">Storage Account in the Azure portal</a>. Use the following options:</p>
+<ul>
+<li><em>Storage account name</em>: Use 5-50 just alfanumeric characters</li>
+<li><em>Performance</em>: <em>Standard</em></li>
+<li><em>Account kind</em>: <em>StorageV2 (general purpose v2)</em></li>
+<li><em>Replication</em>: <em>RA-GRS</em></li>
+</ul>
+<p>Click <em>Review + create</em></p>
+<h4 id="enable-static-website">Enable Static Website<a class="headerlink" href="#enable-static-website" title="Permanent link">&para;</a></h4>
+<p>Now open your newly created Storage Account. On the left side in <em>Settings</em> click <em>Static Website</em>. Use the following options:</p>
+<ul>
+<li><em>Static website</em>: click to set <em>Enabled</em></li>
+<li><em>Index document name</em>: <em>index.html</em></li>
+</ul>
+<p>Click <em>Save</em></p>
+<h4 id="change-access-level">Change Access Level<a class="headerlink" href="#change-access-level" title="Permanent link">&para;</a></h4>
+<p>Now Change access level for the $web container, so that it can be served as a website. Open your Storage Account, click <em>Overview</em>. Under <em>Essentials</em> click <em>Containers</em>. A table of containers opens.</p>
+<ul>
+<li>Click on three dots on the right side of the $web container</li>
+<li>Click <em>Change access level</em></li>
+</ul>
+<p><img alt="" src="../../images/access-level.png" style="width: 750px; padding-left: 5%" /></p>
+<ul>
+<li>Choose <em>Blob (anonymous read access for blobs only)</em></li>
+<li>Click <em>OK</em></li>
+</ul>
+<h3 id="upload-frontend-files-to-storage-account">Upload Frontend Files to Storage Account<a class="headerlink" href="#upload-frontend-files-to-storage-account" title="Permanent link">&para;</a></h3>
+<p>Now you need to download the web frontend static files zip archive. Open the link you got as desribed in Prerequisites. Download the zip directly from the website, or click <em>Connect to feed</em> to download using the CLI. </p>
+<p>Unzip the archive. Use the <code>az</code> CLI to upload the contets to the Storage account:
+<div class="highlight"><pre><span></span><code>az storage blob upload-batch -d &#39;$web&#39; -s ./build --account-name &lt;name of storage&gt;
+</code></pre></div></p>
+<h3 id="set-web-app-environment-variables">Set Web App Environment Variables<a class="headerlink" href="#set-web-app-environment-variables" title="Permanent link">&para;</a></h3>
+<p>You need to point the web app to the database and to the Storage account with the frontend files.</p>
+<p>Open your Web App, on the left side under <em>Settings</em> click <em>Configuration</em>. Add the following env variables:</p>
+<ul>
+<li>DB_HOST</li>
+<li>DB_PORT</li>
+<li>DB_NAME</li>
+<li>DB_USER</li>
+<li>DB_PASS</li>
+<li>FE_CONTAINER_ADDRESS: URL of the Storage, format <code>https://xxx.web.core.windows.net/</code></li>
+</ul>
+<p><img alt="" src="../../images/web-app-docker.png" style="width: 750px; padding-left: 5%" /></p>
+<h3 id="add-authentication-to-the-web-app">Add authentication to the web app<a class="headerlink" href="#add-authentication-to-the-web-app" title="Permanent link">&para;</a></h3>
+<p>The easiest option to enable authentication is the <em>Express</em> option. To enable authentication using the Express option, follow these steps:</p>
+<ol>
+<li>In the <a href="https://portal.azure.com/">Azure portal</a>, search for and select <em>App Services</em>, and then select your app.</li>
+<li>From the left navigation, select <em>Authentication / Authorization</em> &gt; <em>On</em>.</li>
+<li>Select <em>Azure Active Directory</em> &gt; <em>Express</em>.</li>
+<li>If you want to choose an existing app registration instead:<ol>
+<li>Choose <em>Select Existing AD app</em>, then click <em>Azure AD App</em>.</li>
+<li>Choose an existing app registration and click <em>OK</em>.</li>
+</ol>
+</li>
+<li>Select <em>OK</em> to register the App Service app in Azure Active Directory. A new app registration is created.</li>
+</ol>
+<p><img alt="" src="../../images/web-app-authentication.png" style="width: 750px; padding-left: 5%" /></p>
+<p>Click <em>Save</em></p>
+<h2 id="congratulations">Congratulations<a class="headerlink" href="#congratulations" title="Permanent link">&para;</a></h2>
+<p>You can find the URL of the web app in the Web App Overview, usually in format <code>https://xxx.azurewebsites.net</code></p>
+<p>Now you can continue with <a href="../../developing-expectations/">Developing Expectations Guide</a> to start using Settle DQ. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../daipe-integration/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Daipe Integration
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
